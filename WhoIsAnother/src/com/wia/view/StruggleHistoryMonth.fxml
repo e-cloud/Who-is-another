@@ -1,8 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml">
-	<!-- TODO Add Nodes -->
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <Button layoutX="14.0" layoutY="19.0" mnemonicParsing="false" text="Back" />
+        <Hyperlink layoutX="75.0" layoutY="19.0" text="概览" />
+        <Label layoutX="105.0" layoutY="22.0" text="&gt;" />
+        <Hyperlink layoutX="115.0" layoutY="19.0" text="2014" />
+        <Label layoutX="152.0" layoutY="21.0" text="&gt;1月" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+      <children>
+        <AnchorPane layoutX="42.0" layoutY="-74.0" minHeight="200.0" prefHeight="200.0" prefWidth="200.0">
+          <children>
+            <BarChart layoutX="-15.0" layoutY="62.0" prefHeight="238.0" prefWidth="411.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+          </children>
+        </AnchorPane>
+        <Label layoutX="475.0" layoutY="63.0" text="提交题目数" />
+        <Label layoutX="475.0" layoutY="98.0" text="解决题目数" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="561.0" layoutY="63.0" stroke="BLACK" strokeType="INSIDE" width="91.0">
+          <fill>
+            <Color blue="0.875" green="0.875" red="0.875" fx:id="x1" />
+          </fill>
+        </Rectangle>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="561.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="7">
+      <children>
+        <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="8">
+      <children>
+        <Line endX="515.0" endY="-85.0" layoutX="167.0" layoutY="29.0" startX="-166.0" startY="-85.0" />
+        <AnchorPane layoutX="-3.0" layoutY="8.0" prefHeight="200.0" prefWidth="158.0" />
+        <ProgressIndicator layoutX="192.0" layoutY="-35.0" prefHeight="143.0" prefWidth="177.0" progress="0.77" />
+        <Label layoutX="27.0" layoutY="-35.0" text="2014年1月做题情况总体分析" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="20.0" layoutX="563.0" layoutY="-13.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="563.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+        <Label layoutX="473.0" layoutY="-10.0" text="提交题目数" />
+        <Label layoutX="473.0" layoutY="30.0" text="解决题目数" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <children>
+        <Line endX="-86.0" endY="0.0" layoutX="115.0" layoutY="15.0" startX="-113.0" startY="0.0" />
+        <Label layoutX="30.0" layoutY="8.0" text="提交题目数2014年1月各日分布" />
+        <Line endX="390.0" endY="0.0" layoutX="294.0" layoutY="16.0" startX="-94.0" startY="0.0" />
+        <SplitMenuButton ellipsisString="2014" layoutX="684.0" layoutY="6.0" mnemonicParsing="false" prefWidth="60.0" text="2014">
+          <items>
+            <MenuItem mnemonicParsing="false" text="1月" />
+            <MenuItem mnemonicParsing="false" text="2月" />
+          </items>
+        </SplitMenuButton>
+        <Line endX="37.0" endY="0.0" layoutX="763.0" layoutY="16.0" startX="-19.0" startY="0.0" />
+      </children>
+    </AnchorPane>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+  </rowConstraints>
 </GridPane>
-

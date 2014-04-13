@@ -1,8 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml">
-	<!-- TODO Add Nodes -->
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <Label layoutX="38.0" layoutY="30.0" text="整体概况" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+      <children>
+        <Hyperlink layoutX="68.0" layoutY="-6.0" text="Problem Solved" />
+        <Hyperlink layoutX="68.0" layoutY="14.0" text="Submissions" />
+        <Hyperlink layoutX="68.0" layoutY="33.0" text="Accepted" />
+      </children>
+    </AnchorPane>
+    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <children>
+        <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="126.0" prefWidth="685.0">
+          <children>
+            <LineChart id="LineChart" layoutX="32.0" layoutY="-97.0" prefWidth="743.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+          </children>
+        </AnchorPane>
+        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <children>
+        <Hyperlink layoutX="68.0" layoutY="4.0" text="Rank" />
+        <Hyperlink layoutX="68.0" layoutY="24.0" text="Problem Submitted" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+  </rowConstraints>
 </GridPane>
-

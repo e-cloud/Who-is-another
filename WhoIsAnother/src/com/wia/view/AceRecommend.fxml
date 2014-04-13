@@ -1,8 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml">
-	<!-- TODO Add Nodes -->
-</BorderPane>
-
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <Label layoutX="41.0" layoutY="19.0" prefWidth="229.0" text="TOP100差异比较及共性分析后的结果：" />
+      </children>
+    </AnchorPane>
+    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <children>
+        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="357.0" prefHeight="200.0" prefWidth="200.0" />
+        <BarChart layoutX="17.0" layoutY="32.0" prefWidth="546.0">
+          <xAxis>
+            <CategoryAxis side="BOTTOM" />
+          </xAxis>
+          <yAxis>
+            <NumberAxis side="LEFT" />
+          </yAxis>
+        </BarChart>
+        <Label layoutX="610.0" layoutY="164.0" text="推荐题目" />
+        <Label layoutX="610.0" layoutY="218.0" text="你已做" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" layoutX="667.0" layoutY="164.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="19.0" layoutX="667.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.valignment="TOP">
+      <children>
+        <AnchorPane layoutX="0.0" layoutY="2.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="126.0" prefWidth="685.0" />
+        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
+      </children>
+    </AnchorPane>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>

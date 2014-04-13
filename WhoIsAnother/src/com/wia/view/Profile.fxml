@@ -1,8 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml">
-	<!-- TODO Add Nodes -->
-</BorderPane>
-
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <children>
+        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="357.0" prefHeight="200.0" prefWidth="200.0" />
+        <Label layoutX="337.0" layoutY="44.0" text="Author ID  ：ScottSaint" />
+        <Label layoutX="337.0" layoutY="78.0" text="Nickname  ：ScottSaint" />
+        <Label layoutX="337.0" layoutY="113.0" text="From         ：Zhuhai" />
+        <Label layoutX="337.0" layoutY="151.0" text="Nationality：China" />
+        <Label layoutX="337.0" layoutY="193.0" text="Register Date：2012-12-6" />
+        <Label layoutX="337.0" layoutY="237.0" text="Motto        ：Everything is OK." />
+        <Label layoutX="337.0" layoutY="279.0" text="Email         ：110@163.com" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.valignment="TOP">
+      <children>
+        <AnchorPane layoutX="0.0" layoutY="2.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
+        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="126.0" prefWidth="685.0" />
+        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
+      </children>
+    </AnchorPane>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>
