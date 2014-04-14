@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="960.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<BorderPane prefHeight="600.0" prefWidth="960.0" styleClass="layout" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.ProgressBarController">
   <!-- TODO Add Nodes -->
   <center>
-    <VBox alignment="CENTER" maxHeight="100.0" maxWidth="600.0" prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER">
+    <VBox alignment="CENTER" maxHeight="100.0" maxWidth="600.0" onMouseClicked="#handleClick" prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER">
       <children>
         <Label text="下载数据并处理中..." />
         <ProgressBar prefWidth="200.0" progress="-0.53" />
       </children>
     </VBox>
   </center>
+  <stylesheets>
+    <URL value="@css/general.css" />
+  </stylesheets>
 </BorderPane>

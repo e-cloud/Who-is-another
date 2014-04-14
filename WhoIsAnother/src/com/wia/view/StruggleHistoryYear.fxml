@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,88 +10,96 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
-  <!-- TODO Add Nodes -->
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.StruggleHistoryYearController">
   <children>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <Button layoutX="14.0" layoutY="19.0" mnemonicParsing="false" text="Back" />
-        <Hyperlink layoutX="75.0" layoutY="19.0" text="概览" />
-        <Label layoutX="105.0" layoutY="22.0" text="&gt;2014年" />
+        <Button mnemonicParsing="false" text="Back">
+          <HBox.margin>
+            <Insets left="10.0" fx:id="x1" />
+          </HBox.margin>
+        </Button>
+        <Hyperlink text="概览" />
+        <Label text="&gt;" />
+        <Hyperlink text="2014年" />
       </children>
-    </AnchorPane>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+    </HBox>
+    <Label text="提交题目数2014年各月分布" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="1" />
+    <HBox id="HBox" alignment="CENTER" spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2">
       <children>
-        <AnchorPane layoutX="42.0" layoutY="-74.0" minHeight="200.0" prefHeight="200.0" prefWidth="200.0">
+        <BarChart prefWidth="546.0">
+          <xAxis>
+            <CategoryAxis side="BOTTOM" />
+          </xAxis>
+          <yAxis>
+            <NumberAxis side="LEFT" />
+          </yAxis>
+        </BarChart>
+        <GridPane alignment="CENTER" maxHeight="100.0" maxWidth="-1.0" prefHeight="-1.0">
           <children>
-            <BarChart layoutX="-15.0" layoutY="62.0" prefHeight="238.0" prefWidth="411.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
+            <Label text="提交题目数" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="19.0" stroke="BLACK" strokeType="INSIDE" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+              <fill>
+                <Color blue="0.875" green="0.875" red="0.875" fx:id="x2" />
+              </fill>
+            </Rectangle>
+            <Label text="解决题目数" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" stroke="BLACK" strokeType="INSIDE" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
           </children>
-        </AnchorPane>
-        <Label layoutX="475.0" layoutY="63.0" text="提交题目数" />
-        <Label layoutX="475.0" layoutY="98.0" text="解决题目数" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="561.0" layoutY="63.0" stroke="BLACK" strokeType="INSIDE" width="91.0">
-          <fill>
-            <Color blue="0.875" green="0.875" red="0.875" fx:id="x1" />
-          </fill>
-        </Rectangle>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="561.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
       </children>
-    </AnchorPane>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="7">
+    </HBox>
+    <Label text="2014年做题情况总体分析" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
+    <GridPane GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
       <children>
-        <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" />
+        <PieChart id="PieChart" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="4" />
+        <Label text="提交题目数" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="解决题目数" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="91.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x2" height="20.0" stroke="BLACK" strokeType="INSIDE" width="91.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       </children>
-    </AnchorPane>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="8">
-      <children>
-        <Line endX="515.0" endY="-85.0" layoutX="167.0" layoutY="29.0" startX="-166.0" startY="-85.0" />
-        <AnchorPane layoutX="2.0" layoutY="7.0" prefHeight="200.0" prefWidth="164.5" />
-        <ProgressIndicator layoutX="192.0" layoutY="-35.0" prefHeight="143.0" prefWidth="177.0" progress="0.77" />
-        <Label layoutX="27.0" layoutY="-35.0" text="2014年做题情况总体分析" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x1" height="20.0" layoutX="563.0" layoutY="-13.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="563.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
-        <Label layoutX="473.0" layoutY="-10.0" text="提交题目数" />
-        <Label layoutX="473.0" layoutY="30.0" text="解决题目数" />
-      </children>
-    </AnchorPane>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-      <children>
-        <Line endX="-86.0" endY="0.0" layoutX="115.0" layoutY="15.0" startX="-114.0" startY="0.0" />
-        <Label layoutX="30.0" layoutY="8.0" text="提交题目数2014年各月分布" />
-        <Line endX="390.0" endY="0.0" layoutX="294.0" layoutY="16.0" startX="-114.0" startY="0.0" />
-        <SplitMenuButton ellipsisString="2014" layoutX="684.0" layoutY="5.0" mnemonicParsing="false" prefWidth="60.0" text="2014">
-          <items>
-            <MenuItem mnemonicParsing="false" text="2014" />
-            <MenuItem mnemonicParsing="false" text="2013" />
-          </items>
-        </SplitMenuButton>
-        <Line endX="37.0" endY="0.0" layoutX="763.0" layoutY="16.0" startX="-19.0" startY="0.0" />
-      </children>
-    </AnchorPane>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <ComboBox promptText="2014" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="项 1" />
+          <String fx:value="项 2" />
+          <String fx:value="项 3" />
+        </FXCollections>
+      </items>
+      <GridPane.margin>
+        <Insets right="10.0" />
+      </GridPane.margin>
+    </ComboBox>
   </children>
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="40.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="30.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="30.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
   </rowConstraints>
 </GridPane>

@@ -8,42 +8,14 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.HelpController">
   <!-- TODO Add Nodes -->
   <children>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <children>
-        <Label layoutX="387.0" layoutY="26.0" text="Help" />
-      </children>
-    </AnchorPane>
-    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
-      <children>
-        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="357.0" prefHeight="200.0" prefWidth="200.0" />
-        <TextArea layoutX="36.0" layoutY="0.0" prefHeight="524.0" prefWidth="723.0" text="http://acm.hdu.edu.cn/  if questions." wrapText="true" />
-      </children>
-    </AnchorPane>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="10" />
-    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.valignment="TOP">
-      <children>
-        <AnchorPane layoutX="0.0" layoutY="2.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="126.0" prefWidth="685.0" />
-        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
-      </children>
-    </AnchorPane>
+    <Label text="Help" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Label text="http://acm.hdu.edu.cn/  if questions." GridPane.columnIndex="0" GridPane.rowIndex="1" />
   </children>
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />

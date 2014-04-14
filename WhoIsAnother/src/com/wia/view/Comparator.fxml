@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,77 +9,62 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.ComparatorController">
   <!-- TODO Add Nodes -->
   <children>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <Label layoutX="343.0" layoutY="20.0" text="直接与特定ID比较：" />
-        <TextField layoutX="452.0" layoutY="17.0" prefWidth="241.0" />
-        <Button layoutX="703.0" layoutY="17.0" mnemonicParsing="false" text="比较" />
+        <Label text="直接与特定ID比较：" />
+        <TextField prefWidth="241.0" />
+        <Button mnemonicParsing="false" text="比较">
+          <HBox.margin>
+            <Insets right="10.0" />
+          </HBox.margin>
+        </Button>
       </children>
-    </AnchorPane>
-    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
+    </HBox>
+    <GridPane alignment="CENTER" prefHeight="50.999900000002526" prefWidth="800.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
       <children>
-        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0">
-          <children>
-            <Label layoutX="53.0" layoutY="31.0" text="BlueBird" />
-          </children>
-        </AnchorPane>
-        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="357.0" prefHeight="200.0" prefWidth="200.0" />
-        <Label layoutX="385.0" layoutY="74.0" text="排名" />
-        <Label layoutX="367.0" layoutY="111.0" text="提交题目数" />
-        <Label layoutX="367.0" layoutY="148.0" text="提交总次数" />
-        <Label layoutX="377.0" layoutY="185.0" text="AC次数" />
-        <Label layoutX="367.0" layoutY="222.0" text="解决题目数" />
-        <Line endX="111.0" endY="118.0" layoutX="230.0" layoutY="151.0" startX="111.0" startY="-82.0" />
-        <Line endX="200.0" endY="107.0" layoutX="245.0" layoutY="161.0" startX="200.0" startY="-91.0" />
-        <Label layoutX="268.0" layoutY="74.0" text="1" />
-        <Label layoutX="506.0" layoutY="77.0" text="1452" />
-        <Label layoutX="701.0" layoutY="31.0" text="你" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="141.0" layoutY="102.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="169.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="173.0001220703125" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="186.0" layoutY="182.0" stroke="BLACK" strokeType="INSIDE" width="156.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="176.0" layoutY="219.0" stroke="BLACK" strokeType="INSIDE" width="166.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="445.0" layoutY="108.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="445.0" layoutY="145.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="445.0" layoutY="182.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="445.0" layoutY="219.0" stroke="BLACK" strokeType="INSIDE" width="41.0" />
+        <Label text="BlueBird" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label text="你" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label text="排名" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="1452" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label text="1" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label text="提交题目数" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="提交总次数" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="AC次数" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label text="解决题目数" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="173.0001220703125" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="156.0" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="166.0" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="60.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="48.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="41.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
       </children>
-    </AnchorPane>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="10" />
-    <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.valignment="TOP">
-      <children>
-        <AnchorPane layoutX="0.0" layoutY="2.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="204.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="306.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
-        <AnchorPane layoutX="0.0" layoutY="102.0" prefHeight="126.0" prefWidth="685.0" />
-        <AnchorPane layoutX="0.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
-      </children>
-    </AnchorPane>
+      <columnConstraints>
+        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" vgrow="SOMETIMES" />
   </rowConstraints>
 </GridPane>

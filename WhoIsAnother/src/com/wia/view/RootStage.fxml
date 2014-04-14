@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="960.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<BorderPane prefHeight="600.0" prefWidth="960.0" styleClass="layout" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.RootStageController">
   <!-- TODO Add Nodes -->
   <left>
     <HBox prefHeight="-1.0" prefWidth="-1.0" spacing="10.0">
@@ -20,14 +21,14 @@
                     <Insets left="10.0" fx:id="x2" />
                   </GridPane.margin>
                 </Label>
-                <Label text="奋斗历程" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Label id="STRUGGLEHISTORYGENERALID" fx:id="STRUGGLEHISTORYGENERAL" onMouseClicked="#handleClick" text="奋斗历程" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                   <GridPane.margin>
                     <Insets right="10.0" fx:id="x1" />
                   </GridPane.margin>
                 </Label>
-                <Label text="辉煌成就" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="2" />
+                <Label fx:id="PROGRESS" text="辉煌成就" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="2" />
                 <Label text="学之从贤" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="3" />
-                <Label text="牛人100" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="4" />
+                <Label fx:id="ROOTSTAGE" text="牛人100" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="4" />
                 <Label text="一较高下" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="5" />
                 <Label text="荐题系统" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="6" />
                 <Label text="邻里推荐" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="7" />
@@ -80,4 +81,7 @@
       </children>
     </HBox>
   </left>
+  <stylesheets>
+    <URL value="@css/general.css" />
+  </stylesheets>
 </BorderPane>
