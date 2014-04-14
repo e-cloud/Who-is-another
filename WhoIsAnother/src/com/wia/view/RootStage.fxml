@@ -21,18 +21,18 @@
                     <Insets left="10.0" fx:id="x2" />
                   </GridPane.margin>
                 </Label>
-                <Label id="STRUGGLEHISTORYGENERALID" fx:id="STRUGGLEHISTORYGENERAL" onMouseClicked="#handleClick" text="奋斗历程" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Label fx:id="strugglehistorygeneral" onMouseClicked="#handleClick" text="奋斗历程" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                   <GridPane.margin>
                     <Insets right="10.0" fx:id="x1" />
                   </GridPane.margin>
                 </Label>
-                <Label fx:id="PROGRESS" text="辉煌成就" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="2" />
+                <Label fx:id="lightspot" onMouseClicked="#handleClick" text="辉煌成就" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="2" />
                 <Label text="学之从贤" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="3" />
-                <Label fx:id="ROOTSTAGE" text="牛人100" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="4" />
-                <Label text="一较高下" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="5" />
+                <Label fx:id="ranklist" onMouseClicked="#handleClick" text="牛人100" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="4" />
+                <Label fx:id="comparator" onMouseClicked="#handleClick" text="一较高下" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="5" />
                 <Label text="荐题系统" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="6" />
-                <Label text="邻里推荐" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="7" />
-                <Label text="牛人共性" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="8" />
+                <Label fx:id="neighbourrecommend" onMouseClicked="#handleClick" text="邻里推荐" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="7" />
+                <Label fx:id="acerecommend" onMouseClicked="#handleClick" text="牛人共性" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.margin="$x1" GridPane.rowIndex="8" />
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,9 +51,9 @@
             </GridPane>
             <GridPane GridPane.columnIndex="0" GridPane.rowIndex="1">
               <children>
-                <Label text="个人信息" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Label text="设置" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <Label text="帮助" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label fx:id="profile" onMouseClicked="#handleClick" text="个人信息" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="setting" onMouseClicked="#handleClick" text="设置" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="help" onMouseClicked="#handleClick" text="帮助" GridPane.columnIndex="0" GridPane.rowIndex="2" />
               </children>
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
