@@ -38,7 +38,7 @@
  * holder.
  */
 
-package screensframework;
+package com.wia.layout;
 
 import java.util.HashMap;
 
@@ -58,12 +58,12 @@ import javafx.util.Duration;
  * 
  * @author Angie
  */
-public class ScreensController extends StackPane {
+public class ScreensContainer extends StackPane {
 	// Holds the screens to be displayed
 
 	private final HashMap<String, Node> screens = new HashMap<>();
 
-	public ScreensController() {
+	public ScreensContainer() {
 		super();
 	}
 
@@ -102,7 +102,7 @@ public class ScreensController extends StackPane {
 	// screen is removed.
 	// If there isn't any screen being displayed, the new screen is just added
 	// to the root.
-	public boolean setScreen(final String name) {
+	public boolean switchToScreen(final String name) {
 		if (screens.get(name) != null) { // screen loaded
 			final DoubleProperty opacity = opacityProperty();
 

@@ -5,10 +5,10 @@ package com.wia.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import screensframework.ControlledScreen;
-import screensframework.ScreensController;
 
 import com.wia.CentralCoordinator;
+import com.wia.layout.ControlledScreen;
+import com.wia.layout.ScreensContainer;
 
 /**
  * @author Saint Scott
@@ -16,22 +16,22 @@ import com.wia.CentralCoordinator;
  */
 public class WelcomeController implements ControlledScreen {
 
-	ScreensController myController;
+	ScreensContainer myScreensContainer;
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see screensframework.ControlledScreen#setScreenParent(screensframework.
-	 * ScreensController)
+	 * ScreensContainer)
 	 */
 	@Override
-	public void setScreenParent(ScreensController screenParent) {
+	public void setScreenParent(ScreensContainer screenParent) {
 		// TODO Auto-generated method stub
-		myController = screenParent;
+		myScreensContainer = screenParent;
 	}
 
 	@FXML
 	private void handleGo(ActionEvent event) {
-		myController.setScreen(CentralCoordinator.PROGRESSID);
+		myScreensContainer.switchToScreen(CentralCoordinator.PROGRESSID);
 	}
 }

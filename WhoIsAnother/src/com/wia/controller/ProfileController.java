@@ -3,25 +3,25 @@
  */
 package com.wia.controller;
 
-import screensframework.ControlledScreen;
-import screensframework.ScreensController;
+import com.wia.layout.ControlledScreen;
+import com.wia.layout.ScreensContainer;
 
 /**
  * @author Saint Scott
  * 
  */
 public class ProfileController implements ControlledScreen {
-	ScreensController myController;
+	ScreensContainer myScreensContainer;
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see screensframework.ControlledScreen#setScreenParent(screensframework.
-	 * ScreensController)
+	 * ScreensContainer)
 	 */
 	@Override
-	public void setScreenParent(ScreensController screenParent) {
+	public void setScreenParent(ScreensContainer screenParent) {
 		// TODO Auto-generated method stub
-		myController = screenParent;
+		myScreensContainer = screenParent;
 	}
 }

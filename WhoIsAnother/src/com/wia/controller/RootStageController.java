@@ -8,10 +8,10 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import screensframework.ControlledScreen;
-import screensframework.ScreensController;
 
 import com.wia.CentralCoordinator;
+import com.wia.layout.ControlledScreen;
+import com.wia.layout.ScreensContainer;
 
 /**
  * @author Saint Scott
@@ -20,8 +20,8 @@ import com.wia.CentralCoordinator;
 public class RootStageController implements ControlledScreen {
 
 	CentralCoordinator coordinator;
-	ScreensController myController;
-	ScreensController rightPanecController;
+	ScreensContainer myScreensContainer;
+	ScreensContainer rightPaneContainer;
 
 	public final static String STRUGGLEHISTORYGENERALID = "strugglehistorygeneral";
 	public final static String struggleHistroyGeneralFile = "/com/wia/view/StruggleHistoryGeneral.fxml";
@@ -71,23 +71,23 @@ public class RootStageController implements ControlledScreen {
 	}
 
 	public void init() {
-		rightPanecController = new ScreensController();
-		rightPanecController.loadScreen(STRUGGLEHISTORYGENERALID,
+		rightPaneContainer = new ScreensContainer();
+		rightPaneContainer.loadScreen(STRUGGLEHISTORYGENERALID,
 				struggleHistroyGeneralFile);
-		rightPanecController.loadScreen(LIGHTSPOTID, lightSpotFile);
-		rightPanecController.loadScreen(RANKLISTID, ranklistFile);
-		rightPanecController.loadScreen(COMPARATORID, comparatorFile);
-		rightPanecController.loadScreen(NEIGHBOURRECOMMENDID,
+		rightPaneContainer.loadScreen(LIGHTSPOTID, lightSpotFile);
+		rightPaneContainer.loadScreen(RANKLISTID, ranklistFile);
+		rightPaneContainer.loadScreen(COMPARATORID, comparatorFile);
+		rightPaneContainer.loadScreen(NEIGHBOURRECOMMENDID,
 				neighbourrecommendFile);
-		rightPanecController.loadScreen(ACERECOMMENDID, acerecommendFile);
-		rightPanecController.loadScreen(PROFILEID, profileFile);
-		rightPanecController.loadScreen(SETTINGID, settingFile);
-		rightPanecController.loadScreen(HELPID, helpFile);
-		rightPanecController.setScreen(STRUGGLEHISTORYGENERALID);
+		rightPaneContainer.loadScreen(ACERECOMMENDID, acerecommendFile);
+		rightPaneContainer.loadScreen(PROFILEID, profileFile);
+		rightPaneContainer.loadScreen(SETTINGID, settingFile);
+		rightPaneContainer.loadScreen(HELPID, helpFile);
+		rightPaneContainer.switchToScreen(STRUGGLEHISTORYGENERALID);
 
 		Group root = new Group();
-		root.getChildren().addAll(rightPanecController);
-		BorderPane borderLayout = (BorderPane) myController
+		root.getChildren().addAll(rightPaneContainer);
+		BorderPane borderLayout = (BorderPane) myScreensContainer
 				.getScreen(CentralCoordinator.ROOTSTAGEID);
 		borderLayout.setCenter(root);
 	}
@@ -96,17 +96,17 @@ public class RootStageController implements ControlledScreen {
 	 * (non-Javadoc)
 	 * 
 	 * @see screensframework.ControlledScreen#setScreenParent(screensframework.
-	 * ScreensController)
+	 * ScreensContainer)
 	 */
 	@Override
-	public void setScreenParent(ScreensController screenParent) {
+	public void setScreenParent(ScreensContainer screenParent) {
 		// TODO Auto-generated method stub
-		myController = screenParent;
+		myScreensContainer = screenParent;
 	}
 
 	@FXML
 	private void handleClick(MouseEvent event) {
 		System.out.println(((Label) event.getSource()).getId());
-		rightPanecController.setScreen(((Label) event.getSource()).getId());
+		rightPaneContainer.switchToScreen(((Label) event.getSource()).getId());
 	}
 }

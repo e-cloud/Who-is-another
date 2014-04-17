@@ -36,43 +36,15 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
- */ 
-
-package screensframework;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+ */
+package com.wia.layout;
 
 /**
- * FXML Controller class
- *
+ * 
  * @author Angie
  */
-public class Screen2Controller implements Initializable , ControlledScreen {
+public interface ControlledScreen {
 
-    ScreensController myController;
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-    
-    public void setScreenParent(ScreensController screenParent){
-        myController = screenParent;
-    }
-
-    @FXML
-    private void goToScreen1(ActionEvent event){
-       myController.setScreen(ScreensFramework.screen1ID);
-    }
-    
-    @FXML
-    private void goToScreen3(ActionEvent event){
-       myController.setScreen(ScreensFramework.screen3ID);
-    }
+	// This method will allow the injection of the Parent ScreenPane
+	public void setScreenParent(ScreensContainer screenParent);
 }
