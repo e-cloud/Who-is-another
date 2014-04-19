@@ -1,7 +1,6 @@
 *.class
 
-# Package Files #
-*.jar
+# Package Files #s
 *.war
 *.ear
 *.bak
