@@ -15,8 +15,9 @@ import org.apache.http.util.CharArrayBuffer;
  * 
  */
 public class IOUtil {
+
 	/**
-	 * 将输入流解析为对应编码集的字符串
+	 * 将指定编码集的输入流解析为字符串
 	 * 
 	 * @param is
 	 *            inputstream to be parsed
@@ -38,5 +39,19 @@ public class IOUtil {
 			reader.close();
 		}
 		return buffer.toString();
+	}
+
+	/**
+	 * 将utf-8编码集的输入流解析为字符串
+	 * 
+	 * @param is
+	 *            inputstream to be parsed
+	 * @param charset
+	 * @return parsed string
+	 * @throws IOException
+	 */
+	public static String parseInputStreamWithCharset(InputStream is)
+			throws IOException {
+		return parseInputStreamWithCharset(is, "utf-8");
 	}
 }
