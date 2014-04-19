@@ -3,8 +3,8 @@
  */
 package com.wia.controller;
 
-import com.wia.layout.ControlledScreen;
-import com.wia.layout.ScreensContainer;
+import com.wia.view.layout.ControlledScreen;
+import com.wia.view.layout.ScreensContainer;
 
 /**
  * @author Saint Scott

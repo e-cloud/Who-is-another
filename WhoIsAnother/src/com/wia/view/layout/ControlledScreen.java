@@ -37,7 +37,7 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package com.wia.layout;
+package com.wia.view.layout;
 
 /**
  * 

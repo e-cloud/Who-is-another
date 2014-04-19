@@ -38,7 +38,7 @@
  * holder.
  */
 
-package com.wia.layout;
+package com.wia.view.layout;
 
 import java.util.HashMap;
 

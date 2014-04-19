@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import com.wia.controller.RootStageController;
-import com.wia.layout.ScreensContainer;
+import com.wia.view.layout.ScreensContainer;
 
 /**
  * @author Saint Scott

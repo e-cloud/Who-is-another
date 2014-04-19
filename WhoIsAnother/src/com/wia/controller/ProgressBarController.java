@@ -7,8 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 import com.wia.CentralCoordinator;
-import com.wia.layout.ControlledScreen;
-import com.wia.layout.ScreensContainer;
+import com.wia.view.layout.ControlledScreen;
+import com.wia.view.layout.ScreensContainer;
 
 /**
  * @author Saint Scott
