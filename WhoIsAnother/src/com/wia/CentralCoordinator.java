@@ -17,6 +17,8 @@ import com.wia.view.layout.ScreensContainer;
  */
 public class CentralCoordinator extends Application {
 
+	private Context context;
+
 	public Stage primaryStage;
 	public final static String WELCOMEID = "WELCOME";
 	public final static String welcomeFile = "/com/wia/view/Welcome.fxml";
@@ -34,6 +36,7 @@ public class CentralCoordinator extends Application {
 	public void init() throws Exception {
 		// TODO Auto-generated method stub
 		super.init();
+		context = Context.getInstance();
 	}
 
 	/*

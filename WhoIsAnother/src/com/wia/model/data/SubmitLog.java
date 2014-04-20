@@ -18,6 +18,9 @@ public class SubmitLog {
 		AC, WA
 	}
 
+	private final int rid;
+	private final int pid;
+
 	private final Calendar submitTime;
 	private final JudgeStatus status;
 	private final int execTime;
@@ -29,10 +32,12 @@ public class SubmitLog {
 	 * @throws ParseException
 	 * 
 	 */
-	public SubmitLog(String datestr, JudgeStatus status, int exectime,
-			int execmemory, int codelength, String language)
+	public SubmitLog(int rid, int pid, String datestr, JudgeStatus status,
+			int exectime, int execmemory, int codelength, String language)
 			throws ParseException {
 		// TODO Auto-generated constructor stub
+		this.rid = rid;
+		this.pid = pid;
 		submitTime = Calendar.getInstance();
 		submitTime.setTime(ThreadLoaclDateFormatUtil.parseDetail(datestr));
 		this.status = status;
@@ -82,6 +87,35 @@ public class SubmitLog {
 	 */
 	public String getLanguage() {
 		return language;
+	}
+
+	/**
+	 * @return the rid
+	 */
+	public int getRid() {
+		return rid;
+	}
+
+	/**
+	 * @return the pid
+	 */
+	public int getPid() {
+		return pid;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "RID:\t" + rid + "\nPID:\t" + pid + "\nSubmitTime:\t"
+				+ submitTime.getTime() + "\nStatus:\t" + status
+				+ "\nExecTime:\t" + execTime + "MS\nExecMemory:\t" + execMemory
+				+ "K\nCodeLenth:\t" + codeLength + "B\nLanguage:\t" + language
+				+ "\n";
 	}
 
 }

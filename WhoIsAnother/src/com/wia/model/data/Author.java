@@ -5,7 +5,10 @@ package com.wia.model.data;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.wia.util.ThreadLoaclDateFormatUtil;
 
@@ -16,6 +19,8 @@ import com.wia.util.ThreadLoaclDateFormatUtil;
 public class Author {
 
 	private final String authorID;
+	private final String authorName;
+	private final String email;
 	private final String from;
 	private final String nationality;
 	private final Calendar registrationTime;
@@ -25,16 +30,18 @@ public class Author {
 	private final int solved;
 	private final int submissions;
 	private final int accepted;
-	private final int ACRatio;
-	private List<Problem> solvedProblemList;
-	private List<Problem> unSolvedProblemList;
-	private List<Author> neighbourList;
+	private final double ACRatio;
+	private final Map<Integer, Problem> problemMap;
+	private Map<Integer, Author> neighbourList;
 
-	public Author(String authorID, String from, String registrationTime,
-			String motto, String nationality, int rank, int submitted,
-			int solved, int submissions, int accepted, int acRatio)
+	public Author(String authorID, String authorName, String email,
+			String from, String registrationTime, String motto,
+			String nationality, int rank, int submitted, int solved,
+			int submissions, int accepted, double acRatio)
 			throws ParseException {
 		this.authorID = authorID;
+		this.authorName = authorName;
+		this.email = email;
 		this.from = from;
 		this.registrationTime = Calendar.getInstance();
 		this.registrationTime.setTime(ThreadLoaclDateFormatUtil
@@ -47,42 +54,45 @@ public class Author {
 		this.submissions = submissions;
 		this.accepted = accepted;
 		this.ACRatio = acRatio;
+		problemMap = new HashMap<>();
+	}
+
+	public void add(SubmitLog submitLog) {
+		int key = submitLog.getPid();
+		if (problemMap.containsKey(key)) {
+			problemMap.get(key).addSubmitLog(submitLog);
+
+		} else {
+			Problem problem = new Problem(key);
+			problem.addSubmitLog(submitLog);
+			problemMap.put(key, problem);
+		}
+	}
+
+	public void add(List<SubmitLog> submitLogs) {
+		for (SubmitLog submitLog : submitLogs) {
+			add(submitLog);
+		}
 	}
 
 	/**
 	 * @return the solvedProblemList
 	 */
-	public List<Problem> getSolvedProblemList() {
-		return solvedProblemList;
-	}
-
-	/**
-	 * @param solvedProblemList
-	 *            the solvedProblemList to set
-	 */
-	public void setSolvedProblemList(List<Problem> solvedProblemList) {
-		this.solvedProblemList = solvedProblemList;
+	public Map<Integer, Problem> getSolvedProblemList() {
+		return null;
 	}
 
 	/**
 	 * @return the unSolvedProblemList
 	 */
-	public List<Problem> getUnSolvedProblemList() {
-		return unSolvedProblemList;
-	}
-
-	/**
-	 * @param unSolvedProblemList
-	 *            the unSolvedProblemList to set
-	 */
-	public void setUnSolvedProblemList(List<Problem> unSolvedProblemList) {
-		this.unSolvedProblemList = unSolvedProblemList;
+	public Map<Integer, Problem> getUnSolvedProblemList() {
+		return null;
 	}
 
 	/**
 	 * @return the neighbourList
 	 */
-	public List<Author> getNeighbourList() {
+	public Map<Integer, Author> getNeighbourList() {
 		return neighbourList;
 	}
 
@@ -90,7 +100,7 @@ public class Author {
 	 * @param neighbourList
 	 *            the neighbourList to set
 	 */
-	public void setNeighbourList(List<Author> neighbourList) {
+	public void setNeighbourList(Map<Integer, Author> neighbourList) {
 		this.neighbourList = neighbourList;
 	}
 
@@ -99,6 +109,20 @@ public class Author {
 	 */
 	public String getAuthorID() {
 		return authorID;
+	}
+
+	/**
+	 * @return the authorName
+	 */
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
 	}
 
 	/**
@@ -118,8 +142,8 @@ public class Author {
 	/**
 	 * @return the registrationTime
 	 */
-	public Calendar getRegistrationTime() {
-		return registrationTime;
+	public Date getRegistrationTime() {
+		return registrationTime.getTime();
 	}
 
 	/**
@@ -167,8 +191,34 @@ public class Author {
 	/**
 	 * @return the aCRatio
 	 */
-	public int getACRatio() {
+	public double getACRatio() {
 		return ACRatio;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "AuthorID:\t"
+				+ authorID
+				+ "\nAuthorName:\t"
+				+ authorName
+				+ "\nEmail:\t"
+				+ email
+				+ "\nFrom:\t"
+				+ from
+				+ "\nNationality:\t"
+				+ nationality
+				+ "\nRegistrationTime:\t"
+				+ ThreadLoaclDateFormatUtil
+						.formatSimpleDate(getRegistrationTime()) + "\nMotto:\t"
+				+ motto + "\nRank:\t" + rank + "\nSubmitted:\t" + submitted
+				+ "\nSolved:\t" + solved + "\nSubmissions:\t" + submissions
+				+ "\nAccepted:\t" + accepted + "\nAcRatio:\t" + ACRatio + "\n";
 	}
 
 }

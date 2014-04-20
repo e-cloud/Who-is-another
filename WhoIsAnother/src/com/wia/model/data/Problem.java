@@ -4,7 +4,8 @@
 package com.wia.model.data;
 
 import java.util.Calendar;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Saint Scott
@@ -12,8 +13,7 @@ import java.util.List;
  */
 public class Problem {
 	private final int pid;
-	private String linkURL;
-	private List<SubmitLog> submitList;
+	private final Map<Integer, SubmitLog> submitMap;
 	boolean isSolved;
 	private Calendar solvedTime;
 
@@ -23,6 +23,7 @@ public class Problem {
 	public Problem(int pid) {
 		// TODO Auto-generated constructor stub
 		this.pid = pid;
+		submitMap = new HashMap<Integer, SubmitLog>();
 	}
 
 	/**
@@ -43,30 +44,27 @@ public class Problem {
 	 * @return the linkURL
 	 */
 	public String getLinkURL() {
-		return linkURL;
-	}
-
-	/**
-	 * @param linkURL
-	 *            the linkURL to set
-	 */
-	public void setLinkURL(String linkURL) {
-		this.linkURL = linkURL;
+		return "http://acm.hdu.edu.cn/showproblem.php?pid=" + pid;
 	}
 
 	/**
 	 * @return the submitList
 	 */
-	public List<SubmitLog> getSubmitList() {
-		return submitList;
+	public Map<Integer, SubmitLog> getSubmitMap() {
+		return submitMap;
 	}
 
 	/**
 	 * @param submitList
 	 *            the submitList to set
 	 */
-	public void setSubmitList(List<SubmitLog> submitList) {
-		this.submitList = submitList;
+	public void addSubmitLog(SubmitLog submitLog) {
+		int key = submitLog.getRid();
+		if (submitMap.containsKey(key)) {
+			return;
+		} else {
+			submitMap.put(key, submitLog);
+		}
 	}
 
 	/**

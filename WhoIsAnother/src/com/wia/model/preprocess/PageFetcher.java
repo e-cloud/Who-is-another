@@ -16,6 +16,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import com.wia.util.IOUtil;
+import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -23,21 +24,29 @@ import com.wia.util.IOUtil;
  */
 public class PageFetcher {
 
-	public static Object fetch(String url) throws ClientProtocolException,
+	public static String fetch(String url) throws ClientProtocolException,
 			IOException {
 		// TODO Auto-generated method stub
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
 		HttpGet httpGet = new HttpGet(url);
+
 		CloseableHttpResponse response = httpclient.execute(httpGet);
-		String content;
+
+		while (response.getStatusLine().getStatusCode() != 200) {
+			response.close();
+			response = httpclient.execute(httpGet);
+		}
+
+		String content = null;
 		try {
 			HttpEntity entity = response.getEntity();
 			content = IOUtil.parseInputStreamWithCharset(entity.getContent(),
-					retrieveCharset(response));
+					retrieveCharset(response)).replace("&nbsp;", " ");
 		} finally {
 			response.close();
 		}
+		LogUtil.d(content);
 		return content;
 	}
 

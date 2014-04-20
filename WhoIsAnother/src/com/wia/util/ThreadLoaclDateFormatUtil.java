@@ -46,7 +46,7 @@ public class ThreadLoaclDateFormatUtil {
 	 * @return formatted "yyyy-MM-dd" like string
 	 * @throws ParseException
 	 */
-	public static String formatSimpleDate(Date date) throws ParseException {
+	public static String formatSimpleDate(Date date) {
 		return getSimpleDateFormat().format(date);
 	}
 
@@ -55,7 +55,7 @@ public class ThreadLoaclDateFormatUtil {
 	 * @return formatted "yyyy-MM-dd HH:mm:ss" like string
 	 * @throws ParseException
 	 */
-	public static String formatDetailDate(Date date) throws ParseException {
+	public static String formatDetailDate(Date date) {
 		return getDetailDateFormat().format(date);
 	}
 
