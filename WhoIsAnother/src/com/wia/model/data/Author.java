@@ -52,7 +52,7 @@ public class Author {
 	/**
 	 * @return the solvedProblemList
 	 */
-	public List<Problem> getSolvedProblemList() {
+	public List<Problem> getSolvedProblemAAList() {
 		return solvedProblemList;
 	}
 
