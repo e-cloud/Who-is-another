@@ -54,7 +54,7 @@ public class Author {
 		this.submissions = submissions;
 		this.accepted = accepted;
 		this.ACRatio = acRatio;
-		problemMap = new HashMap<>();
+		problemMap = new HashMap<Integer, Problem>();
 	}
 
 	public void add(SubmitLog submitLog) {
