@@ -67,6 +67,7 @@ public class Author {
 			problem.addSubmitLog(submitLog);
 			problemMap.put(key, problem);
 		}
+
 	}
 
 	public void add(List<SubmitLog> submitLogs) {
