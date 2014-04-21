@@ -5,6 +5,7 @@ package com.wia.model.analysis;
 
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -37,6 +38,10 @@ public class DayInfo extends Info {
 	 */
 	public int getDay(int field) {
 		return dayValue.get(field);
+	}
+
+	public Date getDate() {
+		return dayValue.getTime();
 	}
 
 	/**

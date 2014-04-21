@@ -9,11 +9,11 @@ package com.wia.model.preprocess;
  */
 public class DataParserFactory {
 
-	public static DataParser createGeneralAuthorInfoFetcher() {
+	public static DataParser createGeneralAuthorInfoParser() {
 		return new GeneralAuthorInfoParser();
 	}
 
-	public static DataParser createSubmitLogsFetcher() {
+	public static DataParser createSubmitLogsParser() {
 		return new SubmitLogsParser();
 	}
 }

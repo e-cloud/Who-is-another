@@ -3,11 +3,16 @@
  */
 package com.wia.model.analysis;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+
+import javafx.util.Pair;
 
 import com.wia.Context;
 import com.wia.model.data.Author;
@@ -24,15 +29,32 @@ public class GeneralInfo extends Info {
 	private final Map<Integer, YearInfo> years;
 	private final Context context;
 
+	private volatile static GeneralInfo generalInfo;
+
 	/**
 	 * 
 	 */
-	public GeneralInfo() {
+	private GeneralInfo() {
 		// TODO Auto-generated constructor stub
 		context = Context.getInstance();
 		this.author = context.getCurrentAuthor();
 		years = new HashMap<Integer, YearInfo>();
 		init();
+	}
+
+	public static GeneralInfo getInstance() {
+		if (generalInfo == null) {
+			synchronized (Context.class) {
+				if (generalInfo == null) {
+					generalInfo = new GeneralInfo();
+				}
+			}
+		}
+		return generalInfo;
+	}
+
+	public void reset() {
+		generalInfo = new GeneralInfo();
 	}
 
 	private void init() {
@@ -133,6 +155,36 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
+	 * 获取每一年中提交的题目数
+	 * 
+	 * @return Map< year, count >
+	 */
+	public Map<Integer, Integer> getSubmittedProblemCount() {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (Iterator<Integer> iterator = years.keySet().iterator(); iterator
+				.hasNext();) {
+			int key = iterator.next();
+			map.put(key, getSubmittedProblemCount(key));
+		}
+		return map;
+	}
+
+	/**
+	 * 获取每一年中解决的题目数
+	 * 
+	 * @return Map< year, count >
+	 */
+	public Map<Integer, Integer> getSolvedProblemCount() {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (Iterator<Integer> iterator = years.keySet().iterator(); iterator
+				.hasNext();) {
+			int key = iterator.next();
+			map.put(key, getSolvedProblemCount(key));
+		}
+		return map;
+	}
+
+	/**
 	 * 获取某年中每一天解决的题目数
 	 * 
 	 * @param year
@@ -149,7 +201,7 @@ public class GeneralInfo extends Info {
 	 * @return Map< month, count >
 	 */
 	public Map<Integer, Integer> getSolvedProblemCountPerMonth(int year) {
-		return years.get(year).getSolvedProblemCountPerDay();
+		return years.get(year).getSolvedProblemCountPerMonth();
 	}
 
 	/**
@@ -163,4 +215,33 @@ public class GeneralInfo extends Info {
 		return years.get(year).getSolvedProblemCountPerDay(month);
 	}
 
+	/**
+	 * 获取某年中每一天解决的题目数
+	 * 
+	 * @return Map< day, count >
+	 */
+	public List<Pair<Date, Integer>> getSubmittedProblemCountEveryDay() {
+		List<Pair<Date, Integer>> submitlist = new ArrayList<>();
+		for (Iterator<YearInfo> iterator = years.values().iterator(); iterator
+				.hasNext();) {
+			YearInfo yearInfo = iterator.next();
+			submitlist.addAll(yearInfo.getSubmittedProblemCountEveryDay());
+		}
+		return submitlist;
+	}
+
+	/**
+	 * 获取某年中每一天解决的题目数
+	 * 
+	 * @return Map< day, count >
+	 */
+	public List<Pair<Date, Integer>> getSolvedProblemCountEveryDay() {
+		List<Pair<Date, Integer>> solvedlist = new ArrayList<>();
+		for (Iterator<YearInfo> iterator = years.values().iterator(); iterator
+				.hasNext();) {
+			YearInfo yearInfo = iterator.next();
+			solvedlist.addAll(yearInfo.getSubmittedProblemCountEveryDay());
+		}
+		return solvedlist;
+	}
 }

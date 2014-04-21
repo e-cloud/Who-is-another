@@ -3,25 +3,11 @@
  */
 package com.wia.controller;
 
-import com.wia.view.layout.ControlledScreen;
-import com.wia.view.layout.ScreensContainer;
 
 /**
  * @author Saint Scott
  * 
  */
-public class NeighbourRecommendController implements ControlledScreen {
-	ScreensContainer myScreensContainer;
+public class NeighbourRecommendController extends AbstractFXController {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see screensframework.ControlledScreen#setScreenParent(screensframework.
-	 * ScreensContainer)
-	 */
-	@Override
-	public void setScreenParent(ScreensContainer screenParent) {
-		// TODO Auto-generated method stub
-		myScreensContainer = screenParent;
-	}
 }

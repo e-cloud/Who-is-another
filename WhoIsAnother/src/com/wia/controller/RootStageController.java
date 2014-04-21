@@ -10,18 +10,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 import com.wia.CentralCoordinator;
-import com.wia.view.layout.ControlledScreen;
 import com.wia.view.layout.ScreensContainer;
 
 /**
  * @author Saint Scott
  * 
  */
-public class RootStageController implements ControlledScreen {
+public class RootStageController extends AbstractFXController {
 
-	CentralCoordinator coordinator;
-	ScreensContainer myScreensContainer;
-	ScreensContainer rightPaneContainer;
+	// private CentralCoordinator coordinator;
+	private ScreensContainer rightPaneContainer;
 
 	public final static String STRUGGLEHISTORYGENERALID = "strugglehistorygeneral";
 	public final static String struggleHistroyGeneralFile = "/com/wia/view/StruggleHistoryGeneral.fxml";
@@ -70,6 +68,12 @@ public class RootStageController implements ControlledScreen {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.controller.AbstractFXController#init()
+	 */
+	@Override
 	public void init() {
 		rightPaneContainer = new ScreensContainer();
 		rightPaneContainer.loadScreen(STRUGGLEHISTORYGENERALID,
@@ -90,18 +94,6 @@ public class RootStageController implements ControlledScreen {
 		BorderPane borderLayout = (BorderPane) myScreensContainer
 				.getScreen(CentralCoordinator.ROOTSTAGEID);
 		borderLayout.setCenter(root);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see screensframework.ControlledScreen#setScreenParent(screensframework.
-	 * ScreensContainer)
-	 */
-	@Override
-	public void setScreenParent(ScreensContainer screenParent) {
-		// TODO Auto-generated method stub
-		myScreensContainer = screenParent;
 	}
 
 	@FXML

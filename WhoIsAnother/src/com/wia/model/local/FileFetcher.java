@@ -21,9 +21,18 @@ public class FileFetcher implements Fetcher {
 	 * @see com.wia.model.preprocess.Fetcher#fetch(java.lang.String)
 	 */
 	@Override
-	public String fetch(String url) throws IOException {
-		InputStream is = new FileInputStream(url);
-		String content = IOUtil.parseInputStreamWithCharset(is, "gb2312");
+	public String fetch(String url) {
+		InputStream is;
+		String content = null;
+		try {
+			is = new FileInputStream("./" + url);
+
+			content = IOUtil.parseInputStreamWithCharset(is, "gb2312");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 		return content.replace("&nbsp;", " ");
 	}
 }

@@ -54,6 +54,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
+import com.wia.controller.AbstractFXController;
+
 /**
  * 
  * @author Angie
@@ -79,18 +81,18 @@ public class ScreensContainer extends StackPane {
 
 	// Loads the fxml file, add the screen to the screens collection and
 	// finally injects the screenPane to the controller.
-	public FXMLLoader loadScreen(String name, String resource) {
+	public Parent loadScreen(String name, String resource) {
 		try {
-			FXMLLoader myLoader = new FXMLLoader(getClass().getResource(
-					resource));
-			Parent loadScreen = (Parent) myLoader.load();
-			ControlledScreen myScreenControler = ((ControlledScreen) myLoader
-					.getController());
-			myScreenControler.setScreenParent(this);
-			addScreen(name, loadScreen);
-			return myLoader;
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
+			Parent screen = (Parent) loader.load();
+			addScreen(name, screen);
+
+			AbstractFXController myScreenControler = loader.getController();
+			myScreenControler.setScreenContainer(this);
+			myScreenControler.init();
+			return screen;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -136,7 +138,7 @@ public class ScreensContainer extends StackPane {
 			}
 			return true;
 		} else {
-			System.out.println("screen hasn't been loaded!!! \n");
+			System.out.println("screen " + name + " hasn't been loaded!!! \n");
 			return false;
 		}
 

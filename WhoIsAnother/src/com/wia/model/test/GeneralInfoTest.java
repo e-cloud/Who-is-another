@@ -28,6 +28,7 @@ public class GeneralInfoTest {
 		map = info.getSubmittedProblemCountPerDay(2007, 2);
 		map = info.getSubmittedProblemCountPerDay(2007);
 
+		map.toString();
 	}
 
 }

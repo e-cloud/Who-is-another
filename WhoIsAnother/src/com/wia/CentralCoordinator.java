@@ -4,11 +4,10 @@
 package com.wia;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import com.wia.controller.RootStageController;
 import com.wia.view.layout.ScreensContainer;
 
 /**
@@ -17,6 +16,7 @@ import com.wia.view.layout.ScreensContainer;
  */
 public class CentralCoordinator extends Application {
 
+	@SuppressWarnings("unused")
 	private Context context;
 
 	public Stage primaryStage;
@@ -45,7 +45,7 @@ public class CentralCoordinator extends Application {
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
 	 */
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		// TODO Auto-generated method stub
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Who is another");
@@ -55,40 +55,17 @@ public class CentralCoordinator extends Application {
 				CentralCoordinator.welcomeFile);
 		mainContainer.loadScreen(CentralCoordinator.PROGRESSID,
 				CentralCoordinator.progressFile);
-		FXMLLoader loader = mainContainer.loadScreen(
-				CentralCoordinator.ROOTSTAGEID,
+		mainContainer.loadScreen(CentralCoordinator.ROOTSTAGEID,
 				CentralCoordinator.rootStageFile);
-		((RootStageController) loader.getController()).init();
 
-		mainContainer.switchToScreen(CentralCoordinator.WELCOMEID);
+		mainContainer.switchToScreen(CentralCoordinator.ROOTSTAGEID);
 
-		// Group root = new Group();
-		// root.getChildren().addAll(mainContainer);
-		Scene scene = new Scene(mainContainer);
+		Group root = new Group();
+		root.getChildren().addAll(mainContainer);
+		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
 		primaryStage.show();
-		/*
-		 * // remove the window's border //
-		 * this.primaryStage.initStyle(StageStyle.UNDECORATED); rootLayout = new
-		 * StackPane();
-		 * 
-		 * try { // Load the root layout from the fxml file FXMLLoader
-		 * rootloader = createFXMLLoader("view/RootStage.fxml"); FXMLLoader
-		 * welcomeloader = createFXMLLoader("view/Welcome.fxml"); FXMLLoader
-		 * progressloader = createFXMLLoader("view/ProgressBar.fxml");
-		 * 
-		 * BorderPane rootStageLayout = (BorderPane) rootloader.load(); GridPane
-		 * welcomeLayout = (GridPane) welcomeloader.load(); BorderPane
-		 * progressLayout = (BorderPane) progressloader.load();
-		 * 
-		 * rootLayout.getChildren().add(ROOT, rootStageLayout);
-		 * rootLayout.getChildren().add(PROGRESS, progressLayout);
-		 * rootLayout.getChildren().add(WELCOME, welcomeLayout);
-		 * 
-		 * Scene scene = new Scene(rootLayout); primaryStage.setScene(scene);
-		 * 
-		 * primaryStage.show(); } catch (Exception e) { e.printStackTrace(); }
-		 */
 	}
 
 	/*
