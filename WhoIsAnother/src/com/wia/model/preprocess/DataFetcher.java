@@ -26,7 +26,7 @@ public class DataFetcher {
 
 	@SuppressWarnings("unchecked")
 	public static Author run2(String authorID) {
-		DataParser parser = DataParserFactory.createGeneralAuthorInfoFetcher();
+		DataParser parser = DataParserFactory.createGeneralAuthorInfoParser();
 		Author author = null;
 		try {
 			// Fetcher fetcher = new PageFetcher();
@@ -34,7 +34,7 @@ public class DataFetcher {
 			author = (Author) parser.parse(fetcher
 					.fetch(getUserStatusUrl(authorID)));
 
-			parser = DataParserFactory.createSubmitLogsFetcher();
+			parser = DataParserFactory.createSubmitLogsParser();
 
 			int lastRid = -1;
 			while (true) {
@@ -65,7 +65,7 @@ public class DataFetcher {
 
 	@SuppressWarnings("unchecked")
 	public static Author run(String authorID) {
-		DataParser parser = DataParserFactory.createGeneralAuthorInfoFetcher();
+		DataParser parser = DataParserFactory.createGeneralAuthorInfoParser();
 		Author author = null;
 		try {
 			// Fetcher fetcher = new PageFetcher();
@@ -73,7 +73,7 @@ public class DataFetcher {
 			author = (Author) parser.parse(fetcher
 					.fetch(getUserStatusFileUrl(authorID)));
 
-			parser = DataParserFactory.createSubmitLogsFetcher();
+			parser = DataParserFactory.createSubmitLogsParser();
 
 			int lastRid = -1;
 			while (true) {
@@ -111,7 +111,7 @@ public class DataFetcher {
 			return RealTimeStatus + rid + "&pid=&user=" + authorID
 					+ "&lang=0&status=0";
 		} else {
-			return RealTimeStatus + "0&pid=&user=" + authorID
+			return RealTimeStatus + "&pid=&user=" + authorID
 					+ "&lang=0&status=0";
 		}
 	}
@@ -125,7 +125,7 @@ public class DataFetcher {
 			return RealTimeStatusfile + rid + "&pid=&user=" + authorID
 					+ "&lang=0&status=0";
 		} else {
-			return RealTimeStatusfile + "0&pid=&user=" + authorID
+			return RealTimeStatusfile + "&pid=&user=" + authorID
 					+ "&lang=0&status=0";
 		}
 	}

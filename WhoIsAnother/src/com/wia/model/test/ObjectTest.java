@@ -17,7 +17,6 @@ public class ObjectTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
 		Author author = DataFetcher.run("myi_i");
 		LogUtil.i(author);
 	}

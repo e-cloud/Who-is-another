@@ -3,16 +3,22 @@
  */
 package com.wia.model.analysis;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javafx.util.Pair;
+
 import com.wia.model.data.Problem;
 import com.wia.model.data.SubmitLog;
+import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -114,14 +120,44 @@ public class YearInfo extends Info {
 	 * @return Map< day, count >
 	 */
 	public Map<Integer, Integer> getSolvedProblemCountPerDay() {
-		Map<Integer, Integer> submitMap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> solvedMap = new HashMap<Integer, Integer>();
 		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
 				.hasNext();) {
 			MonthInfo monthInfo = iterator.next();
-			submitMap.putAll(monthInfo
+			solvedMap.putAll(monthInfo
 					.getSolvedProblemCountPerDay(Calendar.DAY_OF_YEAR));
 		}
-		return submitMap;
+		return solvedMap;
+	}
+
+	/**
+	 * 获取某年中每一天解决的题目数
+	 * 
+	 * @return Map< day, count >
+	 */
+	public List<Pair<Date, Integer>> getSolvedProblemCountEveryDay() {
+		List<Pair<Date, Integer>> solvedlist = new ArrayList<>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo monthInfo = iterator.next();
+			solvedlist.addAll(monthInfo.getSolvedProblemCountEveryDay());
+		}
+		return solvedlist;
+	}
+
+	/**
+	 * 获取某年中每一天解决的题目数
+	 * 
+	 * @return Map< day, count >
+	 */
+	public List<Pair<Date, Integer>> getSubmittedProblemCountEveryDay() {
+		List<Pair<Date, Integer>> submitlist = new ArrayList<>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo monthInfo = iterator.next();
+			submitlist.addAll(monthInfo.getSubmittedProblemCountEveryDay());
+		}
+		return submitlist;
 	}
 
 	/**
@@ -130,14 +166,20 @@ public class YearInfo extends Info {
 	 * @return Map< month, count >
 	 */
 	public Map<Integer, Integer> getSolvedProblemCountPerMonth() {
-		Map<Integer, Integer> submitMap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> solvedMap = new HashMap<Integer, Integer>();
 		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
 				.hasNext();) {
 			MonthInfo monthInfo = iterator.next();
-			submitMap.put(monthInfo.getMonth(), monthInfo.getSolvedProblemSet()
-					.size());
+			int month = monthInfo.getMonth();
+			int size = monthInfo.getSolvedProblemSet().size();
+			LogUtil.d(month + "\t\t" + size);
+			solvedMap.put(month, size);
 		}
-		return submitMap;
+		return solvedMap;
+
+		// Date date = submitLog.getSubmitTime().getTime();
+		// LogUtil.d(ThreadLoaclDateFormatUtil.formatDetailDate(date) + '\t' +
+		// key);
 	}
 
 	/**
@@ -173,6 +215,7 @@ public class YearInfo extends Info {
 	protected void add(SubmitLog submitLog) {
 		// TODO Auto-generated method stub
 		int key = submitLog.getSubmitTime().get(Calendar.MONTH);
+
 		if (months.containsKey(key)) {
 			months.get(key).add(submitLog);
 		} else {

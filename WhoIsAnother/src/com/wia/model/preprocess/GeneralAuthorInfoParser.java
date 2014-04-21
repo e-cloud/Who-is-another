@@ -67,7 +67,7 @@ public class GeneralAuthorInfoParser implements DataParser {
 		int accepted = Integer.valueOf(tds.get(11).html());
 
 		// 提取用户id
-		pattern = Pattern.compile("user=([^&]+)&");
+		pattern = Pattern.compile("user=([^&]+)&*");
 		matcher = pattern.matcher(targetTD.select("p").get(1).select("a")
 				.get(0).attr("href"));
 		matcher.find();

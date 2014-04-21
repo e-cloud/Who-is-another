@@ -64,8 +64,10 @@ public class SubmitLogsParser implements DataParser {
 			// 提取编程语言
 			String language = tds.get(7).html();
 			// 向submitLogs添加合成的submitLog
-			submitLogs.add(new SubmitLog(rid, pid, datestr, status, execTime,
-					execMemory, codeLength, language));
+			SubmitLog submitLog = new SubmitLog(rid, pid, datestr, status,
+					execTime, execMemory, codeLength, language);
+
+			submitLogs.add(submitLog);
 		}
 		return submitLogs;
 	}

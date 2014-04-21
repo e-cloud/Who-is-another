@@ -3,13 +3,18 @@
  */
 package com.wia.model.analysis;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javafx.util.Pair;
 
 import com.wia.model.data.Problem;
 import com.wia.model.data.SubmitLog;
@@ -29,7 +34,7 @@ public class MonthInfo extends Info {
 	public MonthInfo(int year, int month) {
 		// TODO Auto-generated constructor stub
 		this.monthValue = Calendar.getInstance();
-		monthValue.set(year, month, 0);
+		monthValue.set(year, month, 1);
 		this.days = new HashMap<Integer, DayInfo>();
 	}
 
@@ -55,6 +60,40 @@ public class MonthInfo extends Info {
 	 */
 	public Collection<Problem> getProblemList(int day) {
 		return days.get(day).getProblemList();
+	}
+
+	/**
+	 * 获取某月中每一天提交的题目数链表
+	 * 
+	 * @return List < Pair< Date, Integer > >
+	 */
+	public List<Pair<Date, Integer>> getSubmittedProblemCountEveryDay() {
+		List<Pair<Date, Integer>> submitlist = new ArrayList<>();
+		for (Iterator<DayInfo> iterator = days.values().iterator(); iterator
+				.hasNext();) {
+			DayInfo dayInfo = iterator.next();
+
+			submitlist.add(new Pair<Date, Integer>(dayInfo.getDate(), dayInfo
+					.getSubmittedProblemCount()));
+		}
+		return submitlist;
+	}
+
+	/**
+	 * 获取某月中每一天解决的题目数链表
+	 * 
+	 * @return List < Pair< Date, Integer > >
+	 */
+	public List<Pair<Date, Integer>> getSolvedProblemCountEveryDay() {
+		List<Pair<Date, Integer>> solvedlist = new ArrayList<>();
+		for (Iterator<DayInfo> iterator = days.values().iterator(); iterator
+				.hasNext();) {
+			DayInfo dayInfo = iterator.next();
+
+			solvedlist.add(new Pair<Date, Integer>(dayInfo.getDate(), dayInfo
+					.getSolvedProblemCount()));
+		}
+		return solvedlist;
 	}
 
 	/**
@@ -93,15 +132,15 @@ public class MonthInfo extends Info {
 	 * @return Map< day, count >
 	 */
 	public Map<Integer, Integer> getSolvedProblemCountPerDay(int field) {
-		Map<Integer, Integer> submitMap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> solvedMap = new HashMap<Integer, Integer>();
 		for (Iterator<DayInfo> iterator = days.values().iterator(); iterator
 				.hasNext();) {
 			DayInfo dayInfo = iterator.next();
 
-			submitMap.put(dayInfo.getDay(field),
+			solvedMap.put(dayInfo.getDay(field),
 					dayInfo.getSolvedProblemCount());
 		}
-		return submitMap;
+		return solvedMap;
 	}
 
 	/**

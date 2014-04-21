@@ -7,28 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 import com.wia.CentralCoordinator;
-import com.wia.view.layout.ControlledScreen;
-import com.wia.view.layout.ScreensContainer;
 
 /**
  * @author Saint Scott
  * 
  */
-public class ProgressBarController implements ControlledScreen {
-
-	ScreensContainer myScreensContainer;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see screensframework.ControlledScreen#setScreenParent(screensframework.
-	 * ScreensContainer)
-	 */
-	@Override
-	public void setScreenParent(ScreensContainer screenParent) {
-		// TODO Auto-generated method stub
-		myScreensContainer = screenParent;
-	}
+public class ProgressBarController extends AbstractFXController {
 
 	@FXML
 	public void handleClick(MouseEvent event) {
