@@ -1,0 +1,61 @@
+.stage-title{
+    -fx-font-size: 18pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+}
+.titled-pane1 > .title 
+{
+
+-fx-background-color: rgb(58,152,94);
+-fx-text-fill: rgb(255,255,255);
+-fx-font-size: 20pt;
+
+}
+
+
+.title-lable1{
+	-fx-background-color:rgb(58,152,94);
+    -fx-font-size: 20pt;
+    -fx-text-fill: white;
+    -fx-font-family:"Droid Sans Fallback";
+	-fx-border-color: white;
+	-fx-border-width: 8pt;
+}
+.titled-pane2 > .title 
+{
+
+-fx-background-color: rgb(78,186,186);
+-fx-text-fill: rgb(255,255,255);
+-fx-font-size: 20pt;
+
+}
+
+.title-lable2{
+	-fx-background-color:rgb(78,186,186);
+    -fx-font-size: 20pt;
+    -fx-text-fill: white;
+    -fx-font-family:"Droid Sans Fallback";
+	-fx-border-color: white;
+	-fx-border-width: 8pt;
+}
+.titled-pane3 > .title 
+{
+
+-fx-background-color: rgb(184,131,155);
+-fx-text-fill: rgb(255,255,255);
+-fx-font-size: 20pt;
+
+}
+
+
+.title-lable3{
+	-fx-background-color:rgb(184,131,155);
+    -fx-font-size: 20pt;
+    -fx-text-fill: white;
+    -fx-font-family:"Droid Sans Fallback";
+	-fx-border-color: white;
+	-fx-border-width: 8pt;
+}
+.v-box{
+-fx-background-color:white;
+}

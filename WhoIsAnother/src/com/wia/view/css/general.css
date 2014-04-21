@@ -16,17 +16,98 @@
 }
 .wia-textfield {
     -fx-padding: 5px 8px 5px 8px;
+	-fx-cursor: hand;
 }
 .wia-button {
-    -fx-font-size: 1.5em;
-    -fx-padding: 5px 8px 5px 8px;
-    -fx-background-color: #939393;
+	-fx-cursor: hand;
+    -fx-alignment: center ;
+    -fx-border-style: null; 
+    -fx-background-radius: 5;
+
+    -fx-background-color: rgb(97,139,173);
+    -fx-font-family:"Droid Sans Fallback";
+    -fx-font-size: 22pt;
+    -fx-text-fill: white;
 }
-.wia-button:focused {
-    -fx-background-color: rgb(27, 155, 235);
-    -fx-background-insets: -1.4px, 0px, 1px, 2px;
-    -fx-background-radius: 6.4px, 5px, 4px, 3px;
+.wia-button:pressed {
+	-fx-border-color: black;
+	-fx-border-style: segments(1,1,1,1); 
+	-fx-border-width: 1;
 }
 .wia-button:hover {
-    -fx-background-color: rgb(68, 171, 235);
+   -fx-background-color: rgb(97,139,173);
+   -fx-text-fill: black;
 }
+.text-title{
+    -fx-font-size: 18pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+}
+.Hyperlink{
+	-fx-text-fill: rgb(97,139,173);
+	-fx-font-size: 15pt;
+	-fx-cursor: hand;
+	
+}
+.back-button {
+    -fx-alignment: center ;
+    -fx-border-style: null; 
+    -fx-background-radius: 3;
+	-fx-cursor: hand;
+
+    -fx-background-color: rgb(97,139,173);
+  
+    -fx-font-family:"Droid Sans Fallback";
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+}
+
+.back-button:hover {
+   -fx-text-fill: black;
+}
+
+.text-text{
+    -fx-font-size: 15pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+    -fx-font-style: oblique;
+}
+/*
+.combo-box-base{
+
+    -fx-background-color: transparent, rgb(255,255,255), transparent, rgb(37,206,220);
+	-fx-font-family: "Droid Sans Fallback";
+	-fx-font-size: 10pt;
+
+  
+}
+
+.combo-box-base:hover {
+
+    -fx-background-color: transparent,rgb(64,0,64) , transparent, rgb(37,206,220);
+	-fx-text-fill: rgb(255,255,255);
+    
+}
+.combo-box-base:selected{
+	-fx-background-color: transparent,rgb(64,0,64) , transparent, rgb(37,206,220);
+}
+*/
+.mycombo-box .arrow-button{
+    -fx-background-color: transparent,rgb(97,139,173),transparent,white;
+}
+.mycombo-box{
+	-fx-background-color: transparent,rgb(97,139,173),transparent,white;
+	-fx-text-fill: rgb(0,128,255);
+	-fx-font-family: "Droid Sans Fallback";
+	-fx-font-size: 15pt;
+	-fx-cursor: hand;
+}
+/*
+    .combo-box .list-cell 
+{
+-fx-text-fill:rgb(0,128,255);
+-fx-cell-size: 1.66667em; 
+-fx-font-family: "Droid Sans Fallback";
+-fx-font-size: 15pt;
+}
+*/

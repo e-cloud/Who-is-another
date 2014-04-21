@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
@@ -9,13 +10,16 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.LightSpotController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="-1.0" styleClass="lable" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.LightSpotController">
   <children>
     <ScrollPane id="ScrollPane" prefViewportHeight="700.0" prefViewportWidth="763.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <content>
         <GridPane id="GridPane" prefHeight="700.0">
           <children>
-            <Label text="您加入杭电ACM已经 254 天啦！" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label styleClass="lable" text="您加入杭电ACM已经 254 天啦！" GridPane.columnIndex="0" GridPane.rowIndex="0">
+              <stylesheets>
+                <URL value="@css/lightspot.css" />
+              </stylesheets>
               <GridPane.margin>
                 <Insets left="10.0" fx:id="x1" />
               </GridPane.margin>
@@ -61,4 +65,7 @@
       </content>
     </ScrollPane>
   </children>
+  <stylesheets>
+    <URL value="@css/lightspot.css" />
+  </stylesheets>
 </AnchorPane>
