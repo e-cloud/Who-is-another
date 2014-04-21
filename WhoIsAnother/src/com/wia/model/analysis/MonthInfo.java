@@ -36,9 +36,9 @@ public class MonthInfo extends Info {
 	/**
 	 * @return
 	 */
-	// public int getYear() {
-	// return monthValue.get(Calendar.YEAR);
-	// }
+	public int getYear() {
+		return monthValue.get(Calendar.YEAR);
+	}
 
 	/**
 	 * @return
@@ -83,6 +83,36 @@ public class MonthInfo extends Info {
 				.hasNext();) {
 			DayInfo dayInfo = iterator.next();
 			set.addAll(dayInfo.getSubmittedProblemSet());
+		}
+		return set;
+	}
+
+	/**
+	 * 获取某月中每一天提交的题目数
+	 * 
+	 * @return Map< day, count >
+	 */
+	public Map<Integer, Integer> getSolvedProblemCountPerDay(int field) {
+		Map<Integer, Integer> submitMap = new HashMap<Integer, Integer>();
+		for (Iterator<DayInfo> iterator = days.values().iterator(); iterator
+				.hasNext();) {
+			DayInfo dayInfo = iterator.next();
+
+			submitMap.put(dayInfo.getDay(field),
+					dayInfo.getSolvedProblemCount());
+		}
+		return submitMap;
+	}
+
+	/**
+	 * @return Set< pid >
+	 */
+	public Set<Integer> getSolvedProblemSet() {
+		Set<Integer> set = new HashSet<Integer>();
+		for (Iterator<DayInfo> iterator = days.values().iterator(); iterator
+				.hasNext();) {
+			DayInfo dayInfo = iterator.next();
+			set.addAll(dayInfo.getSolvedProblemSet());
 		}
 		return set;
 	}

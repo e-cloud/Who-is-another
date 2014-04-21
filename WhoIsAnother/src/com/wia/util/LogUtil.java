@@ -15,7 +15,7 @@ public class LogUtil {
 	 * @param message
 	 */
 	public static void i(Object message) {
-		System.out.println("Info: " + message);
+		System.out.println("INFO: \n" + message);
 	}
 
 	/**
@@ -24,7 +24,7 @@ public class LogUtil {
 	 * @param message
 	 */
 	public static void e(Object message) {
-		System.out.println("Error: " + message);
+		System.out.println("ERROR: \n" + message);
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class LogUtil {
 	 * @param message
 	 */
 	public static void d(Object message) {
-		System.out.println("Debug: " + message);
+		System.out.println("DEBUG: \n" + message);
 	}
 
 	/**
@@ -42,6 +42,6 @@ public class LogUtil {
 	 * @param message
 	 */
 	public static void w(Object message) {
-		System.out.println("Warning: " + message);
+		System.out.println("WARNING: \n" + message);
 	}
 }

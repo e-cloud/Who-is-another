@@ -21,10 +21,15 @@ import com.wia.util.IOUtil;
  * @author Saint Scott
  * 
  */
-public class PageFetcher {
+public class PageFetcher implements Fetcher {
 
-	public static String fetch(String url) throws ClientProtocolException,
-			IOException {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.model.preprocess.Fetcher#fetch(java.lang.String)
+	 */
+	@Override
+	public String fetch(String url) throws ClientProtocolException, IOException {
 		// TODO Auto-generated method stub
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
@@ -48,7 +53,7 @@ public class PageFetcher {
 		return content;
 	}
 
-	private static String retrieveCharset(HttpResponse response) {
+	private String retrieveCharset(HttpResponse response) {
 		HeaderIterator iter = response.headerIterator("content-type");
 		Header header = iter.nextHeader();
 		if (header.getValue().contains("charset")) {

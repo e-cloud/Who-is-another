@@ -85,6 +85,17 @@ public class YearInfo extends Info {
 	}
 
 	/**
+	 * 获取某年某月中每一天提交的题目数
+	 * 
+	 * @param month
+	 * @return Map< day, count >
+	 */
+	public Map<Integer, Integer> getSubmittedProblemCountPerDay(int month) {
+		return months.get(month).getSubmittedProblemCountPerDay(
+				Calendar.DAY_OF_MONTH);
+	}
+
+	/**
 	 * @return Set< pid >
 	 */
 	public Set<Integer> getSubmittedProblemSet() {
@@ -98,14 +109,59 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * 获取某年某月中每一天提交的题目数
+	 * 获取某年中每一天解决的题目数
+	 * 
+	 * @return Map< day, count >
+	 */
+	public Map<Integer, Integer> getSolvedProblemCountPerDay() {
+		Map<Integer, Integer> submitMap = new HashMap<Integer, Integer>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo monthInfo = iterator.next();
+			submitMap.putAll(monthInfo
+					.getSolvedProblemCountPerDay(Calendar.DAY_OF_YEAR));
+		}
+		return submitMap;
+	}
+
+	/**
+	 * 获取某年中每个月解决的题目数
+	 * 
+	 * @return Map< month, count >
+	 */
+	public Map<Integer, Integer> getSolvedProblemCountPerMonth() {
+		Map<Integer, Integer> submitMap = new HashMap<Integer, Integer>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo monthInfo = iterator.next();
+			submitMap.put(monthInfo.getMonth(), monthInfo.getSolvedProblemSet()
+					.size());
+		}
+		return submitMap;
+	}
+
+	/**
+	 * 获取某年某月中每一天解决的题目数
 	 * 
 	 * @param month
 	 * @return Map< day, count >
 	 */
-	public Map<Integer, Integer> getSubmittedProblemCountPerDay(int month) {
-		return months.get(month).getSubmittedProblemCountPerDay(
+	public Map<Integer, Integer> getSolvedProblemCountPerDay(int month) {
+		return months.get(month).getSolvedProblemCountPerDay(
 				Calendar.DAY_OF_MONTH);
+	}
+
+	/**
+	 * @return Set< pid >
+	 */
+	public Set<Integer> getSolvedProblemSet() {
+		Set<Integer> set = new HashSet<Integer>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo monthInfo = iterator.next();
+			set.addAll(monthInfo.getSolvedProblemSet());
+		}
+		return set;
 	}
 
 	/*

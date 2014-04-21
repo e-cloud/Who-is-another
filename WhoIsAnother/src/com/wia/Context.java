@@ -17,7 +17,7 @@ public class Context {
 	private volatile static Context uniqueInstance;
 
 	private Context() {
-		currentAuthor = DataFetcher.run("myi_i");
+		currentAuthor = DataFetcher.run("wdp515105");
 	}
 
 	public static Context getInstance() {

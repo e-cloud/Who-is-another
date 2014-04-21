@@ -11,6 +11,7 @@ import org.apache.http.client.ClientProtocolException;
 
 import com.wia.model.data.Author;
 import com.wia.model.data.SubmitLog;
+import com.wia.model.local.FileFetcher;
 
 /**
  * @author Saint Scott
@@ -20,20 +21,63 @@ public class DataFetcher {
 
 	private final static String UserStatus = "http://acm.hdu.edu.cn/userstatus.php?user=";
 	private final static String RealTimeStatus = "http://acm.hdu.edu.cn/status.php?first=";
+	private final static String UserStatusfile = "acm.hdu.edu.cn userstatus.php user=";
+	private final static String RealTimeStatusfile = "acm.hdu.edu.cn status.php first=";
 
 	@SuppressWarnings("unchecked")
-	public static Author run(String authorID) {
+	public static Author run2(String authorID) {
 		DataParser parser = DataParserFactory.createGeneralAuthorInfoFetcher();
 		Author author = null;
 		try {
-			author = (Author) parser.parse(PageFetcher
+			// Fetcher fetcher = new PageFetcher();
+			Fetcher fetcher = new FileFetcher();
+			author = (Author) parser.parse(fetcher
 					.fetch(getUserStatusUrl(authorID)));
 
 			parser = DataParserFactory.createSubmitLogsFetcher();
 
 			int lastRid = -1;
 			while (true) {
-				String fetchString = PageFetcher.fetch(getRealTimeStatusUrl(
+				String fetchString = fetcher.fetch(getRealTimeStatusUrl(
+						lastRid, authorID));
+				List<SubmitLog> submitLogs = (List<SubmitLog>) parser
+						.parse(fetchString);
+				if (submitLogs == null) {
+					break;
+				}
+				lastRid = submitLogs.get(submitLogs.size() - 1).getRid() - 1;
+				author.add(submitLogs);
+			}
+
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return author;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static Author run(String authorID) {
+		DataParser parser = DataParserFactory.createGeneralAuthorInfoFetcher();
+		Author author = null;
+		try {
+			// Fetcher fetcher = new PageFetcher();
+			Fetcher fetcher = new FileFetcher();
+			author = (Author) parser.parse(fetcher
+					.fetch(getUserStatusFileUrl(authorID)));
+
+			parser = DataParserFactory.createSubmitLogsFetcher();
+
+			int lastRid = -1;
+			while (true) {
+				String fetchString = fetcher.fetch(getRealTimeStatusFileUrl(
 						lastRid, authorID));
 				List<SubmitLog> submitLogs = (List<SubmitLog>) parser
 						.parse(fetchString);
@@ -68,6 +112,20 @@ public class DataFetcher {
 					+ "&lang=0&status=0";
 		} else {
 			return RealTimeStatus + "0&pid=&user=" + authorID
+					+ "&lang=0&status=0";
+		}
+	}
+
+	private static String getUserStatusFileUrl(String authorID) {
+		return UserStatusfile + authorID;
+	}
+
+	private static String getRealTimeStatusFileUrl(int rid, String authorID) {
+		if (rid > 0) {
+			return RealTimeStatusfile + rid + "&pid=&user=" + authorID
+					+ "&lang=0&status=0";
+		} else {
+			return RealTimeStatusfile + "0&pid=&user=" + authorID
 					+ "&lang=0&status=0";
 		}
 	}

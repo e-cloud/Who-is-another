@@ -77,7 +77,6 @@ public class GeneralInfo extends Info {
 	 * @return problem 集合
 	 */
 	public Collection<Problem> getProblemList(int year, int month, int day) {
-
 		return years.get(year).getProblemList(month, day);
 	}
 
@@ -114,13 +113,33 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
+	 * 获取某年中提交的题目数
+	 * 
+	 * @param year
+	 * @return Map< day, count >
+	 */
+	public int getSubmittedProblemCount(int year) {
+		return years.get(year).getSubmittedProblemSet().size();
+	}
+
+	/**
+	 * 获取某年中解决的题目数
+	 * 
+	 * @param year
+	 * @return Map< day, count >
+	 */
+	public int getSolvedProblemCount(int year) {
+		return years.get(year).getSubmittedProblemSet().size();
+	}
+
+	/**
 	 * 获取某年中每一天解决的题目数
 	 * 
 	 * @param year
 	 * @return Map< day, count >
 	 */
 	public Map<Integer, Integer> getSolvedProblemCountPerDay(int year) {
-		return null;
+		return years.get(year).getSolvedProblemCountPerDay();
 	}
 
 	/**
@@ -130,7 +149,7 @@ public class GeneralInfo extends Info {
 	 * @return Map< month, count >
 	 */
 	public Map<Integer, Integer> getSolvedProblemCountPerMonth(int year) {
-		return null;
+		return years.get(year).getSolvedProblemCountPerDay();
 	}
 
 	/**
@@ -141,7 +160,7 @@ public class GeneralInfo extends Info {
 	 * @return Map< day, count >
 	 */
 	public Map<Integer, Integer> getSolvedProblemCountPerDay(int year, int month) {
-		return null;
+		return years.get(year).getSolvedProblemCountPerDay(month);
 	}
 
 }

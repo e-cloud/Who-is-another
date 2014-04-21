@@ -36,12 +36,7 @@ public class DayInfo extends Info {
 	 * @return
 	 */
 	public int getDay(int field) {
-		if (field == Calendar.DAY_OF_YEAR) {
-			return dayValue.get(Calendar.DAY_OF_YEAR);
-		} else {
-			return dayValue.get(Calendar.DAY_OF_MONTH);
-		}
-
+		return dayValue.get(field);
 	}
 
 	/**
@@ -56,6 +51,13 @@ public class DayInfo extends Info {
 	 */
 	public int getSubmittedProblemCount() {
 		return problems.size();
+	}
+
+	/**
+	 * @return 一天里提交题目数
+	 */
+	public int getSolvedProblemCount() {
+		return getSolvedProblemSet().size();
 	}
 
 	/**
@@ -77,7 +79,7 @@ public class DayInfo extends Info {
 				set.add(problem.getPid());
 			}
 		}
-		return problems.keySet();
+		return set;
 	}
 
 	/*
