@@ -23,7 +23,7 @@
         <Hyperlink text="Problem Solved" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
         <Hyperlink text="Accepted" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="5" />
         <Hyperlink text="Submissions" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="4" />
-        <LineChart id="LineChartNxN" GridPane.columnIndex="0" GridPane.rowIndex="7">
+        <LineChart id="LineChartNxN" fx:id="lineChart" GridPane.columnIndex="0" GridPane.rowIndex="7">
           <xAxis>
             <NumberAxis side="BOTTOM" />
           </xAxis>
