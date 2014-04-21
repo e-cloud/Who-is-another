@@ -32,7 +32,7 @@ public class Author {
 	private final int accepted;
 	private final double ACRatio;
 	private final Map<Integer, Problem> problemMap;
-	private Map<Integer, Author> neighbourList;
+	private Map<Integer, Author> neighbourMap;
 
 	public Author(String authorID, String authorName, String email,
 			String from, String registrationTime, String motto,
@@ -79,30 +79,23 @@ public class Author {
 	/**
 	 * @return the solvedProblemList
 	 */
-	public Map<Integer, Problem> getSolvedProblemList() {
-		return null;
-	}
-
-	/**
-	 * @return the unSolvedProblemList
-	 */
-	public Map<Integer, Problem> getUnSolvedProblemList() {
-		return null;
+	public Map<Integer, Problem> getProblemMap() {
+		return problemMap;
 	}
 
 	/**
 	 * @return the neighbourList
 	 */
-	public Map<Integer, Author> getNeighbourList() {
-		return neighbourList;
+	public Map<Integer, Author> getNeighbourMap() {
+		return neighbourMap;
 	}
 
 	/**
-	 * @param neighbourList
+	 * @param neighbourMap
 	 *            the neighbourList to set
 	 */
-	public void setNeighbourList(Map<Integer, Author> neighbourList) {
-		this.neighbourList = neighbourList;
+	public void setNeighbourList(Map<Integer, Author> neighbourMap) {
+		this.neighbourMap = neighbourMap;
 	}
 
 	/**

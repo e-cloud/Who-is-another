@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.wia.model.data.SubmitLog.JudgeStatus;
+
 /**
  * @author Saint Scott
  * 
@@ -60,6 +62,9 @@ public class Problem {
 	 */
 	public void addSubmitLog(SubmitLog submitLog) {
 		int key = submitLog.getRid();
+		if (!isSolved && submitLog.getStatus() == JudgeStatus.AC) {
+			isSolved = true;
+		}
 		if (submitMap.containsKey(key)) {
 			return;
 		} else {

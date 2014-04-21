@@ -16,7 +16,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import com.wia.util.IOUtil;
-import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -46,7 +45,6 @@ public class PageFetcher {
 		} finally {
 			response.close();
 		}
-		LogUtil.d(content);
 		return content;
 	}
 

@@ -3,23 +3,22 @@
  */
 package com.wia.model.test;
 
-import com.wia.model.data.Author;
-import com.wia.model.preprocess.DataFetcher;
+import com.wia.model.analysis.GeneralInfo;
 import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
  * 
  */
-public class ObjetTest {
+public class GeneralInfoTest {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
-		Author author = DataFetcher.run("myi_i");
-		LogUtil.i(author);
+		// TODO Auto-generated method stub
+		GeneralInfo info = new GeneralInfo();
+		LogUtil.d(info);
 	}
 
 }

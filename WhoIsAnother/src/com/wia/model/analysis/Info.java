@@ -9,13 +9,15 @@ import com.wia.model.data.SubmitLog;
  * @author 123
  * 
  */
-public class Info {
-	private int submittedProblems;
-	private int solvedProblems;
-	private int submissions;
-	private int accepted;
+public abstract class Info {
+	protected int submittedProblems;
+	protected int solvedProblems;
+	protected int submissions;
+	protected int accepted;
 
-	public void add(SubmitLog submitlog) {
-	};
+	/**
+	 * @param submitLog
+	 */
+	protected abstract void add(SubmitLog submitLog);
 
 }
