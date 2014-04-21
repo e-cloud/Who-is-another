@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
@@ -13,16 +14,16 @@
   <children>
     <GridPane id="GridPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Label text="整体概况" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label styleClass="text-title" text="整体概况" GridPane.columnIndex="0" GridPane.rowIndex="0">
           <GridPane.margin>
             <Insets left="10.0" fx:id="x1" />
           </GridPane.margin>
         </Label>
-        <Hyperlink text="Rank" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="1" />
-        <Hyperlink text="Problem Submitted" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="2" />
-        <Hyperlink text="Problem Solved" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
-        <Hyperlink text="Accepted" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="5" />
-        <Hyperlink text="Submissions" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="4" />
+        <Hyperlink styleClass="Hyperlink" text="Rank" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="1" />
+        <Hyperlink styleClass="Hyperlink" text="Problem Submitted" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="2" />
+        <Hyperlink styleClass="Hyperlink" text="Problem Solved" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
+        <Hyperlink styleClass="Hyperlink" text="Accepted" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="5" />
+        <Hyperlink styleClass="Hyperlink" text="Submissions" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="4" />
         <LineChart id="LineChartNxN" GridPane.columnIndex="0" GridPane.rowIndex="7">
           <xAxis>
             <NumberAxis side="BOTTOM" />
@@ -31,7 +32,7 @@
             <NumberAxis side="LEFT" />
           </yAxis>
         </LineChart>
-        <Label text="成长曲线" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="6" />
+        <Label styleClass="text-title" text="成长曲线" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="6" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -51,4 +52,7 @@
       </rowConstraints>
     </GridPane>
   </children>
+  <stylesheets>
+    <URL value="@css/general.css" />
+  </stylesheets>
 </AnchorPane>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
@@ -14,17 +15,17 @@
   <children>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <Button mnemonicParsing="false" text="Back">
+        <Button mnemonicParsing="false" styleClass="back-button" text="Back">
           <HBox.margin>
             <Insets left="10.0" fx:id="x1" />
           </HBox.margin>
         </Button>
-        <Hyperlink text="概览" />
+        <Hyperlink styleClass="Hyperlink" text="概览" />
         <Label text="&gt;" />
-        <Hyperlink text="2014年" />
+        <Hyperlink styleClass="Hyperlink" text="2014年" />
       </children>
     </HBox>
-    <Label text="提交题目数2014年各月分布" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="1" />
+    <Label styleClass="text-title" text="提交题目数2014年各月分布" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="1" />
     <HBox id="HBox" alignment="CENTER" spacing="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2">
       <children>
         <BarChart prefWidth="546.0">
@@ -35,15 +36,15 @@
             <NumberAxis side="LEFT" />
           </yAxis>
         </BarChart>
-        <GridPane alignment="CENTER" maxHeight="100.0" maxWidth="-1.0" prefHeight="-1.0">
+        <GridPane alignment="CENTER" maxHeight="100.0" maxWidth="-1.0" prefHeight="100.0" prefWidth="201.0">
           <children>
-            <Label text="提交题目数" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label styleClass="text-text" text="提交题目数" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="19.0" stroke="BLACK" strokeType="INSIDE" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
               <fill>
                 <Color blue="0.875" green="0.875" red="0.875" fx:id="x2" />
               </fill>
             </Rectangle>
-            <Label text="解决题目数" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label styleClass="text-text" text="解决题目数" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="19.0" stroke="BLACK" strokeType="INSIDE" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
           </children>
           <columnConstraints>
@@ -51,25 +52,25 @@
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
           </rowConstraints>
         </GridPane>
       </children>
     </HBox>
-    <Label text="2014年做题情况总体分析" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
-    <GridPane GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+    <Label styleClass="text-title" text="2014年做题情况总体分析" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
+    <GridPane GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
       <children>
         <PieChart id="PieChart" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="4" />
-        <Label text="提交题目数" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Label text="解决题目数" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label styleClass="text-text" text="提交题目数" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label styleClass="text-text" text="解决题目数" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" stroke="BLACK" strokeType="INSIDE" width="91.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="$x2" height="20.0" stroke="BLACK" strokeType="INSIDE" width="91.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
       </columnConstraints>
       <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -78,7 +79,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <ComboBox promptText="2014" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+    <ComboBox prefWidth="91.0" promptText="2014" styleClass="mycombo-box" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="项 1" />
@@ -102,4 +103,7 @@
     <RowConstraints minHeight="30.0" prefHeight="-1.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
   </rowConstraints>
+  <stylesheets>
+    <URL value="@css/general.css" />
+  </stylesheets>
 </GridPane>
