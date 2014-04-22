@@ -10,7 +10,7 @@ package com.wia.util;
 public class LogUtil {
 
 	/**
-	 * Êä³öÒ»°ãĞÅÏ¢
+	 * è¾“å‡ºä¸€èˆ¬ä¿¡æ¯
 	 * 
 	 * @param message
 	 */
@@ -19,7 +19,7 @@ public class LogUtil {
 	}
 
 	/**
-	 * Êä³ö´íÎóĞÅÏ¢
+	 * è¾“å‡ºé”™è¯¯ä¿¡æ¯
 	 * 
 	 * @param message
 	 */
@@ -28,7 +28,7 @@ public class LogUtil {
 	}
 
 	/**
-	 * Êä³öµ÷ÊÔĞÅÏ¢
+	 * è¾“å‡ºè°ƒè¯•ä¿¡æ¯
 	 * 
 	 * @param message
 	 */
@@ -37,7 +37,7 @@ public class LogUtil {
 	}
 
 	/**
-	 * Êä³ö¾¯¸æĞÅÏ¢
+	 * è¾“å‡ºè­¦å‘Šä¿¡æ¯
 	 * 
 	 * @param message
 	 */

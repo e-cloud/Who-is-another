@@ -58,7 +58,7 @@ public class CentralCoordinator extends Application {
 		mainContainer.loadScreen(CentralCoordinator.ROOTSTAGEID,
 				CentralCoordinator.rootStageFile);
 
-		mainContainer.switchToScreen(CentralCoordinator.ROOTSTAGEID);
+		mainContainer.switchToScreen(CentralCoordinator.WELCOMEID);
 
 		Group root = new Group();
 		root.getChildren().addAll(mainContainer);

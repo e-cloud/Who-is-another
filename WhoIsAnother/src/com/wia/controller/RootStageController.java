@@ -21,8 +21,8 @@ public class RootStageController extends AbstractFXController {
 	// private CentralCoordinator coordinator;
 	private ScreensContainer rightPaneContainer;
 
-	public final static String STRUGGLEHISTORYGENERALID = "strugglehistorygeneral";
-	public final static String struggleHistroyGeneralFile = "/com/wia/view/StruggleHistoryGeneral.fxml";
+	public final static String STRUGGLEHISTORYROOTID = "strugglehistoryroot";
+	public final static String struggleHistroyRootFile = "/com/wia/view/StruggleHistoryRoot.fxml";
 	public final static String LIGHTSPOTID = "lightspot";
 	public final static String lightSpotFile = "/com/wia/view/LightSpot.fxml";
 	public final static String RANKLISTID = "ranklist";
@@ -76,8 +76,8 @@ public class RootStageController extends AbstractFXController {
 	@Override
 	public void init() {
 		rightPaneContainer = new ScreensContainer();
-		rightPaneContainer.loadScreen(STRUGGLEHISTORYGENERALID,
-				struggleHistroyGeneralFile);
+		rightPaneContainer.loadScreen(STRUGGLEHISTORYROOTID,
+				struggleHistroyRootFile);
 		rightPaneContainer.loadScreen(LIGHTSPOTID, lightSpotFile);
 		rightPaneContainer.loadScreen(RANKLISTID, ranklistFile);
 		rightPaneContainer.loadScreen(COMPARATORID, comparatorFile);
@@ -87,7 +87,7 @@ public class RootStageController extends AbstractFXController {
 		rightPaneContainer.loadScreen(PROFILEID, profileFile);
 		rightPaneContainer.loadScreen(SETTINGID, settingFile);
 		rightPaneContainer.loadScreen(HELPID, helpFile);
-		rightPaneContainer.switchToScreen(STRUGGLEHISTORYGENERALID);
+		rightPaneContainer.switchToScreen(STRUGGLEHISTORYROOTID);
 
 		Group root = new Group();
 		root.getChildren().addAll(rightPaneContainer);

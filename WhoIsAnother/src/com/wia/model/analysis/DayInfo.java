@@ -45,35 +45,35 @@ public class DayInfo extends Info {
 	}
 
 	/**
-	 * @return ¸ÃÌìÌâÄ¿¼¯ºÏ
+	 * @return è¯¥å¤©é¢˜ç›®é›†åˆ
 	 */
 	public Collection<Problem> getProblemList() {
 		return problems.values();
 	}
 
 	/**
-	 * @return Ò»ÌìÀïÌá½»ÌâÄ¿Êı
+	 * @return ä¸€å¤©é‡Œæäº¤é¢˜ç›®æ•°
 	 */
 	public int getSubmittedProblemCount() {
 		return problems.size();
 	}
 
 	/**
-	 * @return Ò»ÌìÀïÌá½»ÌâÄ¿Êı
+	 * @return ä¸€å¤©é‡Œæäº¤é¢˜ç›®æ•°
 	 */
 	public int getSolvedProblemCount() {
 		return getSolvedProblemSet().size();
 	}
 
 	/**
-	 * @return Set< pid > Ò»ÌìÀïÌá½»ÌâÄ¿µÄpidµÄÎ¨Ò»¼¯
+	 * @return Set< pid > ä¸€å¤©é‡Œæäº¤é¢˜ç›®çš„pidçš„å”¯ä¸€é›†
 	 */
 	public Set<Integer> getSubmittedProblemSet() {
 		return problems.keySet();
 	}
 
 	/**
-	 * @return Set< pid > Ò»ÌìÀïÌá½»ÌâÄ¿µÄpidµÄÎ¨Ò»¼¯
+	 * @return Set< pid > ä¸€å¤©é‡Œæäº¤é¢˜ç›®çš„pidçš„å”¯ä¸€é›†
 	 */
 	public Set<Integer> getSolvedProblemSet() {
 		Set<Integer> set = new HashSet<Integer>();

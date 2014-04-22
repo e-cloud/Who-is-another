@@ -81,7 +81,7 @@ public class ScreensContainer extends StackPane {
 
 	// Loads the fxml file, add the screen to the screens collection and
 	// finally injects the screenPane to the controller.
-	public Parent loadScreen(String name, String resource) {
+	public void loadScreen(String name, String resource) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
 			Parent screen = (Parent) loader.load();
@@ -90,10 +90,9 @@ public class ScreensContainer extends StackPane {
 			AbstractFXController myScreenControler = loader.getController();
 			myScreenControler.setScreenContainer(this);
 			myScreenControler.init();
-			return screen;
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
 	}
 

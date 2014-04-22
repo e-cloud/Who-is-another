@@ -32,38 +32,38 @@ public class SubmitLogsParser implements DataParser {
 		// TODO Auto-generated method stub
 		Document doc = Jsoup.parse(data);
 		// path body > table > tbody > tr[3] > td > div > table > tbody > tr
-		// »ñÈ¡º¬Ö÷ÒªÄÚÈİµÄ¸ù±êÇ©
+		// è·å–å«ä¸»è¦å†…å®¹çš„æ ¹æ ‡ç­¾
 		Elements targetTR = doc.select("body > table > tbody >tr").get(3)
 				.select("td > div > table > tbody > tr");
 
 		if (targetTR.size() <= 1) {
 			return null;
 		}
-		// Í¨¹ıµü´úÌáÈ¡µ±Ç°Ò³ÃæµÄËùÓĞsubmitLog¶ÔÏó
+		// é€šè¿‡è¿­ä»£æå–å½“å‰é¡µé¢çš„æ‰€æœ‰submitLogå¯¹è±¡
 		List<SubmitLog> submitLogs = new ArrayList<SubmitLog>();
 		Iterator<Element> iterator = targetTR.iterator();
 		iterator.next();
 		while (iterator.hasNext()) {
-			// »ñÈ¡µ±Ç°trµÄtdÊı×é
+			// è·å–å½“å‰trçš„tdæ•°ç»„
 			Elements tds = iterator.next().children();
-			// ÌáÈ¡ÔËĞĞid
+			// æå–è¿è¡Œid
 			int rid = Integer.valueOf(tds.get(0).html());
-			// ÌáÈ¡Ìá½»Ê±¼ä
+			// æå–æäº¤æ—¶é—´
 			String datestr = tds.get(1).html();
-			// ÌáÈ¡ÅĞ¶¨×´Ì¬
+			// æå–åˆ¤å®šçŠ¶æ€
 			JudgeStatus status = tds.get(2).child(0).html().equals("Accepted") ? JudgeStatus.AC
 					: JudgeStatus.WA;
-			// ÌáÈ¡ÌâÄ¿id
+			// æå–é¢˜ç›®id
 			int pid = Integer.valueOf(tds.get(3).child(0).html());
-			// ÌáÈ¡Ö´ĞĞÊ±¼ä
+			// æå–æ‰§è¡Œæ—¶é—´
 			int execTime = Integer.valueOf(tds.get(4).html().split("M")[0]);
-			// ÌáÈ¡ÔËĞĞÄÚ´æ
+			// æå–è¿è¡Œå†…å­˜
 			int execMemory = Integer.valueOf(tds.get(5).html().split("K")[0]);
-			// ÌáÈ¡´úÂë³¤¶È
+			// æå–ä»£ç é•¿åº¦
 			int codeLength = Integer.valueOf(tds.get(6).html().split("B")[0]);
-			// ÌáÈ¡±à³ÌÓïÑÔ
+			// æå–ç¼–ç¨‹è¯­è¨€
 			String language = tds.get(7).html();
-			// ÏòsubmitLogsÌí¼ÓºÏ³ÉµÄsubmitLog
+			// å‘submitLogsæ·»åŠ åˆæˆçš„submitLog
 			SubmitLog submitLog = new SubmitLog(rid, pid, datestr, status,
 					execTime, execMemory, codeLength, language);
 

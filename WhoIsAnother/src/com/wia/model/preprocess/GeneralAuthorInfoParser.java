@@ -33,13 +33,13 @@ public class GeneralAuthorInfoParser implements DataParser {
 		Element targetTD = doc.select("body > table > tbody >tr").get(3)
 				.select("td").get(1);
 
-		// ÌáÈ¡ÓÃ»§Ãû
+		// æå–ç”¨æˆ·å
 		String authorName = targetTD.select("h1 > a").get(0).html();
 
-		// ÌáÈ¡ÓÊ¼şµØÖ·
+		// æå–é‚®ä»¶åœ°å€
 		String email = targetTD.select("h1 > a").get(0).attr("href").split(":")[1];
 
-		// Í¨¹ıÕıÔò±í´ïÊ½ÌáÈ¡fromºÍ×¢²áÊ±¼ä
+		// é€šè¿‡æ­£åˆ™è¡¨è¾¾å¼æå–fromå’Œæ³¨å†Œæ—¶é—´
 		Pattern pattern = Pattern
 				.compile("from: ([0-9a-zA-Z]+)\\D+(\\d{4}-\\d{2}-\\d{2})");
 		Matcher matcher = pattern.matcher(targetTD.select("i").get(0).html());
@@ -47,26 +47,26 @@ public class GeneralAuthorInfoParser implements DataParser {
 		String from = matcher.group(1);
 		String regTime = matcher.group(2);
 
-		// ÌáÈ¡Ç©Ãû
+		// æå–ç­¾å
 		String motto = targetTD.select("p").get(0).html();
 
 		Elements tds = targetTD.select("table").get(0).select("td");
 
-		// ÌáÈ¡¹ú¼®Í¼°¸path
+		// æå–å›½ç±å›¾æ¡ˆpath
 		String nationality = tds.get(1).select("img").get(0).attr("src");
 
-		// ÌáÈ¡²¢×ª»»ÅÅÃû
+		// æå–å¹¶è½¬æ¢æ’å
 		int rank = Integer.valueOf(tds.get(3).html());
-		// ÌáÈ¡Ìá½»ÌâÄ¿Êı
+		// æå–æäº¤é¢˜ç›®æ•°
 		int submitted = Integer.valueOf(tds.get(5).html());
-		// ÌáÈ¡½â¾öÌâÄ¿Êı
+		// æå–è§£å†³é¢˜ç›®æ•°
 		int solved = Integer.valueOf(tds.get(7).html());
-		// ÌáÈ¡Ìá½»Êı
+		// æå–æäº¤æ•°
 		int submissions = Integer.valueOf(tds.get(9).html());
-		// ÌáÈ¡acÊı
+		// æå–acæ•°
 		int accepted = Integer.valueOf(tds.get(11).html());
 
-		// ÌáÈ¡ÓÃ»§id
+		// æå–ç”¨æˆ·id
 		pattern = Pattern.compile("user=([^&]+)&*");
 		matcher = pattern.matcher(targetTD.select("p").get(1).select("a")
 				.get(0).attr("href"));
@@ -75,7 +75,7 @@ public class GeneralAuthorInfoParser implements DataParser {
 
 		Element neighbortale = targetTD.select("table").get(1);
 
-		// ÌáÈ¡acÂÊ
+		// æå–acç‡
 		double acRatio = 0;
 		for (Element element : neighbortale.select("tr")) {
 			if (element.select("td").get(0).html().equals(String.valueOf(rank))) {

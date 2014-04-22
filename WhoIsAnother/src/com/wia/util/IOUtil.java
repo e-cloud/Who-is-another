@@ -17,7 +17,7 @@ import org.apache.http.util.CharArrayBuffer;
 public class IOUtil {
 
 	/**
-	 * ½«Ö¸¶¨±àÂë¼¯µÄÊäÈëÁ÷½âÎöÎª×Ö·û´®
+	 * å°†æŒ‡å®šç¼–ç é›†çš„è¾“å…¥æµè§£æä¸ºå­—ç¬¦ä¸²
 	 * 
 	 * @param is
 	 *            inputstream to be parsed
@@ -42,7 +42,7 @@ public class IOUtil {
 	}
 
 	/**
-	 * ½«utf-8±àÂë¼¯µÄÊäÈëÁ÷½âÎöÎª×Ö·û´®
+	 * å°†utf-8ç¼–ç é›†çš„è¾“å…¥æµè§£æä¸ºå­—ç¬¦ä¸²
 	 * 
 	 * @param is
 	 *            inputstream to be parsed

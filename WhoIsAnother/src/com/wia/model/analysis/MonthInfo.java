@@ -53,17 +53,17 @@ public class MonthInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³Ò»ÌìµÄÌá½»ÌâÄ¿ÁĞ±í *
+	 * è·å–æŸä¸€å¤©çš„æäº¤é¢˜ç›®åˆ—è¡¨ *
 	 * 
 	 * @param day
-	 * @return problem ¼¯ºÏ
+	 * @return problem é›†åˆ
 	 */
 	public Collection<Problem> getProblemList(int day) {
 		return days.get(day).getProblemList();
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÔÂÖĞÃ¿Ò»ÌìÌá½»µÄÌâÄ¿ÊıÁ´±í
+	 * è·å–æŸæœˆä¸­æ¯ä¸€å¤©æäº¤çš„é¢˜ç›®æ•°é“¾è¡¨
 	 * 
 	 * @return List < Pair< Date, Integer > >
 	 */
@@ -80,7 +80,7 @@ public class MonthInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÔÂÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿ÊıÁ´±í
+	 * è·å–æŸæœˆä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°é“¾è¡¨
 	 * 
 	 * @return List < Pair< Date, Integer > >
 	 */
@@ -97,7 +97,7 @@ public class MonthInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÔÂÖĞÃ¿Ò»ÌìÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸæœˆä¸­æ¯ä¸€å¤©æäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< day, count >
 	 */
@@ -127,7 +127,7 @@ public class MonthInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÔÂÖĞÃ¿Ò»ÌìÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸæœˆä¸­æ¯ä¸€å¤©æäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< day, count >
 	 */

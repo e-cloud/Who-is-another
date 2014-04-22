@@ -3,15 +3,21 @@
  */
 package com.wia.controller;
 
+import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeSet;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
+import javafx.geometry.Side;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 
 import com.wia.Context;
-import com.wia.util.LogUtil;
+import com.wia.model.analysis.GeneralInfo;
+import com.wia.model.data.Author;
 
 /**
  * @author Saint Scott
@@ -19,70 +25,91 @@ import com.wia.util.LogUtil;
  */
 public class StruggleHistoryGeneralController extends AbstractFXController {
 
+	@SuppressWarnings("rawtypes")
 	@FXML
-	private LineChart lineChart;
+	private BarChart generalBarChart;
 
-	private Context context;
+	@FXML
+	private Label rankLabel;
+	@FXML
+	private Label submitLabel;
+	@FXML
+	private Label solveLabel;
+	@FXML
+	private Label submissionLabel;
+	@FXML
+	private Label acceptLabel;
+
+	private GeneralInfo generalInfo;
 
 	@FXML
 	private void initialize() {
-		context = Context.getInstance();
+		generalInfo = GeneralInfo.getInstance();
+		Author author = Context.getInstance().getCurrentAuthor();
+		rankLabel.setText(author.getRank() + "");
+		submitLabel.setText(author.getSubmitted() + "");
+		solveLabel.setText(author.getSolved() + "");
+		submissionLabel.setText(author.getSubmissions() + "");
+		acceptLabel.setText(author.getAccepted() + "");
 		initChart();
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initChart() {
-		final NumberAxis xAxis = new NumberAxis(1, 30, 1);
-		final NumberAxis yAxis = new NumberAxis(-5, 27, 5);
-		xAxis.setForceZeroInRange(true);
+		// final NumberAxis xAxis = new NumberAxis(1, 30, 1);
+		// final NumberAxis yAxis = new NumberAxis(-5, 27, 5);
+		// xAxis.setForceZeroInRange(true);
 
-		lineChart.setTitle("Temperature Monitoring (in Degrees C)");
+		generalBarChart.setTitle("Growth Curve");
 
-		Map<Integer, Integer> map = context.;
+		Map<Integer, Integer> solveMap = generalInfo.getSolvedProblemCount();
+		Map<Integer, Integer> submitMap = generalInfo
+				.getSubmittedProblemCount();
 
-		XYChart.Series series1 = new XYChart.Series();
-		series1.setName("March");
-		series1.getData().add(new XYChart.Data(1, -2));
-		series1.getData().add(new XYChart.Data(3, -4));
-		series1.getData().add(new XYChart.Data(6, 0));
-		series1.getData().add(new XYChart.Data(9, 5));
-		series1.getData().add(new XYChart.Data(12, -4));
-		series1.getData().add(new XYChart.Data(15, 6));
-		series1.getData().add(new XYChart.Data(18, 8));
-		series1.getData().add(new XYChart.Data(21, 14));
-		series1.getData().add(new XYChart.Data(24, 4));
-		series1.getData().add(new XYChart.Data(27, 6));
-		series1.getData().add(new XYChart.Data(30, 6));
+		final TreeSet<Integer> treeSet = new TreeSet<Integer>(solveMap.keySet());
+		XYChart.Series solveSeries = new XYChart.Series();
+		solveSeries.setName("解决题目数");
+		for (Iterator iterator = treeSet.iterator(); iterator.hasNext();) {
+			Integer year = (Integer) iterator.next();
 
-		XYChart.Series series2 = new XYChart.Series();
-		series2.setName("April");
-		series2.getData().add(new XYChart.Data(1, 4));
-		series2.getData().add(new XYChart.Data(3, 10));
-		series2.getData().add(new XYChart.Data(6, 15));
-		series2.getData().add(new XYChart.Data(9, 8));
-		series2.getData().add(new XYChart.Data(12, 5));
-		series2.getData().add(new XYChart.Data(15, 18));
-		series2.getData().add(new XYChart.Data(18, 15));
-		series2.getData().add(new XYChart.Data(21, 13));
-		series2.getData().add(new XYChart.Data(24, 19));
-		series2.getData().add(new XYChart.Data(27, 21));
-		series2.getData().add(new XYChart.Data(30, 21));
+			solveSeries.getData().add(
+					new XYChart.Data(String.valueOf(year), solveMap.get(year)));
+		}
 
-		XYChart.Series series3 = new XYChart.Series();
-		series3.setName("May");
-		series3.getData().add(new XYChart.Data(1, 20));
-		series3.getData().add(new XYChart.Data(3, 15));
-		series3.getData().add(new XYChart.Data(6, 13));
-		series3.getData().add(new XYChart.Data(9, 12));
-		series3.getData().add(new XYChart.Data(12, 14));
-		series3.getData().add(new XYChart.Data(15, 18));
-		series3.getData().add(new XYChart.Data(18, 25));
-		series3.getData().add(new XYChart.Data(21, 25));
-		series3.getData().add(new XYChart.Data(24, 23));
-		series3.getData().add(new XYChart.Data(27, 26));
-		series3.getData().add(new XYChart.Data(30, 26));
+		XYChart.Series submitSeries = new XYChart.Series();
+		submitSeries.setName("提交题目数");
+		for (Iterator iterator = treeSet.iterator(); iterator.hasNext();) {
+			Integer year = (Integer) iterator.next();
 
-		lineChart.setHorizontalZeroLineVisible(true);
-		lineChart.getData().addAll(series1, series2, series3);
+			submitSeries.getData()
+					.add(new XYChart.Data(String.valueOf(year), submitMap
+							.get(year)));
+
+		}
+		generalBarChart.getData().addAll(submitSeries, solveSeries);
+		generalBarChart.setBarGap(100);
+		generalBarChart.setAnimated(true);
+		generalBarChart.setLegendSide(Side.RIGHT);
+		generalBarChart.setHorizontalZeroLineVisible(true);
+		// generalBarChart.onMouseClickedProperty().set(new
+		// EventHandler<Event>() {
+		//
+		// @Override
+		// public void handle(Event event) {
+		// // TODO Auto-generated method stub
+		// LogUtil.d(event.getSource() + "property");
+		// }
+		// });
+
+		generalBarChart.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				// TODO Auto-generated method stub
+
+				myScreensContainer
+						.switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
+			}
+		});
 	}
 }

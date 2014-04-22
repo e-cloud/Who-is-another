@@ -91,19 +91,19 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³Ò»ÌìµÄÌá½»ÌâÄ¿ÁĞ±í
+	 * è·å–æŸä¸€å¤©çš„æäº¤é¢˜ç›®åˆ—è¡¨
 	 * 
 	 * @param year
 	 * @param month
 	 * @param day
-	 * @return problem ¼¯ºÏ
+	 * @return problem é›†åˆ
 	 */
 	public Collection<Problem> getProblemList(int year, int month, int day) {
 		return years.get(year).getProblemList(month, day);
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿Ò»ÌìÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸€å¤©æäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @param year
 	 * @return Map< day, count >
@@ -113,7 +113,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿¸öÔÂÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸ªæœˆæäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @param year
 	 * @return Map< month, count >
@@ -123,7 +123,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÄ³ÔÂÖĞÃ¿Ò»ÌìÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸå¹´æŸæœˆä¸­æ¯ä¸€å¤©æäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @param year
 	 * @param month
@@ -135,7 +135,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @param year
 	 * @return Map< day, count >
@@ -145,7 +145,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞ½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @param year
 	 * @return Map< day, count >
@@ -155,7 +155,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ã¿Ò»ÄêÖĞÌá½»µÄÌâÄ¿Êı
+	 * è·å–æ¯ä¸€å¹´ä¸­æäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< year, count >
 	 */
@@ -170,7 +170,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ã¿Ò»ÄêÖĞ½â¾öµÄÌâÄ¿Êı
+	 * è·å–æ¯ä¸€å¹´ä¸­è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< year, count >
 	 */
@@ -185,7 +185,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @param year
 	 * @return Map< day, count >
@@ -195,7 +195,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿¸öÔÂ½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸ªæœˆè§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @param year
 	 * @return Map< month, count >
@@ -205,7 +205,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÄ³ÔÂÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´æŸæœˆä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @param year
 	 * @param month
@@ -216,7 +216,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< day, count >
 	 */
@@ -231,7 +231,7 @@ public class GeneralInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< day, count >
 	 */

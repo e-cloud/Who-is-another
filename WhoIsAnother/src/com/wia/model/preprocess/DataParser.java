@@ -13,8 +13,8 @@ public interface DataParser {
 
 	/**
 	 * @param data
-	 *            ÊäÈë²ÎÊı¡ª¡ªĞèÒª½âÎöµÄÊı¾İ
-	 * @return ·µ»Ø½âÎöºóÉú³ÉµÄ¶ÔÏó£¬ÓÉÊµÏÖÀà¾ö¶¨
+	 *            è¾“å…¥å‚æ•°â€”â€”éœ€è¦è§£æçš„æ•°æ®
+	 * @return è¿”å›è§£æåç”Ÿæˆçš„å¯¹è±¡ï¼Œç”±å®ç°ç±»å†³å®š
 	 * @throws ParseException
 	 */
 	public Object parse(String data) throws ParseException;

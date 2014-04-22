@@ -18,7 +18,6 @@ import javafx.util.Pair;
 
 import com.wia.model.data.Problem;
 import com.wia.model.data.SubmitLog;
-import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -47,11 +46,11 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³Ò»ÌìµÄÌá½»ÌâÄ¿ÁĞ±í
+	 * è·å–æŸä¸€å¤©çš„æäº¤é¢˜ç›®åˆ—è¡¨
 	 * 
 	 * @param month
 	 * @param day
-	 * @return problem ¼¯ºÏ
+	 * @return problem é›†åˆ
 	 */
 	public Collection<Problem> getProblemList(int month, int day) {
 
@@ -59,7 +58,7 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿Ò»ÌìÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸€å¤©æäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< day, count >
 	 */
@@ -75,7 +74,7 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿¸öÔÂÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸ªæœˆæäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< month, count >
 	 */
@@ -91,7 +90,7 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÄ³ÔÂÖĞÃ¿Ò»ÌìÌá½»µÄÌâÄ¿Êı
+	 * è·å–æŸå¹´æŸæœˆä¸­æ¯ä¸€å¤©æäº¤çš„é¢˜ç›®æ•°
 	 * 
 	 * @param month
 	 * @return Map< day, count >
@@ -115,7 +114,7 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< day, count >
 	 */
@@ -131,7 +130,7 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< day, count >
 	 */
@@ -146,7 +145,7 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< day, count >
 	 */
@@ -161,7 +160,7 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÖĞÃ¿¸öÔÂ½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´ä¸­æ¯ä¸ªæœˆè§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @return Map< month, count >
 	 */
@@ -172,7 +171,6 @@ public class YearInfo extends Info {
 			MonthInfo monthInfo = iterator.next();
 			int month = monthInfo.getMonth();
 			int size = monthInfo.getSolvedProblemSet().size();
-			LogUtil.d(month + "\t\t" + size);
 			solvedMap.put(month, size);
 		}
 		return solvedMap;
@@ -183,7 +181,7 @@ public class YearInfo extends Info {
 	}
 
 	/**
-	 * »ñÈ¡Ä³ÄêÄ³ÔÂÖĞÃ¿Ò»Ìì½â¾öµÄÌâÄ¿Êı
+	 * è·å–æŸå¹´æŸæœˆä¸­æ¯ä¸€å¤©è§£å†³çš„é¢˜ç›®æ•°
 	 * 
 	 * @param month
 	 * @return Map< day, count >
