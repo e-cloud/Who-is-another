@@ -11,13 +11,16 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 import com.wia.Context;
 import com.wia.model.analysis.GeneralInfo;
 import com.wia.model.data.Author;
+import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -87,6 +90,36 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 
 		}
 		generalBarChart.getData().addAll(submitSeries, solveSeries);
+
+		for (Iterator iterator = submitSeries.getData().iterator(); iterator
+				.hasNext();) {
+			XYChart.Data data = (XYChart.Data) iterator.next();
+			Node node = data.getNode();
+			LogUtil.d(node);
+			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+					new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent e) {
+							LogUtil.d(e.getSource());
+						}
+					});
+
+		}
+
+		for (Iterator iterator = solveSeries.getData().iterator(); iterator
+				.hasNext();) {
+			XYChart.Data data = (XYChart.Data) iterator.next();
+
+			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+					new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent e) {
+							LogUtil.d(e.getSource());
+						}
+					});
+
+		}
+
 		generalBarChart.setBarGap(100);
 		generalBarChart.setAnimated(true);
 		generalBarChart.setLegendSide(Side.RIGHT);

@@ -4,7 +4,7 @@
 package com.wia;
 
 import com.wia.model.data.Author;
-import com.wia.model.preprocess.DataFetcher;
+import com.wia.model.preprocess.DataPreprocessor;
 
 /**
  * @author Saint Scott
@@ -17,7 +17,7 @@ public class Context {
 	private volatile static Context uniqueInstance;
 
 	private Context() {
-		currentAuthor = DataFetcher.run("wdp515105");
+		currentAuthor = DataPreprocessor.run("wdp515105");
 	}
 
 	public static Context getInstance() {

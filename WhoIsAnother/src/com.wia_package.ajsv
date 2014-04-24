@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)--><ajsv>
+    <diagram creationDate="2014-四月-22 04:51" filterScript="" licenseGrade="evaluation" licenseeName="anon" licenseeOrganization="unknown" version="1.7.16.v20130804-1241">
+        <class className="com.wia.Context" project="WhoIsAnother" xLocation="2046" yLocation="1385"/>
+        <class className="com.wia.CentralCoordinator" project="WhoIsAnother" xLocation="1624" yLocation="1533"/>
+        <class className="com.wia.controller.ProgressBarController" project="WhoIsAnother" xLocation="1214" yLocation="1617"/>
+        <class className="com.wia.model.data.SubmitLog" project="WhoIsAnother" xLocation="3001" yLocation="687"/>
+        <class className="com.wia.controller.RootStageController" project="WhoIsAnother" xLocation="468" yLocation="622"/>
+        <class className="com.wia.controller.WelcomeController" project="WhoIsAnother" xLocation="2056" yLocation="1729"/>
+        <class className="com.wia.controller.StruggleHistoryMonthController" project="WhoIsAnother" xLocation="1679" yLocation="169"/>
+        <class className="com.wia.controller.RanklistController" project="WhoIsAnother" xLocation="4054" yLocation="569"/>
+        <class className="com.wia.controller.StruggleHistoryYearController" project="WhoIsAnother" xLocation="1567" yLocation="699"/>
+        <class className="com.wia.controller.StruggleHistoryGeneralController" project="WhoIsAnother" xLocation="1232" yLocation="1178"/>
+        <class className="com.wia.controller.AbstractFXController" project="WhoIsAnother" xLocation="2086" yLocation="154"/>
+        <class className="com.wia.controller.AceRecommendController" project="WhoIsAnother" xLocation="208" yLocation="286"/>
+        <class className="com.wia.controller.HelpController" project="WhoIsAnother" xLocation="4107" yLocation="282"/>
+        <class className="com.wia.controller.ComparatorController" project="WhoIsAnother" xLocation="726" yLocation="363"/>
+        <class className="com.wia.controller.StruggleHistoryRootController" project="WhoIsAnother" xLocation="1041" yLocation="648"/>
+        <class className="com.wia.controller.NeighbourRecommendController" project="WhoIsAnother" xLocation="692" yLocation="100"/>
+        <class className="com.wia.controller.ProfileController" project="WhoIsAnother" xLocation="2269" yLocation="433"/>
+        <class className="com.wia.controller.LightSpotController" project="WhoIsAnother" xLocation="4416" yLocation="486"/>
+        <class className="com.wia.controller.StruggleHistoryDayController" project="WhoIsAnother" xLocation="100" yLocation="640"/>
+        <class className="com.wia.model.analysis.Info" project="WhoIsAnother" xLocation="3156" yLocation="296"/>
+        <class className="com.wia.model.analysis.DayInfo" project="WhoIsAnother" xLocation="3542" yLocation="243"/>
+        <class className="com.wia.model.analysis.YearInfo" project="WhoIsAnother" xLocation="2427" yLocation="1370"/>
+        <class className="com.wia.model.analysis.GeneralInfo" project="WhoIsAnother" xLocation="1939" yLocation="668"/>
+        <class className="com.wia.model.analysis.MonthInfo" project="WhoIsAnother" xLocation="2581" yLocation="178"/>
+        <class className="com.wia.controller.SettingController" project="WhoIsAnother" xLocation="3545" yLocation="708"/>
+        <class className="com.wia.model.data.Problem" project="WhoIsAnother" xLocation="2522" yLocation="766"/>
+        <class className="com.wia.model.data.Author" project="WhoIsAnother" xLocation="3011" yLocation="1472"/>
+        <class className="com.wia.model.local.FileFetcher" project="WhoIsAnother" xLocation="4738" yLocation="860"/>
+        <class className="com.wia.model.preprocess.Fetcher" project="WhoIsAnother" xLocation="4741" yLocation="586"/>
+        <class className="com.wia.model.preprocess.SubmitLogsParser" project="WhoIsAnother" xLocation="3558" yLocation="1042"/>
+        <class className="com.wia.model.preprocess.DataParser" project="WhoIsAnother" xLocation="3903" yLocation="814"/>
+        <class className="com.wia.model.preprocess.GeneralAuthorInfoParser" project="WhoIsAnother" xLocation="4222" yLocation="1284"/>
+        <class className="com.wia.model.preprocess.DataFetcher" project="WhoIsAnother" xLocation="4219" yLocation="825"/>
+        <class className="com.wia.model.preprocess.DataParserFactory" project="WhoIsAnother" xLocation="3668" yLocation="1750"/>
+        <class className="com.wia.model.preprocess.PageFetcher" project="WhoIsAnother" xLocation="4183" yLocation="1556"/>
+        <class className="com.wia.util.LogUtil" project="WhoIsAnother" xLocation="1668" yLocation="1164"/>
+        <class className="com.wia.util.IOUtil" project="WhoIsAnother" xLocation="4608" yLocation="1270"/>
+        <class className="com.wia.util.ThreadLoaclDateFormatUtil" project="WhoIsAnother" xLocation="3673" yLocation="1306"/>
+        <class className="com.wia.view.layout.ScreensContainer" project="WhoIsAnother" xLocation="1173" yLocation="219"/>
+    </diagram>
+</ajsv>

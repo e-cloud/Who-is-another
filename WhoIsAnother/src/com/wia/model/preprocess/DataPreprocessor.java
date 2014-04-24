@@ -17,7 +17,7 @@ import com.wia.model.local.FileFetcher;
  * @author Saint Scott
  * 
  */
-public class DataFetcher {
+public class DataPreprocessor {
 
 	private final static String UserStatus = "http://acm.hdu.edu.cn/userstatus.php?user=";
 	private final static String RealTimeStatus = "http://acm.hdu.edu.cn/status.php?first=";

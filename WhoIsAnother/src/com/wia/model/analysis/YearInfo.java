@@ -31,7 +31,7 @@ public class YearInfo extends Info {
 	/**
 	 * 
 	 */
-	public YearInfo(int year) {
+	protected YearInfo(int year) {
 		// TODO Auto-generated constructor stub
 		this.yearValue = Calendar.getInstance();
 		this.yearValue.set(Calendar.YEAR, year);
@@ -39,169 +39,12 @@ public class YearInfo extends Info {
 	}
 
 	/**
+	 * 获取公元年份值
+	 * 
 	 * @return the year
 	 */
-	public int getYear() {
+	protected int getYear() {
 		return yearValue.get(Calendar.YEAR);
-	}
-
-	/**
-	 * 获取某一天的提交题目列表
-	 * 
-	 * @param month
-	 * @param day
-	 * @return problem 集合
-	 */
-	public Collection<Problem> getProblemList(int month, int day) {
-
-		return months.get(month).getProblemList(day);
-	}
-
-	/**
-	 * 获取某年中每一天提交的题目数
-	 * 
-	 * @return Map< day, count >
-	 */
-	public Map<Integer, Integer> getSubmittedProblemCountPerDay() {
-		Map<Integer, Integer> submitMap = new HashMap<Integer, Integer>();
-		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
-				.hasNext();) {
-			MonthInfo monthInfo = iterator.next();
-			submitMap.putAll(monthInfo
-					.getSubmittedProblemCountPerDay(Calendar.DAY_OF_YEAR));
-		}
-		return submitMap;
-	}
-
-	/**
-	 * 获取某年中每个月提交的题目数
-	 * 
-	 * @return Map< month, count >
-	 */
-	public Map<Integer, Integer> getSubmittedProblemCountPerMonth() {
-		Map<Integer, Integer> submitMap = new HashMap<Integer, Integer>();
-		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
-				.hasNext();) {
-			MonthInfo monthInfo = iterator.next();
-			submitMap.put(monthInfo.getMonth(), monthInfo
-					.getSubmittedProblemSet().size());
-		}
-		return submitMap;
-	}
-
-	/**
-	 * 获取某年某月中每一天提交的题目数
-	 * 
-	 * @param month
-	 * @return Map< day, count >
-	 */
-	public Map<Integer, Integer> getSubmittedProblemCountPerDay(int month) {
-		return months.get(month).getSubmittedProblemCountPerDay(
-				Calendar.DAY_OF_MONTH);
-	}
-
-	/**
-	 * @return Set< pid >
-	 */
-	public Set<Integer> getSubmittedProblemSet() {
-		Set<Integer> set = new HashSet<Integer>();
-		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
-				.hasNext();) {
-			MonthInfo monthInfo = iterator.next();
-			set.addAll(monthInfo.getSubmittedProblemSet());
-		}
-		return set;
-	}
-
-	/**
-	 * 获取某年中每一天解决的题目数
-	 * 
-	 * @return Map< day, count >
-	 */
-	public Map<Integer, Integer> getSolvedProblemCountPerDay() {
-		Map<Integer, Integer> solvedMap = new HashMap<Integer, Integer>();
-		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
-				.hasNext();) {
-			MonthInfo monthInfo = iterator.next();
-			solvedMap.putAll(monthInfo
-					.getSolvedProblemCountPerDay(Calendar.DAY_OF_YEAR));
-		}
-		return solvedMap;
-	}
-
-	/**
-	 * 获取某年中每一天解决的题目数
-	 * 
-	 * @return Map< day, count >
-	 */
-	public List<Pair<Date, Integer>> getSolvedProblemCountEveryDay() {
-		List<Pair<Date, Integer>> solvedlist = new ArrayList<>();
-		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
-				.hasNext();) {
-			MonthInfo monthInfo = iterator.next();
-			solvedlist.addAll(monthInfo.getSolvedProblemCountEveryDay());
-		}
-		return solvedlist;
-	}
-
-	/**
-	 * 获取某年中每一天解决的题目数
-	 * 
-	 * @return Map< day, count >
-	 */
-	public List<Pair<Date, Integer>> getSubmittedProblemCountEveryDay() {
-		List<Pair<Date, Integer>> submitlist = new ArrayList<>();
-		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
-				.hasNext();) {
-			MonthInfo monthInfo = iterator.next();
-			submitlist.addAll(monthInfo.getSubmittedProblemCountEveryDay());
-		}
-		return submitlist;
-	}
-
-	/**
-	 * 获取某年中每个月解决的题目数
-	 * 
-	 * @return Map< month, count >
-	 */
-	public Map<Integer, Integer> getSolvedProblemCountPerMonth() {
-		Map<Integer, Integer> solvedMap = new HashMap<Integer, Integer>();
-		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
-				.hasNext();) {
-			MonthInfo monthInfo = iterator.next();
-			int month = monthInfo.getMonth();
-			int size = monthInfo.getSolvedProblemSet().size();
-			solvedMap.put(month, size);
-		}
-		return solvedMap;
-
-		// Date date = submitLog.getSubmitTime().getTime();
-		// LogUtil.d(ThreadLoaclDateFormatUtil.formatDetailDate(date) + '\t' +
-		// key);
-	}
-
-	/**
-	 * 获取某年某月中每一天解决的题目数
-	 * 
-	 * @param month
-	 * @return Map< day, count >
-	 */
-	public Map<Integer, Integer> getSolvedProblemCountPerDay(int month) {
-		return months.get(month).getSolvedProblemCountPerDay(
-				Calendar.DAY_OF_MONTH);
-	}
-
-	/**
-	 * @return Set< pid >
-	 */
-	public Set<Integer> getSolvedProblemSet() {
-		Set<Integer> set = new HashSet<Integer>();
-		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
-				.hasNext();) {
-			MonthInfo monthInfo = iterator.next();
-			set.addAll(monthInfo.getSolvedProblemSet());
-		}
-		return set;
 	}
 
 	/*
@@ -221,6 +64,123 @@ public class YearInfo extends Info {
 			monthInfo.add(submitLog);
 			months.put(key, monthInfo);
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.model.analysis.Info#calculateFields()
+	 */
+	@Override
+	protected void calculateFields() {
+		// TODO Auto-generated method stub
+		Set<Integer> submitSet = new HashSet<Integer>();
+		Set<Integer> solveSet = new HashSet<Integer>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo month = iterator.next();
+			month.calculateFields();
+			submissions += month.get(Info.SUBMISSION);
+			accepted += month.get(Info.ACCEPT);
+			submitSet.addAll(month.getProblemSet(Info.SUBMIT));
+			solveSet.addAll(month.getProblemSet(Info.SOLVE));
+		}
+		problemSubmitted = submitSet.size();
+		problemSolved = solveSet.size();
+	}
+
+	/**
+	 * 获得每月每天的pair对象的list，键是日期，值是指定field的值
+	 * 
+	 * @param field
+	 * <br/>
+	 *            Acceptable fields:<br/>
+	 *            --Info.SUBMIT<br/>
+	 *            --Info.SOLVE<br/>
+	 * @return a list of Pair mapping that date and the relevant field's value<br/>
+	 *         like List< Pair < date, count > >
+	 */
+	protected List<Pair<Date, Integer>> getPairList(int field) {
+		// TODO Auto-generated method stub
+		List<Pair<Date, Integer>> list = new ArrayList<>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo month = iterator.next();
+			list.addAll(month.getPairList(field));
+		}
+		return list;
+	}
+
+	/**
+	 * 一年里指定field对应的pid的唯一集
+	 * 
+	 * @param field
+	 * <br/>
+	 *            Acceptable fields:<br/>
+	 *            --Info.SUBMIT<br/>
+	 *            --Info.SOLVE<br/>
+	 * @return Set < pid > <br/>
+	 *         a set contains the whole <b>year's</b> problem ID of the relevant
+	 *         field
+	 */
+	protected Set<Integer> getProblemSet(int field) {
+		Set<Integer> set = new HashSet<Integer>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo monthInfo = iterator.next();
+			set.addAll(monthInfo.getProblemSet(field));
+		}
+		return set;
+	}
+
+	/**
+	 * 获取某一天的提交题目列表
+	 * 
+	 * @param month
+	 * @param day
+	 * @return problem 集合
+	 */
+	protected Collection<Problem> getProblemList(int month, int day) {
+		return months.get(month).getProblemList(day);
+	}
+
+	/**
+	 * 获取每个月相应 field 的值的map
+	 * 
+	 * @param field
+	 * <br/>
+	 *            Acceptable fields:<br/>
+	 *            --Info.SUBMIT<br/>
+	 *            --Info.SOLVE<br/>
+	 *            --Info.SUBMISSION<br/>
+	 * @return Map< month, count >
+	 */
+	protected Map<Integer, Integer> getProblemCountPerMonth(int field) {
+		Map<Integer, Integer> solvedMap = new HashMap<Integer, Integer>();
+		for (Iterator<MonthInfo> iterator = months.values().iterator(); iterator
+				.hasNext();) {
+			MonthInfo monthInfo = iterator.next();
+			int month = monthInfo.getMonth();
+			int count = monthInfo.get(field);
+			solvedMap.put(month, count);
+		}
+		return solvedMap;
+	}
+
+	/**
+	 * 获取某月中每一天相应 field 的值的map
+	 * 
+	 * @param month
+	 * @param field
+	 * <br/>
+	 *            Acceptable fields:<br/>
+	 *            --Info.SUBMIT<br/>
+	 *            --Info.SOLVE<br/>
+	 *            --Info.SUBMISSION<br/>
+	 * @return Map< day, count >
+	 */
+	protected Map<Integer, Integer> getProblemCountPerDay(int month, int field) {
+		return months.get(month).getProblemCountPerDay(field);
 	}
 
 }

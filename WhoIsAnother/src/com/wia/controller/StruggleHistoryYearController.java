@@ -3,6 +3,7 @@
  */
 package com.wia.controller;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import javafx.collections.FXCollections;
@@ -17,6 +18,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 import com.wia.model.analysis.GeneralInfo;
 import com.wia.util.LogUtil;
@@ -90,11 +92,32 @@ public class StruggleHistoryYearController extends AbstractFXController {
 			submitSeries.getData().add(
 					new XYChart.Data(String.valueOf(i + 1), b == null ? 0 : b));
 		}
-		LogUtil.d(submitSeries.getData());
-		LogUtil.d(solveSeries.getData());
-
 		yearBarChart.getData().addAll(submitSeries, solveSeries);
-		// yearBarChart.setBarGap(100);
+
+		for (Iterator iterator = submitSeries.getData().iterator(); iterator
+				.hasNext();) {
+			XYChart.Data data = (XYChart.Data) iterator.next();
+			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+					new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent e) {
+							LogUtil.d(e.getSource());
+						}
+					});
+		}
+
+		for (Iterator iterator = solveSeries.getData().iterator(); iterator
+				.hasNext();) {
+			XYChart.Data data = (XYChart.Data) iterator.next();
+			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+					new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent e) {
+							LogUtil.d(e.getSource());
+						}
+					});
+		}
+
 		yearBarChart.setAnimated(true);
 		yearBarChart.setLegendSide(Side.RIGHT);
 		yearBarChart.setHorizontalZeroLineVisible(true);

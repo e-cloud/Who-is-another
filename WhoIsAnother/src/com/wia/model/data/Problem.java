@@ -5,6 +5,7 @@ package com.wia.model.data;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import com.wia.model.data.SubmitLog.JudgeStatus;
@@ -32,7 +33,22 @@ public class Problem {
 	 * @return
 	 */
 	public int getAcceptedCount() {
-		return 0;
+		int count = 0;
+		for (Iterator<SubmitLog> iterator = submitMap.values().iterator(); iterator
+				.hasNext();) {
+			SubmitLog submitLog = iterator.next();
+			if (submitLog.getStatus() == JudgeStatus.AC) {
+				count += 1;
+			}
+		}
+		return count;
+	}
+
+	/**
+	 * @return
+	 */
+	public int getSubmitCount() {
+		return submitMap.size();
 	}
 
 	/**
