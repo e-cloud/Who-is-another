@@ -13,11 +13,14 @@ import com.wia.model.preprocess.DataPreprocessor;
 public class Context {
 
 	private Author currentAuthor;
+	private int dataRetrieveAddress = 0;
+	public final static int LOCAL = 0;
+	public final static int NETWORK = 1;
 
 	private volatile static Context uniqueInstance;
 
 	private Context() {
-		currentAuthor = DataPreprocessor.run("wdp515105");
+		currentAuthor = DataPreprocessor.run("wdp515105", dataRetrieveAddress);
 	}
 
 	public static Context getInstance() {
@@ -29,6 +32,14 @@ public class Context {
 			}
 		}
 		return uniqueInstance;
+	}
+
+	public void setDataRetrieveAddress(int address) {
+		dataRetrieveAddress = address;
+	}
+
+	public void setAuthor(String authorid) {
+		currentAuthor = DataPreprocessor.run(authorid, dataRetrieveAddress);
 	}
 
 	/**

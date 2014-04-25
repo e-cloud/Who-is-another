@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 
 import com.wia.Context;
 import com.wia.model.analysis.GeneralInfo;
+import com.wia.model.analysis.Info;
 import com.wia.model.data.Author;
 import com.wia.util.LogUtil;
 
@@ -65,9 +66,10 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 
 		generalBarChart.setTitle("Growth Curve");
 
-		Map<Integer, Integer> solveMap = generalInfo.getSolvedProblemCount();
+		Map<Integer, Integer> solveMap = generalInfo
+				.getProblemCountPerYear(Info.SOLVE);
 		Map<Integer, Integer> submitMap = generalInfo
-				.getSubmittedProblemCount();
+				.getProblemCountPerYear(Info.SUBMIT);
 
 		final TreeSet<Integer> treeSet = new TreeSet<Integer>(solveMap.keySet());
 		XYChart.Series solveSeries = new XYChart.Series();

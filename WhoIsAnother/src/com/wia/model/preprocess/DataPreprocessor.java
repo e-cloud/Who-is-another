@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
 
+import com.wia.Context;
 import com.wia.model.data.Author;
 import com.wia.model.data.SubmitLog;
 import com.wia.model.local.FileFetcher;
@@ -24,8 +25,20 @@ public class DataPreprocessor {
 	private final static String UserStatusfile = "acm.hdu.edu.cn userstatus.php user=";
 	private final static String RealTimeStatusfile = "acm.hdu.edu.cn status.php first=";
 
+	public static Author run(String authorID, int dataRetrieveAddress) {
+
+		switch (dataRetrieveAddress) {
+		case Context.LOCAL:
+			return retrieveFromLocal(authorID);
+		case Context.NETWORK:
+			return retrieveFromNetwork(authorID);
+		default:
+			throw new NullPointerException("we don't have that kind of address");
+		}
+	}
+
 	@SuppressWarnings("unchecked")
-	public static Author run2(String authorID) {
+	public static Author retrieveFromNetwork(String authorID) {
 		DataParser parser = DataParserFactory.createGeneralAuthorInfoParser();
 		Author author = null;
 		try {
@@ -64,7 +77,7 @@ public class DataPreprocessor {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static Author run(String authorID) {
+	public static Author retrieveFromLocal(String authorID) {
 		DataParser parser = DataParserFactory.createGeneralAuthorInfoParser();
 		Author author = null;
 		try {

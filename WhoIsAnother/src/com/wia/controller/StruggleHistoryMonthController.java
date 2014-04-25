@@ -20,6 +20,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 
 import com.wia.model.analysis.GeneralInfo;
+import com.wia.model.analysis.Info;
 import com.wia.util.LogUtil;
 
 /**
@@ -75,10 +76,10 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 	private void initBarChart() {
 		// yearBarChart.setTitle("Growth Curve");
 
-		Map<Integer, Integer> solveMap = generalInfo
-				.getSolvedProblemCountPerDay(2007, 2);
-		Map<Integer, Integer> submitMap = generalInfo
-				.getSubmittedProblemCountPerDay(2007, 2);
+		Map<Integer, Integer> solveMap = generalInfo.getProblemCountPerDay(
+				2007, 2, Info.SOLVE);
+		Map<Integer, Integer> submitMap = generalInfo.getProblemCountPerDay(
+				2007, 2, Info.SUBMIT);
 
 		XYChart.Series solveSeries = new XYChart.Series();
 		solveSeries.setName("解决题目数");
@@ -117,8 +118,10 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 
 	private void initPieChart() {
 		// yearPieChart
-		int submit = generalInfo.getSubmittedProblemCountPerMonth(2007).get(2);
-		int solved = generalInfo.getSolvedProblemCountPerMonth(2007).get(2);
+		int submit = generalInfo.getProblemCountPerMonth(2007, Info.SUBMIT)
+				.get(2);
+		int solved = generalInfo.getProblemCountPerMonth(2007, Info.SOLVE).get(
+				2);
 		ObservableList<PieChart.Data> pieChartData = FXCollections
 				.observableArrayList(new PieChart.Data("解决题目数", solved),
 						new PieChart.Data("提交题目数", submit));
