@@ -46,7 +46,6 @@ public class DataPreprocessor {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	public static Author retrieveFromNetwork(String authorID) {
 		Author author = new Author(authorID);
 		try {
@@ -98,7 +97,6 @@ public class DataPreprocessor {
 		return author;
 	}
 
-	@SuppressWarnings("unchecked")
 	public static Author retrieveFromLocal(String authorID) {
 		Author author = null;
 		try {
