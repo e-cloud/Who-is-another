@@ -4,6 +4,9 @@
 package com.wia.model.preprocess;
 
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,20 +16,21 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.wia.model.data.Author;
+import com.wia.util.ThreadLoaclDateFormatUtil;
 
 /**
  * @author Saint Scott
  * 
  */
-public class GeneralAuthorInfoParser implements DataParser {
+public class AuthorInfoParser {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.model.fetcher.DataParser#parse(java.lang.String)
+	/**
+	 * @param data
+	 * @param author
+	 * @throws ParseException
 	 */
-	@Override
-	public Object parse(String data) throws ParseException {
+	public static Set<Integer> parse(String data, Author author)
+			throws ParseException {
 		// TODO Auto-generated method stub
 		Document doc = Jsoup.parse(data);
 		// path body > table > tbody > tr[3] > td > table > tr > td
@@ -66,28 +70,41 @@ public class GeneralAuthorInfoParser implements DataParser {
 		// 提取ac数
 		int accepted = Integer.valueOf(tds.get(11).html());
 
-		// 提取用户id
-		pattern = Pattern.compile("user=([^&]+)&*");
-		matcher = pattern.matcher(targetTD.select("p").get(1).select("a")
-				.get(0).attr("href"));
-		matcher.find();
-		String Id = matcher.group(1);
+		// 提取pid集合
+		Set<Integer> pidSet = new HashSet<Integer>();
+		pattern = Pattern.compile("p\\((\\d+),\\d+,\\d+\\)");
+		matcher = pattern.matcher(targetTD.select("p").html());
+		while (matcher.find()) {
+			// LogUtil.d(matcher.group(1));
+			pidSet.add(Integer.valueOf(matcher.group(1)));
+		}
 
-		Element neighbortale = targetTD.select("table").get(1);
-
-		// 提取ac率
 		double acRatio = 0;
-		for (Element element : neighbortale.select("tr")) {
+		Elements targetTRs = targetTD.select("table").get(1).select("tr");
+		for (Element element : targetTRs) {
 			if (element.select("td").get(0).html().equals(String.valueOf(rank))) {
 				String ratio = element.select("td").get(6).html();
 				acRatio = Double.valueOf(ratio.substring(0,
 						ratio.lastIndexOf('%')));
+				break;
 			}
 		}
+		author.setAccepted(accepted);
+		author.setAuthorName(authorName);
+		author.setEmail(email);
+		author.setFrom(from);
+		author.setMotto(motto);
+		author.setNationality(nationality);
+		author.setRank(rank);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(ThreadLoaclDateFormatUtil.parseSimple(regTime));
+		author.setRegistrationTime(calendar);
+		author.setSubmissions(submissions);
+		author.setSolved(solved);
+		author.setSubmitted(submitted);
+		author.setACRatio(acRatio);
 
-		return new Author(Id, authorName, email, from, regTime, motto,
-				nationality, rank, submitted, solved, submissions, accepted,
-				acRatio);
+		return pidSet;
 	}
 
 }

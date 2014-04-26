@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)--><ajsv>
+    <diagram creationDate="2014-四月-26 12:37" filterScript="" licenseGrade="evaluation" licenseeName="anon" licenseeOrganization="unknown" version="1.7.16.v20130804-1241">
+        <class className="com.wia.model.preprocess.Fetcher" project="WhoIsAnother" xLocation="896" yLocation="100"/>
+        <class className="com.wia.model.preprocess.SubmitLogsParser" project="WhoIsAnother" xLocation="538" yLocation="658"/>
+        <class className="com.wia.model.preprocess.DataParser" project="WhoIsAnother" xLocation="527" yLocation="112"/>
+        <class className="com.wia.model.preprocess.DataPreprocessor" project="WhoIsAnother" xLocation="908" yLocation="328"/>
+        <class className="com.wia.model.preprocess.DataParserFactory" project="WhoIsAnother" xLocation="100" yLocation="376"/>
+        <class className="com.wia.model.preprocess.PageFetcher" project="WhoIsAnother" xLocation="1353" yLocation="348"/>
+        <class className="com.wia.model.preprocess.AuthorInfoParser" project="WhoIsAnother" xLocation="549" yLocation="394"/>
+    </diagram>
+</ajsv>

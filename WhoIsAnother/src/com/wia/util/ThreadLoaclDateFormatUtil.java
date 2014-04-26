@@ -87,18 +87,22 @@ public class ThreadLoaclDateFormatUtil {
 	/**
 	 * @param date
 	 * @return formatted "yyyy-MM-dd" like string
-	 * @throws ParseException
 	 */
 	public static String formatSimpleDate(Date date) {
+		if (date == null) {
+			return null;
+		}
 		return getSimpleDateFormat().format(date);
 	}
 
 	/**
 	 * @param date
 	 * @return formatted "yyyy-MM-dd HH:mm:ss" like string
-	 * @throws ParseException
 	 */
 	public static String formatDetailDate(Date date) {
+		if (date == null) {
+			return null;
+		}
 		return getDetailDateFormat().format(date);
 	}
 
@@ -108,8 +112,16 @@ public class ThreadLoaclDateFormatUtil {
 	 * @return parsed Date
 	 * @throws ParseException
 	 */
-	public static Date parseSimple(String dateStr) throws ParseException {
-		return getSimpleDateFormat().parse(dateStr);
+	public static Date parseSimple(String dateStr) {
+		DateFormat dateFormat = getSimpleDateFormat();
+		Date date = null;
+		try {
+			date = dateFormat.parse(dateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return date;
 	}
 
 	/**
@@ -118,9 +130,15 @@ public class ThreadLoaclDateFormatUtil {
 	 * @return parsed Date
 	 * @throws ParseException
 	 */
-	public static Date parseDetail(String dateStr) throws ParseException {
+	public static Date parseDetail(String dateStr) {
 		DateFormat dateFormat = getDetailDateFormat();
-		Date date = dateFormat.parse(dateStr);
+		Date date = null;
+		try {
+			date = dateFormat.parse(dateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return date;
 	}
 }

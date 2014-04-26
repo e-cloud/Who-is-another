@@ -4,9 +4,10 @@
 package com.wia.model.preprocess;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,27 +21,19 @@ import com.wia.model.data.SubmitLog.JudgeStatus;
  * @author Saint Scott
  * 
  */
-public class SubmitLogsParser implements DataParser {
+public class SubmitLogsParser {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.model.fetcher.DataParser#parse(java.lang.String)
-	 */
-	@Override
-	public List<SubmitLog> parse(String data) throws ParseException {
+	public static int parse(String data, List<SubmitLog> submitLogs)
+			throws ParseException {
 		// TODO Auto-generated method stub
 		Document doc = Jsoup.parse(data);
 		// path body > table > tbody > tr[3] > td > div > table > tbody > tr
 		// 获取含主要内容的根标签
-		Elements targetTR = doc.select("body > table > tbody >tr").get(3)
-				.select("td > div > table > tbody > tr");
+		Element mainDiv = doc.select("body > table > tbody >tr").get(3)
+				.select("td > div").get(0);
+		Elements targetTR = mainDiv.select("table > tbody > tr");
 
-		if (targetTR.size() <= 1) {
-			return null;
-		}
 		// 通过迭代提取当前页面的所有submitLog对象
-		List<SubmitLog> submitLogs = new ArrayList<SubmitLog>();
 		Iterator<Element> iterator = targetTR.iterator();
 		iterator.next();
 		while (iterator.hasNext()) {
@@ -69,7 +62,20 @@ public class SubmitLogsParser implements DataParser {
 
 			submitLogs.add(submitLog);
 		}
-		return submitLogs;
+
+		Elements aElements = mainDiv.select("p > a");
+		for (Iterator<Element> iterator2 = aElements.iterator(); iterator2
+				.hasNext();) {
+			Element element = iterator2.next();
+			if (element.html().contains("Next Page")) {
+				Pattern pattern = Pattern.compile("first=([^&]+)&*");
+				Matcher matcher = pattern.matcher(element.attr("href"));
+				matcher.find();
+
+				return Integer.valueOf(matcher.group(1));
+			}
+		}
+		return 0;
 	}
 
 }

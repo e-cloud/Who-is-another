@@ -13,7 +13,7 @@ import com.wia.model.preprocess.DataPreprocessor;
 public class Context {
 
 	private Author currentAuthor;
-	private int dataRetrieveAddress = 0;
+	private int dataRetrieveAddress = 1;
 	public final static int LOCAL = 0;
 	public final static int NETWORK = 1;
 

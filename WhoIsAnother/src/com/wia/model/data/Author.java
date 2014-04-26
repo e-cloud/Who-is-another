@@ -3,12 +3,11 @@
  */
 package com.wia.model.data;
 
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.wia.util.ThreadLoaclDateFormatUtil;
 
@@ -19,49 +18,34 @@ import com.wia.util.ThreadLoaclDateFormatUtil;
 public class Author {
 
 	private final String authorID;
-	private final String authorName;
-	private final String email;
-	private final String from;
-	private final String nationality;
-	private final Calendar registrationTime;
-	private final String motto;
-	private final int rank;
-	private final int submitted;
-	private final int solved;
-	private final int submissions;
-	private final int accepted;
-	private final double ACRatio;
+	private String authorName;
+	private String email;
+	private String from;
+	private String nationality;
+	private Calendar registrationTime;
+	private String motto;
+	private int rank;
+	private int submitted;
+	private int solved;
+	private int submissions;
+	private int accepted;
+	private double ACRatio;
 	private final Map<Integer, Problem> problemMap;
-	private Map<Integer, Author> neighbourMap;
+	private Map<String, Author> neighbourMap;
 
-	public Author(String authorID, String authorName, String email,
-			String from, String registrationTime, String motto,
-			String nationality, int rank, int submitted, int solved,
-			int submissions, int accepted, double acRatio)
-			throws ParseException {
+	public Author(String authorID) {
 		this.authorID = authorID;
-		this.authorName = authorName;
-		this.email = email;
-		this.from = from;
-		this.registrationTime = Calendar.getInstance();
-		this.registrationTime.setTime(ThreadLoaclDateFormatUtil
-				.parseSimple(registrationTime));
-		this.motto = motto;
-		this.nationality = nationality;
-		this.rank = rank;
-		this.submitted = submitted;
-		this.solved = solved;
-		this.submissions = submissions;
-		this.accepted = accepted;
-		this.ACRatio = acRatio;
-		problemMap = new HashMap<Integer, Problem>();
+		problemMap = new ConcurrentHashMap<Integer, Problem>();
 	}
 
 	public void add(SubmitLog submitLog) {
 		int key = submitLog.getPid();
 		if (problemMap.containsKey(key)) {
+			// if (problemMap.get(key) == null) {
+			// Problem problem = new Problem(key);
+			// problemMap.put(key, problem);
+			// }
 			problemMap.get(key).addSubmitLog(submitLog);
-
 		} else {
 			Problem problem = new Problem(key);
 			problem.addSubmitLog(submitLog);
@@ -80,22 +64,119 @@ public class Author {
 	 * @return the solvedProblemList
 	 */
 	public Map<Integer, Problem> getProblemMap() {
+		problemMap.keySet();
 		return problemMap;
 	}
 
 	/**
 	 * @return the neighbourList
 	 */
-	public Map<Integer, Author> getNeighbourMap() {
+	public Map<String, Author> getNeighbourMap() {
 		return neighbourMap;
 	}
 
 	/**
 	 * @param neighbourMap
-	 *            the neighbourList to set
+	 *            the neighbourMap to set
 	 */
-	public void setNeighbourList(Map<Integer, Author> neighbourMap) {
+	public void setNeighbourMap(Map<String, Author> neighbourMap) {
 		this.neighbourMap = neighbourMap;
+	}
+
+	/**
+	 * @param authorName
+	 *            the authorName to set
+	 */
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	/**
+	 * @param email
+	 *            the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @param from
+	 *            the from to set
+	 */
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	/**
+	 * @param nationality
+	 *            the nationality to set
+	 */
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	/**
+	 * @param registrationTime
+	 *            the registrationTime to set
+	 */
+	public void setRegistrationTime(Calendar registrationTime) {
+		this.registrationTime = registrationTime;
+	}
+
+	/**
+	 * @param motto
+	 *            the motto to set
+	 */
+	public void setMotto(String motto) {
+		this.motto = motto;
+	}
+
+	/**
+	 * @param rank
+	 *            the rank to set
+	 */
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	/**
+	 * @param submitted
+	 *            the submitted to set
+	 */
+	public void setSubmitted(int submitted) {
+		this.submitted = submitted;
+	}
+
+	/**
+	 * @param solved
+	 *            the solved to set
+	 */
+	public void setSolved(int solved) {
+		this.solved = solved;
+	}
+
+	/**
+	 * @param submissions
+	 *            the submissions to set
+	 */
+	public void setSubmissions(int submissions) {
+		this.submissions = submissions;
+	}
+
+	/**
+	 * @param accepted
+	 *            the accepted to set
+	 */
+	public void setAccepted(int accepted) {
+		this.accepted = accepted;
+	}
+
+	/**
+	 * @param aCRatio
+	 *            the aCRatio to set
+	 */
+	public void setACRatio(double acRatio) {
+		ACRatio = acRatio;
 	}
 
 	/**
@@ -137,7 +218,12 @@ public class Author {
 	 * @return the registrationTime
 	 */
 	public Date getRegistrationTime() {
-		return registrationTime.getTime();
+		if (registrationTime == null) {
+			return null;
+		} else {
+			return registrationTime.getTime();
+		}
+
 	}
 
 	/**

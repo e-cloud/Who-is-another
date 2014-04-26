@@ -5,7 +5,11 @@ package com.wia.model.preprocess;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -37,30 +41,48 @@ public class DataPreprocessor {
 		}
 	}
 
+	public static Author rertrieveSimpleAuthor() {
+
+		return null;
+	}
+
 	@SuppressWarnings("unchecked")
 	public static Author retrieveFromNetwork(String authorID) {
-		DataParser parser = DataParserFactory.createGeneralAuthorInfoParser();
-		Author author = null;
+		Author author = new Author(authorID);
 		try {
-			// Fetcher fetcher = new PageFetcher();
-			Fetcher fetcher = new FileFetcher();
-			author = (Author) parser.parse(fetcher
-					.fetch(getUserStatusUrl(authorID)));
+			Fetcher fetcher = new PageFetcher();
 
-			parser = DataParserFactory.createSubmitLogsParser();
+			String data = fetcher.fetch(getUserStatusUrl(authorID));
 
-			int lastRid = -1;
-			while (true) {
-				String fetchString = fetcher.fetch(getRealTimeStatusUrl(
-						lastRid, authorID));
-				List<SubmitLog> submitLogs = (List<SubmitLog>) parser
-						.parse(fetchString);
-				if (submitLogs == null) {
-					break;
+			Set<Integer> set = AuthorInfoParser.parse(data, author);
+
+			Map<String, Author> neighbourMap = AuthorListParser.parse(data,
+					author.getAuthorID());
+			author.setNeighbourMap(neighbourMap);
+
+			List<SubmitLog> submitLogs = new ArrayList<>();
+			for (Iterator<Integer> iterator = set.iterator(); iterator
+					.hasNext();) {
+				int pid = iterator.next();
+				data = fetcher.fetch("http://acm.hdu.edu.cn/status.php?user="
+						+ authorID + "&pid=" + pid);
+				while (true) {
+					int first = SubmitLogsParser.parse(data, submitLogs);
+					if (first > 0) {
+						data = fetcher
+								.fetch("http://acm.hdu.edu.cn/status.php?first="
+										+ first
+										+ "&user="
+										+ authorID
+										+ "&pid="
+										+ pid);
+					} else {
+						break;
+					}
 				}
-				lastRid = submitLogs.get(submitLogs.size() - 1).getRid() - 1;
-				author.add(submitLogs);
+
 			}
+			author.add(submitLogs);
 
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
@@ -78,28 +100,27 @@ public class DataPreprocessor {
 
 	@SuppressWarnings("unchecked")
 	public static Author retrieveFromLocal(String authorID) {
-		DataParser parser = DataParserFactory.createGeneralAuthorInfoParser();
 		Author author = null;
 		try {
 			// Fetcher fetcher = new PageFetcher();
 			Fetcher fetcher = new FileFetcher();
-			author = (Author) parser.parse(fetcher
-					.fetch(getUserStatusFileUrl(authorID)));
+			author = new Author(authorID);
+			AuthorInfoParser.parse(
+					fetcher.fetch(getUserStatusFileUrl(authorID)), author);
 
-			parser = DataParserFactory.createSubmitLogsParser();
-
-			int lastRid = -1;
-			while (true) {
-				String fetchString = fetcher.fetch(getRealTimeStatusFileUrl(
-						lastRid, authorID));
-				List<SubmitLog> submitLogs = (List<SubmitLog>) parser
-						.parse(fetchString);
-				if (submitLogs == null) {
-					break;
-				}
-				lastRid = submitLogs.get(submitLogs.size() - 1).getRid() - 1;
-				author.add(submitLogs);
-			}
+			// SubmitLogsParser parser2 = new SubmitLogsParser();
+			//
+			// int lastRid = -1;
+			// while (true) {
+			// String fetchString = fetcher.fetch(getRealTimeStatusFileUrl(
+			// lastRid, authorID));
+			// List<SubmitLog> submitLogs = SubmitLogsParser.parse(fetchString);
+			// if (submitLogs == null) {
+			// break;
+			// }
+			// lastRid = submitLogs.get(submitLogs.size() - 1).getRid() - 1;
+			// author.add(submitLogs);
+			// }
 
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
