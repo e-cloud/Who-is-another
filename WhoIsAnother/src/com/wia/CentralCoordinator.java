@@ -55,8 +55,7 @@ public class CentralCoordinator extends Application {
 				CentralCoordinator.welcomeFile);
 		mainContainer.loadScreen(CentralCoordinator.PROGRESSID,
 				CentralCoordinator.progressFile);
-		mainContainer.loadScreen(CentralCoordinator.ROOTSTAGEID,
-				CentralCoordinator.rootStageFile);
+		mainContainer.loadScreen(CentralCoordinator.ROOTSTAGEID, rootStageFile);
 
 		mainContainer.switchToScreen(CentralCoordinator.ROOTSTAGEID);
 

@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeSet;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
@@ -16,6 +15,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 
 import com.wia.Context;
 import com.wia.model.analysis.GeneralInfo;
@@ -46,6 +46,8 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 
 	private GeneralInfo generalInfo;
 
+	private static int a = 0;
+
 	@FXML
 	private void initialize() {
 		generalInfo = GeneralInfo.getInstance();
@@ -56,6 +58,8 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		submissionLabel.setText(author.getSubmissions() + "");
 		acceptLabel.setText(author.getAccepted() + "");
 		initChart();
+		a++;
+		LogUtil.d(a);
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -98,7 +102,7 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 			XYChart.Data data = (XYChart.Data) iterator.next();
 			Node node = data.getNode();
 			LogUtil.d(node);
-			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+			data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED,
 					new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent e) {
@@ -110,17 +114,22 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 
 		for (Iterator iterator = solveSeries.getData().iterator(); iterator
 				.hasNext();) {
-			XYChart.Data data = (XYChart.Data) iterator.next();
+			final XYChart.Data data = (XYChart.Data) iterator.next();
 
-			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+			data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED,
 					new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent e) {
 							LogUtil.d(e.getSource());
+							StackPane node = (StackPane) e.getSource();
+							LogUtil.d(node.getProperties());
+							LogUtil.d(data.getXValue());
+							LogUtil.d(data.getYValue());
 						}
 					});
 
 		}
+		// generalBarChart.boundsInLocalProperty();
 
 		generalBarChart.setBarGap(100);
 		generalBarChart.setAnimated(true);
@@ -136,15 +145,15 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		// }
 		// });
 
-		generalBarChart.setOnMouseClicked(new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-
-				myScreensContainer
-						.switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
-			}
-		});
+		// generalBarChart.setOnMouseClicked(new EventHandler<Event>() {
+		//
+		// @Override
+		// public void handle(Event event) {
+		// // TODO Auto-generated method stub
+		//
+		// myScreensContainer
+		// .switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
+		// }
+		// });
 	}
 }

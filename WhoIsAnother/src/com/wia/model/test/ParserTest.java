@@ -121,7 +121,6 @@ public class ParserTest {
 					break;
 				}
 			}
-
 		}
 		LogUtil.d(author);
 		assertEquals(submitLogs.size(), author.getSubmissions());
