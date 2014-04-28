@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,7 +9,11 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
+<<<<<<< HEAD
 <GridPane fx:id="rootLayout" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.ProfileController">
+=======
+<GridPane prefHeight="600.0" prefWidth="800.0" styleClass="set-text" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.ProfileController">
+>>>>>>> 第二次界面优化
   <!-- TODO Add Nodes -->
   <children>
     <Label text="Author ID ：" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -27,10 +32,10 @@
     <Label text="110@163.com" GridPane.columnIndex="2" GridPane.rowIndex="7" />
   </children>
   <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="685.0" />
-    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="685.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="685.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="172.0" />
+    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="212.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="270.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="146.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
@@ -39,8 +44,11 @@
     <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="-1.0" minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="192.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
   </rowConstraints>
+  <stylesheets>
+    <URL value="@css/basic_style.css" />
+  </stylesheets>
 </GridPane>

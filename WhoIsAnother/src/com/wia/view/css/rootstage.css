@@ -1,61 +1,126 @@
+
+/*我的回忆*/
+.titled-pane1 > .title 
+{
+
+-fx-background-color: rgb(27,231,165);
+-fx-text-fill: rgb(255,255,255);
+-fx-font-size: 20pt;
+-fx-border-color: white ;
+
+}
+.title-lable1{
+	-fx-background-radius: 0;
+	-fx-background-color: white;
+	-fx-font-size: 20pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+}
+.title-lable1:hover{
+	-fx-background-color:rgb(223,223,223);
+}
+
+.title-lable1:pressed{
+	-fx-background-color:rgb(27,231,165);
+    -fx-text-fill: white;
+}
+.title-lable1:focused{
+	-fx-background-color:rgb(27,231,165);
+    -fx-text-fill: white;
+
+}
+
+
+/*学之从贤*/
+
+
+.titled-pane2 > .title 
+{
+
+-fx-background-color:rgb(68,162,255);
+-fx-text-fill: rgb(255,255,255);
+-fx-font-size: 20pt;
+-fx-border-color: white ;
+
+}
+.title-lable2{
+	-fx-background-radius: 0;
+	-fx-background-color: white;
+	-fx-font-size: 20pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+}
+.title-lable2:hover{
+	-fx-background-color:rgb(223,223,223);
+}
+
+.title-lable2:pressed{
+	-fx-background-color:rgb(68,162,255);
+    -fx-text-fill: white;
+}
+.title-lable2:focused{
+	-fx-background-color:rgb(68,162,255);
+    -fx-text-fill: white;
+
+}
+
+
+/*推荐题目系统*/
+.titled-pane3 > .title 
+{
+
+-fx-background-color: rgb(255,183,111);
+-fx-text-fill: rgb(255,255,255);
+-fx-font-size: 20pt;
+-fx-border-color: white ;
+
+}
+.title-lable3{
+	-fx-background-radius: 0;
+	-fx-background-color: white;
+	-fx-font-size: 20pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+}
+.title-lable3:hover{
+	-fx-background-color:rgb(223,223,223);
+}
+
+.title-lable3:pressed{
+	-fx-background-color:rgb(255,183,111);
+    -fx-text-fill: white;
+}
+.title-lable3:focused{
+	-fx-background-color:rgb(255,183,111);
+    -fx-text-fill: white;
+
+}
+/*所有Titledpane不可展开*/
+.titled-pane{
+    -fx-collapsible: false;
+}
+
+   /*  Titlepane 里面的VBox  */
+.v-box{
+-fx-background-color:white;
+}
+
+       /*Titledpane的 content */
+.titled-pane > .content{
+	-fx-background-color:rgb(255,255,255) ;
+	-fx-border-style: none ;
+}
+
+
+/* 底部设置标签*/
 .stage-title{
     -fx-font-size: 18pt;
     -fx-text-fill: black;
     -fx-font-family:"Droid Sans Fallback";
 }
-.titled-pane1 > .title 
-{
 
--fx-background-color: rgb(58,152,94);
--fx-text-fill: rgb(255,255,255);
--fx-font-size: 20pt;
-
-}
-
-
-.title-lable1{
-	-fx-background-color:rgb(58,152,94);
-    -fx-font-size: 20pt;
-    -fx-text-fill: white;
-    -fx-font-family:"Droid Sans Fallback";
-	-fx-border-color: white;
-	-fx-border-width: 8pt;
-}
-.titled-pane2 > .title 
-{
-
--fx-background-color: rgb(78,186,186);
--fx-text-fill: rgb(255,255,255);
--fx-font-size: 20pt;
-
-}
-
-.title-lable2{
-	-fx-background-color:rgb(78,186,186);
-    -fx-font-size: 20pt;
-    -fx-text-fill: white;
-    -fx-font-family:"Droid Sans Fallback";
-	-fx-border-color: white;
-	-fx-border-width: 8pt;
-}
-.titled-pane3 > .title 
-{
-
--fx-background-color: rgb(184,131,155);
--fx-text-fill: rgb(255,255,255);
--fx-font-size: 20pt;
-
-}
-
-
-.title-lable3{
-	-fx-background-color:rgb(184,131,155);
-    -fx-font-size: 20pt;
-    -fx-text-fill: white;
-    -fx-font-family:"Droid Sans Fallback";
-	-fx-border-color: white;
-	-fx-border-width: 8pt;
-}
-.v-box{
--fx-background-color:white;
+/*底部设置外框*/
+.gird-pane{
+    -fx-border-color:rgb(192,192,192);
+    -fx-border-width: 3;
 }

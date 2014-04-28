@@ -1,0 +1,55 @@
+.set-button{
+	-fx-background-color: rgb(68,162,255);
+	-fx-text-fill: white;
+	-fx-font-size: 15pt;
+	-fx-background-radius: 0;
+	-fx-font-family:"segoe UI";
+}
+
+.set-button:pressed {
+	-fx-border-color: black;
+	-fx-border-width: 2;
+}
+.set-button:focused{
+	-fx-border-color: black;
+	-fx-border-width: 1;
+   	-fx-text-fill: black;
+}
+.set-button:hover {
+   -fx-text-fill: black;
+}
+
+.set-text {
+    -fx-font-size: 1.5em;
+}
+.set-textfield{
+	-fx-background-radius: 0;	
+	-fx-scale-y: 1.4;
+}
+
+.rec-button{
+	-fx-background-color: rgb(68,162,255);
+	-fx-text-fill: white;
+	-fx-font-size: 28pt;
+	-fx-background-radius: 0;
+	-fx-font-family:"segoe UI";
+	-fx-border-color:white;
+	-fx-border-width:2;
+}
+
+.rec-button:pressed {
+	-fx-border-color: black;
+	-fx-border-width: 2;
+}
+.rec-button:focused{
+   	-fx-text-fill: black;
+	-fx-border-color: black;
+	-fx-border-width: 2;
+}
+.rec-button:hover {
+   -fx-text-fill: black;
+}
+.blue-title{
+	-fx-text-fill: rgb(68,162,255);
+	-fx-font-size: 22pt;
+}	

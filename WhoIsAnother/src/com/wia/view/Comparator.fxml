@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
@@ -14,16 +15,20 @@
   <children>
     <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <Label text="直接与特定ID比较：" />
-        <TextField prefWidth="241.0" />
-        <Button mnemonicParsing="false" text="比较">
+        <Label styleClass="set-text" text="直接与特定ID比较：">
+          <stylesheets>
+            <URL value="@css/basic_style.css" />
+          </stylesheets>
+        </Label>
+        <TextField prefWidth="241.0" styleClass="set-textfield" />
+        <Button mnemonicParsing="false" styleClass="set-button" text="比较">
           <HBox.margin>
             <Insets right="10.0" />
           </HBox.margin>
         </Button>
       </children>
     </HBox>
-    <GridPane alignment="CENTER" prefHeight="50.999900000002526" prefWidth="800.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+    <GridPane alignment="CENTER" prefHeight="50.999900000002526" prefWidth="800.0" styleClass="set-text" GridPane.columnIndex="0" GridPane.rowIndex="1">
       <children>
         <Label text="BlueBird" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <Label text="你" GridPane.columnIndex="2" GridPane.rowIndex="0" />
@@ -67,4 +72,7 @@
     <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" vgrow="SOMETIMES" />
   </rowConstraints>
+  <stylesheets>
+    <URL value="@css/basic_style.css" />
+  </stylesheets>
 </GridPane>

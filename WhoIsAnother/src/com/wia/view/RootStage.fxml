@@ -22,34 +22,39 @@
   <left>
     <GridPane alignment="CENTER" prefHeight="600.0" prefWidth="160.0">
       <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v-box" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <VBox prefHeight="400.0" prefWidth="217.0" styleClass="v-box, gird-pane" GridPane.columnIndex="0" GridPane.rowIndex="0">
           <children>
-            <TitledPane animated="false" styleClass="titled-pane1" text="我的回忆">
+            <TitledPane animated="false" prefHeight="103.0" styleClass="titled-pane1" text="我的回忆" textAlignment="LEFT">
               <content>
-                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" styleClass="v-box">
+                <VBox alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="150.0" styleClass="v-box">
                   <children>
+<<<<<<< HEAD
                     <Label fx:id="strugglehistoryroot" onMouseClicked="#handleClick" styleClass="title-lable1" text="奋斗历程" />
                     <Label fx:id="lightspot" onMouseClicked="#handleClick" styleClass="title-lable1" text="辉煌成就" />
+=======
+                    <Button fx:id="strugglehistorygeneral" mnemonicParsing="false" prefHeight="37.0" styleClass="title-lable1" text="奋斗历程" />
+                    <Button fx:id="lightspot" contentDisplay="CENTER" minHeight="21.0" mnemonicParsing="false" prefHeight="36.999900000002526" styleClass="title-lable1" text="辉煌成就" />
+>>>>>>> 第二次界面优化
                   </children>
                 </VBox>
               </content>
             </TitledPane>
-            <TitledPane animated="false" styleClass="titled-pane2" text="学之从贤">
+            <TitledPane animated="false" prefHeight="103.0" prefWidth="154.0" styleClass="titled-pane2" text="学之从贤">
               <content>
-                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" styleClass="v-box">
+                <VBox alignment="TOP_RIGHT" prefHeight="77.0" prefWidth="150.0" styleClass="v-box">
                   <children>
-                    <Label fx:id="ranklist" onMouseClicked="#handleClick" styleClass="title-lable2" text="牛人100" />
-                    <Label fx:id="comparator" onMouseClicked="#handleClick" styleClass="title-lable2" text="一较高下" />
+                    <Button fx:id="ranklist" mnemonicParsing="false" styleClass="title-lable2" text="牛人100" />
+                    <Button fx:id="comparator" mnemonicParsing="false" styleClass="title-lable2" text="一较高下" />
                   </children>
                 </VBox>
               </content>
             </TitledPane>
-            <TitledPane animated="false" styleClass="titled-pane3" text="荐题系统">
+            <TitledPane animated="false" prefHeight="103.0" styleClass="titled-pane3" text="荐题系统">
               <content>
-                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" styleClass="v-box">
+                <VBox alignment="TOP_RIGHT" prefHeight="82.0" prefWidth="150.0" styleClass="v-box">
                   <children>
-                    <Label fx:id="neighbourrecommend" onMouseClicked="#handleClick" styleClass="title-lable3" text="邻里推荐" />
-                    <Label fx:id="acerecommend" onMouseClicked="#handleClick" styleClass="title-lable3" text="牛人共性" />
+                    <Button fx:id="neighbourrecommend" mnemonicParsing="false" styleClass="title-lable3" text="邻里推荐" />
+                    <Button fx:id="acerecommend" mnemonicParsing="false" styleClass="title-lable3" text="牛人共性" />
                   </children>
                 </VBox>
               </content>
@@ -59,7 +64,7 @@
             <URL value="@css/rootstage.css" />
           </stylesheets>
         </VBox>
-        <GridPane styleClass="stage-title" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <GridPane prefHeight="187.0" prefWidth="160.0" styleClass="stage-title, gird-pane" GridPane.columnIndex="0" GridPane.rowIndex="1">
           <children>
             <Label fx:id="profile" onMouseClicked="#handleClick" text="个人信息" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Label fx:id="setting" onMouseClicked="#handleClick" text="设置" GridPane.columnIndex="0" GridPane.rowIndex="1" />

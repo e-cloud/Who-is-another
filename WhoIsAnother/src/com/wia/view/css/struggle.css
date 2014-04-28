@@ -1,0 +1,33 @@
+.text-title{
+    -fx-font-size: 20pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+}
+
+.text-text{
+    -fx-font-size: 16pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+    -fx-font-style: oblique;
+}
+.Hyperlink{
+	-fx-text-fill: rgb(68,162,255);
+	-fx-font-size: 18pt;
+	-fx-cursor: hand;
+	
+}
+
+.mycombo-box .arrow-button{
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+    -fx-border-width: 3;
+    -fx-border-color: rgb(68,162,255);
+
+}
+.mycombo-box{
+	-fx-font-size: 15;
+}
+.combo-box-base{
+	-fx-background-radius: 0;
+	-fx-background-color: rgb(68,162,255);
+}
