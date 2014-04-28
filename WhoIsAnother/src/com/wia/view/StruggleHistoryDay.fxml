@@ -11,16 +11,8 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<<<<<<< HEAD
-<GridPane fx:id="rootLayout" alignment="CENTER" prefHeight="600.0" prefWidth="800.0" styleClass="layout" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.StruggleHistoryDayController">
-  <!-- TODO Add Nodes -->
-  <children>
-    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <children>
-        <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button" text="Back" />
-        <Hyperlink styleClass="Hyperlink" text="概览" />
-=======
-<GridPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.StruggleHistoryMonthController">
+
+<GridPane fx:id="rootLayout" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.StruggleHistoryMonthController">
   <children>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
@@ -29,7 +21,6 @@
             <Insets left="10.0" fx:id="x1" />
           </HBox.margin>
         </Hyperlink>
->>>>>>> 第二次界面优化
         <Label text="&gt;" />
         <Hyperlink styleClass="Hyperlink" text="2014年" />
         <Label text="&gt;" />

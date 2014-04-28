@@ -6,6 +6,7 @@ package com.wia.controller;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -42,17 +43,17 @@ public class RootStageController extends AbstractFXController {
 	public final static String helpFile = "/com/wia/view/Help.fxml";
 
 	@FXML
-	private Label strugglehistorygeneral;
+	private Button strugglehistorygeneral;
 	@FXML
-	private Label lightspot;
+	private Button lightspot;
 	@FXML
-	private Label ranklist;
+	private Button ranklist;
 	@FXML
-	private Label comparator;
+	private Button comparator;
 	@FXML
-	private Label neighbourrecommend;
+	private Button neighbourrecommend;
 	@FXML
-	private Label acerecommend;
+	private Button acerecommend;
 	@FXML
 	private Label profile;
 	@FXML

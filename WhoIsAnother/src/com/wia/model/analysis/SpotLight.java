@@ -36,10 +36,11 @@ public class SpotLight {
 	/**
 	 * 构造函数，并初始化author对象
 	 */
-	public SpotLight(){ 
+	public SpotLight() {
 		Context context = Context.getInstance();
 		this.author = context.getCurrentAuthor();
 		this.ACInFirstSubmit = 0;
+		init();
 	}
 
 	/**
@@ -55,18 +56,18 @@ public class SpotLight {
 	public int[] getSubmitTimeInterval() {
 		return this.submitTimeInterval;
 	}
-	
+
 	/**
 	 * @return 第一次提交就解决的题目数
 	 */
-	public int ACInFirstSubmit(){
+	public int ACInFirstSubmit() {
 		return ACInFirstSubmit;
 	}
 
 	/**
 	 * 必须先调用这个函数才能调用getAcceptedTimeInterval（），getSubmitTimeInterval（）函数！！！！！！
 	 */
-	public void spotLight() {
+	public void init() {
 		Collection<Problem> problems = author.getProblemMap().values();
 		Iterator<Problem> problemIterator = problems.iterator();
 		while (problemIterator.hasNext()) {
@@ -92,36 +93,30 @@ public class SpotLight {
 					+ unsolvedTimeInterval[i];
 		}
 	}
-	
-	/*static class PairComparatpr implements Comparator{
-		public boolean Comparator(Object o1,Object o2){
-			Pair<Date,Integer> p1 = (Pair<Date,Integer>) o1;
-			Pair<Date,Integer> p2 = (Pair<Date,Integer>) o2;
-			return p1.getValue() > p2.getValue();
-		}
-	}
-	*/
-	
+
 	/**
 	 * @return 解决问题数最多的10天
 	 */
-	public List<Pair<Date,Integer>> problemSolvedTop10(){
-		List<Pair<Date,Integer>> tempProblemSolvedTop10;
-		List<Pair<Date,Integer>> getProblemSolvedTop10 = new ArrayList<Pair<Date,Integer>>();
+	public List<Pair<Date, Integer>> problemSolvedTop10() {
+		List<Pair<Date, Integer>> tempProblemSolvedTop10;
+		List<Pair<Date, Integer>> getProblemSolvedTop10 = new ArrayList<Pair<Date, Integer>>();
 		GeneralInfo generalInfo = GeneralInfo.getInstance();
 		tempProblemSolvedTop10 = generalInfo.getPairList(Info.SOLVE);
-		//对每一天的题目数进行排序
-		Collections.sort(tempProblemSolvedTop10,new Comparator<Pair<Date,Integer>>(){
-			public int compare(Pair<Date,Integer> p1,Pair<Date,Integer> p2){
-				if(p1.getValue() > p2.getValue())
-					return 1;
-				else
-					return 0;
-			}
-		});
-		//取出前十天
-		for(int i=0;i<10;i++){
-			Pair<Date,Integer> p = tempProblemSolvedTop10.get(i);
+		// 对每一天的题目数进行排序
+		Collections.sort(tempProblemSolvedTop10,
+				new Comparator<Pair<Date, Integer>>() {
+					@Override
+					public int compare(Pair<Date, Integer> p1,
+							Pair<Date, Integer> p2) {
+						if (p1.getValue() > p2.getValue())
+							return 1;
+						else
+							return 0;
+					}
+				});
+		// 取出前十天
+		for (int i = 0; i < 10; i++) {
+			Pair<Date, Integer> p = tempProblemSolvedTop10.get(i);
 			getProblemSolvedTop10.add(p);
 		}
 		return getProblemSolvedTop10;

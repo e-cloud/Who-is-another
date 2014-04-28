@@ -28,13 +28,8 @@
               <content>
                 <VBox alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="150.0" styleClass="v-box">
                   <children>
-<<<<<<< HEAD
-                    <Label fx:id="strugglehistoryroot" onMouseClicked="#handleClick" styleClass="title-lable1" text="奋斗历程" />
-                    <Label fx:id="lightspot" onMouseClicked="#handleClick" styleClass="title-lable1" text="辉煌成就" />
-=======
-                    <Button fx:id="strugglehistorygeneral" mnemonicParsing="false" prefHeight="37.0" styleClass="title-lable1" text="奋斗历程" />
-                    <Button fx:id="lightspot" contentDisplay="CENTER" minHeight="21.0" mnemonicParsing="false" prefHeight="36.999900000002526" styleClass="title-lable1" text="辉煌成就" />
->>>>>>> 第二次界面优化
+                    <Button fx:id="strugglehistorygeneral" onMouseClicked="#handleClick"  mnemonicParsing="false" prefHeight="37.0" styleClass="title-lable1" text="奋斗历程" />
+                    <Button fx:id="lightspot"  onMouseClicked="#handleClick"  contentDisplay="CENTER" minHeight="21.0" mnemonicParsing="false" prefHeight="37.0" styleClass="title-lable1" text="辉煌成就" />
                   </children>
                 </VBox>
               </content>
