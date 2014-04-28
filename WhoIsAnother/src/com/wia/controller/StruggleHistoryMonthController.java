@@ -4,6 +4,7 @@
 package com.wia.controller;
 
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -20,6 +21,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 import com.wia.Context;
 import com.wia.model.analysis.GeneralInfo;
@@ -114,6 +116,37 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 
 		monthBarChart.getData().clear();
 		monthBarChart.getData().addAll(submitSeries, solveSeries);
+
+		for (Iterator iterator = submitSeries.getData().iterator(); iterator
+				.hasNext();) {
+			final XYChart.Data data = (XYChart.Data) iterator.next();
+			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+					new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent e) {
+							Context.getInstance().addContextObject("day",
+									data.getXValue());
+							myScreensContainer
+									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYDAYID);
+						}
+					});
+		}
+
+		for (Iterator iterator = solveSeries.getData().iterator(); iterator
+				.hasNext();) {
+			final XYChart.Data data = (XYChart.Data) iterator.next();
+			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+					new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent e) {
+							Context.getInstance().addContextObject("day",
+									data.getXValue());
+							myScreensContainer
+									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYDAYID);
+						}
+					});
+		}
+
 		monthBarChart.setBarGap(1.0);
 		monthBarChart.setAnimated(true);
 		monthBarChart.setLegendSide(Side.RIGHT);

@@ -6,11 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<<<<<<< HEAD
-<GridPane fx:id="rootLayout" alignment="TOP_CENTER" disable="false" focusTraversable="false" gridLinesVisible="false" mouseTransparent="false" opacity="1.0" pickOnBounds="true" prefHeight="600.0" prefWidth="960.0" styleClass="layout" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.WelcomeController">
-=======
-<GridPane alignment="TOP_CENTER" disable="false" focusTraversable="false" gridLinesVisible="false" mouseTransparent="false" opacity="1.0" pickOnBounds="true" prefHeight="600.0" prefWidth="960.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.WelcomeController">
->>>>>>> 第二次界面优化
+
+<GridPane fx:id="rootLayout" alignment="TOP_CENTER" disable="false" focusTraversable="false" gridLinesVisible="false" mouseTransparent="false" opacity="1.0" pickOnBounds="true" prefHeight="600.0" prefWidth="960.0"  styleClass="layout" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.WelcomeController">
   <!-- TODO Add Nodes -->
   <children>
     <Label styleClass="h2" text="欢迎使用" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />

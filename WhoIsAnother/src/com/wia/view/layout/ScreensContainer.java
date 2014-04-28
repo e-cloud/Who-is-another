@@ -114,7 +114,6 @@ public class ScreensContainer extends StackPane {
 	public boolean setScreen(final String name) {
 		if (getScreen(name) != null) { // screen loaded
 			final DoubleProperty opacity = opacityProperty();
-			getController(name).update();
 
 			if (!getChildren().isEmpty()) { // if there is more than one screen
 				Timeline fade = new Timeline(new KeyFrame(Duration.ZERO,
@@ -146,7 +145,7 @@ public class ScreensContainer extends StackPane {
 						1000), new KeyValue(opacity, 1.0)));
 				fadeIn.play();
 			}
-
+			getController(name).update();
 			return true;
 		} else {
 			logger.severe("screen " + name + " hasn't been loaded!!! \n");

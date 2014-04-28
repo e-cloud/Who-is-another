@@ -98,11 +98,15 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 
 		for (Iterator iterator = submitSeries.getData().iterator(); iterator
 				.hasNext();) {
-			XYChart.Data data = (XYChart.Data) iterator.next();
+			final XYChart.Data data = (XYChart.Data) iterator.next();
 			data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED,
 					new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent e) {
+							Context.getInstance().addContextObject("year",
+									data.getXValue());
+							myScreensContainer
+									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
 						}
 					});
 

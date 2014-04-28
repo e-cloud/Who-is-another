@@ -6,8 +6,10 @@ package com.wia.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 
 import com.wia.CentralCoordinator;
+import com.wia.Context;
 
 /**
  * @author Saint Scott
@@ -18,7 +20,12 @@ public class WelcomeController extends AbstractFXController {
 	private Parent rootLayout;
 
 	@FXML
+	private TextField textField;
+
+	@FXML
 	private void handleGo(ActionEvent event) {
+		Context.getInstance()
+				.addContextObject("requestID", textField.getText());
 		myScreensContainer.setScreen(CentralCoordinator.PROGRESSID);
 	}
 
