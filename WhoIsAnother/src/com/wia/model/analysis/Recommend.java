@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +28,13 @@ public class Recommend {
 		Context context = Context.getInstance();
 		Author author = context.getCurrentAuthor();
 		Set<Integer> authorPidList = author.getProblemMap().keySet();
-		Map<Integer,Author> neighbours = author.getNeighbourMap();
-		Set<Integer> temp;
-		for(int i = 0;i<6;i++){
-			Author neighborI = neighbours.get(i);
+		Map<String,Author> neighbours = author.getNeighbourMap();
+		Set<String> neighborID = neighbours.keySet();
+		Iterator<String> IDIte = neighborID.iterator();
+		Set<Integer> temp = new HashSet();
+		while(IDIte.hasNext()){
+			String ID = IDIte.next();
+			Author neighborI = neighbours.get(ID);
 			Set<Integer> neighborPidList = neighborI.getProblemMap().keySet();
 			//并操作
 			temp.addAll(neighborPidList);			
