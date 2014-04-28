@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.wia.model.data.Author;
-import com.wia.model.preprocess.DataPreprocessor;
 
 /**
  * @author Saint Scott
@@ -23,7 +22,8 @@ public class Context {
 	private volatile static Context uniqueInstance;
 
 	private Context() {
-		currentAuthor = DataPreprocessor.run("wdp515105", dataRetrieveAddress);
+		// currentAuthor = DataPreprocessor.run("wdp515105",
+		// dataRetrieveAddress);
 	}
 
 	public static Context getInstance() {
@@ -41,8 +41,8 @@ public class Context {
 		dataRetrieveAddress = address;
 	}
 
-	public void setAuthor(String authorid) {
-		currentAuthor = DataPreprocessor.run(authorid, dataRetrieveAddress);
+	public void setAuthor(Author author) {
+		currentAuthor = author;
 	}
 
 	/**

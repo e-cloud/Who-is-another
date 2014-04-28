@@ -117,17 +117,21 @@ public class StruggleHistoryYearController extends AbstractFXController {
 			submitSeries.getData().add(
 					new XYChart.Data(String.valueOf(i + 1), b == null ? 0 : b));
 		}
+
 		yearBarChart.getData().clear();
 		yearBarChart.getData().addAll(submitSeries, solveSeries);
 
 		for (Iterator iterator = submitSeries.getData().iterator(); iterator
 				.hasNext();) {
-			XYChart.Data data = (XYChart.Data) iterator.next();
+			final XYChart.Data data = (XYChart.Data) iterator.next();
 			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
 					new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent e) {
-							logger.info(e.getSource().toString());
+							Context.getInstance().addContextObject("month",
+									data.getXValue());
+							myScreensContainer
+									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYMONTHID);
 						}
 					});
 		}
