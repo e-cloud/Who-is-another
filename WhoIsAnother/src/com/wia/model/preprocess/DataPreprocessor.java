@@ -27,7 +27,7 @@ public class DataPreprocessor {
 	private final static String UserStatus = "http://acm.hdu.edu.cn/userstatus.php?user=";
 	private final static String RealTimeStatus = "http://acm.hdu.edu.cn/status.php?first=";
 	private final static String UserStatusfile = "acm.hdu.edu.cn userstatus.php user=";
-	private final static String RealTimeStatusfile = "acm.hdu.edu.cn status.php first=";
+	private final static String RealTimeStatusfile = "acm.hdu.edu.cn status.php ";
 
 	public static Author run(String authorID, int dataRetrieveAddress) {
 
@@ -98,27 +98,37 @@ public class DataPreprocessor {
 	}
 
 	public static Author retrieveFromLocal(String authorID) {
-		Author author = null;
+		Author author = new Author(authorID);
 		try {
-			// Fetcher fetcher = new PageFetcher();
 			Fetcher fetcher = new FileFetcher();
-			author = new Author(authorID);
-			AuthorInfoParser.parse(
-					fetcher.fetch(getUserStatusFileUrl(authorID)), author);
 
-			// SubmitLogsParser parser2 = new SubmitLogsParser();
-			//
-			// int lastRid = -1;
-			// while (true) {
-			// String fetchString = fetcher.fetch(getRealTimeStatusFileUrl(
-			// lastRid, authorID));
-			// List<SubmitLog> submitLogs = SubmitLogsParser.parse(fetchString);
-			// if (submitLogs == null) {
-			// break;
-			// }
-			// lastRid = submitLogs.get(submitLogs.size() - 1).getRid() - 1;
-			// author.add(submitLogs);
-			// }
+			String data = fetcher
+					.fetch(getUserStatusFileUrl(authorID) + ".htm");
+
+			Set<Integer> set = AuthorInfoParser.parse(data, author);
+
+			Map<String, Author> neighbourMap = AuthorListParser.parse(data,
+					author.getAuthorID());
+			author.setNeighbourMap(neighbourMap);
+
+			List<SubmitLog> submitLogs = new ArrayList<>();
+			for (Iterator<Integer> iterator = set.iterator(); iterator
+					.hasNext();) {
+				int pid = iterator.next();
+				data = fetcher.fetch(getRealTimeStatusFileUrl(0, authorID, pid)
+						+ ".htm");
+				while (true) {
+					int first = SubmitLogsParser.parse(data, submitLogs);
+					if (first > 0) {
+						data = fetcher.fetch(getRealTimeStatusFileUrl(first,
+								authorID, pid) + ".htm");
+					} else {
+						break;
+					}
+				}
+
+			}
+			author.add(submitLogs);
 
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
@@ -152,13 +162,13 @@ public class DataPreprocessor {
 		return UserStatusfile + authorID;
 	}
 
-	private static String getRealTimeStatusFileUrl(int rid, String authorID) {
+	private static String getRealTimeStatusFileUrl(int rid, String authorID,
+			int pid) {
 		if (rid > 0) {
-			return RealTimeStatusfile + rid + "&pid=&user=" + authorID
-					+ "&lang=0&status=0";
+			return RealTimeStatusfile + "first=" + rid + "&user=" + authorID
+					+ "&pid=" + pid;
 		} else {
-			return RealTimeStatusfile + "&pid=&user=" + authorID
-					+ "&lang=0&status=0";
+			return RealTimeStatusfile + "user=" + authorID + "&pid=" + pid;
 		}
 	}
 }

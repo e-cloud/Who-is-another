@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,7 +29,6 @@ import com.wia.model.preprocess.AuthorListParser;
 import com.wia.model.preprocess.Fetcher;
 import com.wia.model.preprocess.PageFetcher;
 import com.wia.model.preprocess.SubmitLogsParser;
-import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -37,6 +37,7 @@ import com.wia.util.LogUtil;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ParserTest {
 
+	private static Logger logger = Logger.getLogger(ParserTest.class.getName());
 	private static String data = null;
 	private static Set<Integer> set = null;
 	private static String authorID = "wdp515105";
@@ -89,7 +90,7 @@ public class ParserTest {
 		Map<String, Author> map = AuthorListParser.parse(data,
 				author.getAuthorID());
 		assertEquals(map.size(), 6);
-		LogUtil.d(set);
+		logger.info(set.toString());
 	}
 
 	/**
@@ -122,7 +123,7 @@ public class ParserTest {
 				}
 			}
 		}
-		LogUtil.d(author);
+		logger.info(author.toString());
 		assertEquals(submitLogs.size(), author.getSubmissions());
 	}
 

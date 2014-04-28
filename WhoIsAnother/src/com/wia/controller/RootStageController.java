@@ -5,6 +5,7 @@ package com.wia.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -59,6 +60,9 @@ public class RootStageController extends AbstractFXController {
 	@FXML
 	private Label help;
 
+	@FXML
+	private Parent rootLayout;
+
 	/**
 	 * Initializes the controller class. This method is automatically called
 	 * after the fxml file has been loaded.
@@ -66,6 +70,11 @@ public class RootStageController extends AbstractFXController {
 	@FXML
 	private void initialize() {
 
+	}
+
+	@Override
+	public Parent getLayout() {
+		return rootLayout;
 	}
 
 	/*
@@ -87,7 +96,7 @@ public class RootStageController extends AbstractFXController {
 		rightPaneContainer.loadScreen(PROFILEID, profileFile);
 		rightPaneContainer.loadScreen(SETTINGID, settingFile);
 		rightPaneContainer.loadScreen(HELPID, helpFile);
-		rightPaneContainer.switchToScreen(STRUGGLEHISTORYROOTID);
+		rightPaneContainer.setScreen(STRUGGLEHISTORYROOTID);
 
 		Group root = new Group();
 		root.getChildren().addAll(rightPaneContainer);
@@ -99,6 +108,6 @@ public class RootStageController extends AbstractFXController {
 	@FXML
 	private void handleClick(MouseEvent event) {
 		System.out.println(((Label) event.getSource()).getId());
-		rightPaneContainer.switchToScreen(((Label) event.getSource()).getId());
+		rightPaneContainer.setScreen(((Label) event.getSource()).getId());
 	}
 }

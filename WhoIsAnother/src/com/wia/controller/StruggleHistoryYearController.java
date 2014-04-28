@@ -5,6 +5,7 @@ package com.wia.controller;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
+import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -20,9 +22,9 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
+import com.wia.Context;
 import com.wia.model.analysis.GeneralInfo;
 import com.wia.model.analysis.Info;
-import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -30,6 +32,10 @@ import com.wia.util.LogUtil;
  */
 public class StruggleHistoryYearController extends AbstractFXController {
 
+	private static Logger logger = Logger
+			.getLogger(StruggleHistoryYearController.class.getName());
+	@FXML
+	private Parent rootLayout;
 	@FXML
 	Button backButton;
 
@@ -50,6 +56,17 @@ public class StruggleHistoryYearController extends AbstractFXController {
 
 	private GeneralInfo generalInfo;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.controller.AbstractFXController#init()
+	 */
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		generalInfo = GeneralInfo.getInstance();
+	}
+
 	@FXML
 	private void initialize() {
 		backButton.setOnMouseClicked(new EventHandler<Event>() {
@@ -58,26 +75,33 @@ public class StruggleHistoryYearController extends AbstractFXController {
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
 				myScreensContainer
-						.switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORGENERALID);
+						.setScreen(StruggleHistoryRootController.STRUGGLEHISTORGENERALID);
 			}
 		});
-		yearLink.setText("2007年");
-		barlabel.setText("提交题目数2007年各月分布");
-		pielabel.setText("2007年做题情况总体分析");
-		generalInfo = GeneralInfo.getInstance();
-		initBarChart();
-		initPieChart();
 
 	}
 
+	@Override
+	public void update() {
+
+		int year = Integer.valueOf((String) Context.getInstance()
+				.getContextObject("year"));
+		yearLink.setText(year + "年");
+		barlabel.setText("提交题目数" + year + "年各月分布");
+		pielabel.setText(year + "年做题情况总体分析");
+
+		initBarChart(year);
+		initPieChart(year);
+	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void initBarChart() {
+	private void initBarChart(int year) {
 		// yearBarChart.setTitle("Growth Curve");
 
 		Map<Integer, Integer> solveMap = generalInfo.getProblemCountPerMonth(
-				2007, Info.SOLVE);
+				year, Info.SOLVE);
 		Map<Integer, Integer> submitMap = generalInfo.getProblemCountPerMonth(
-				2007, Info.SUBMIT);
+				year, Info.SUBMIT);
 
 		XYChart.Series solveSeries = new XYChart.Series();
 		solveSeries.setName("解决题目数");
@@ -93,6 +117,7 @@ public class StruggleHistoryYearController extends AbstractFXController {
 			submitSeries.getData().add(
 					new XYChart.Data(String.valueOf(i + 1), b == null ? 0 : b));
 		}
+		yearBarChart.getData().clear();
 		yearBarChart.getData().addAll(submitSeries, solveSeries);
 
 		for (Iterator iterator = submitSeries.getData().iterator(); iterator
@@ -102,19 +127,22 @@ public class StruggleHistoryYearController extends AbstractFXController {
 					new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent e) {
-							LogUtil.d(e.getSource());
+							logger.info(e.getSource().toString());
 						}
 					});
 		}
 
 		for (Iterator iterator = solveSeries.getData().iterator(); iterator
 				.hasNext();) {
-			XYChart.Data data = (XYChart.Data) iterator.next();
+			final XYChart.Data data = (XYChart.Data) iterator.next();
 			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
 					new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent e) {
-							LogUtil.d(e.getSource());
+							Context.getInstance().addContextObject("month",
+									data.getXValue());
+							myScreensContainer
+									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYMONTHID);
 						}
 					});
 		}
@@ -122,26 +150,37 @@ public class StruggleHistoryYearController extends AbstractFXController {
 		yearBarChart.setAnimated(true);
 		yearBarChart.setLegendSide(Side.RIGHT);
 		yearBarChart.setHorizontalZeroLineVisible(true);
-		yearBarChart.setOnMouseClicked(new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
-				myScreensContainer
-						.switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORYMONTHID);
-			}
-		});
+		// yearBarChart.setOnMouseClicked(new EventHandler<Event>() {
+		//
+		// @Override
+		// public void handle(Event arg0) {
+		// // TODO Auto-generated method stub
+		// myScreensContainer
+		// .setScreen(StruggleHistoryRootController.STRUGGLEHISTORYMONTHID);
+		// }
+		// });
 	}
 
-	private void initPieChart() {
+	private void initPieChart(int year) {
 		// yearPieChart
-		int submit = generalInfo.getProblemCount(2007, Info.SUBMIT);
-		int solved = generalInfo.getProblemCount(2007, Info.SOLVE);
+		int submit = generalInfo.getProblemCount(year, Info.SUBMIT);
+		int solved = generalInfo.getProblemCount(year, Info.SOLVE);
 		ObservableList<PieChart.Data> pieChartData = FXCollections
 				.observableArrayList(new PieChart.Data("解决题目数", solved),
 						new PieChart.Data("提交题目数", submit));
 		yearPieChart.setData(pieChartData);
 		yearBarChart.setAnimated(true);
 		yearPieChart.setLegendSide(Side.RIGHT);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.controller.AbstractFXController#getLayout()
+	 */
+	@Override
+	public Parent getLayout() {
+		// TODO Auto-generated method stub
+		return rootLayout;
 	}
 }

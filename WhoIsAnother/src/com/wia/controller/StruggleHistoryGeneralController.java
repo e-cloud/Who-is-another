@@ -6,22 +6,21 @@ package com.wia.controller;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.logging.Logger;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
-import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 
 import com.wia.Context;
 import com.wia.model.analysis.GeneralInfo;
 import com.wia.model.analysis.Info;
 import com.wia.model.data.Author;
-import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -29,10 +28,12 @@ import com.wia.util.LogUtil;
  */
 public class StruggleHistoryGeneralController extends AbstractFXController {
 
+	private static Logger logger = Logger
+			.getLogger(StruggleHistoryGeneralController.class.getName());
+
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private BarChart generalBarChart;
-
 	@FXML
 	private Label rankLabel;
 	@FXML
@@ -43,10 +44,10 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 	private Label submissionLabel;
 	@FXML
 	private Label acceptLabel;
+	@FXML
+	private Parent rootLayout;
 
 	private GeneralInfo generalInfo;
-
-	private static int a = 0;
 
 	@FXML
 	private void initialize() {
@@ -58,8 +59,6 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		submissionLabel.setText(author.getSubmissions() + "");
 		acceptLabel.setText(author.getAccepted() + "");
 		initChart();
-		a++;
-		LogUtil.d(a);
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -100,13 +99,10 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		for (Iterator iterator = submitSeries.getData().iterator(); iterator
 				.hasNext();) {
 			XYChart.Data data = (XYChart.Data) iterator.next();
-			Node node = data.getNode();
-			LogUtil.d(node);
 			data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED,
 					new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent e) {
-							LogUtil.d(e.getSource());
 						}
 					});
 
@@ -120,11 +116,10 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 					new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent e) {
-							LogUtil.d(e.getSource());
-							StackPane node = (StackPane) e.getSource();
-							LogUtil.d(node.getProperties());
-							LogUtil.d(data.getXValue());
-							LogUtil.d(data.getYValue());
+							Context.getInstance().addContextObject("year",
+									data.getXValue());
+							myScreensContainer
+									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
 						}
 					});
 
@@ -155,5 +150,27 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		// .switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
 		// }
 		// });
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.controller.AbstractFXController#init()
+	 */
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.controller.AbstractFXController#getLayout()
+	 */
+	@Override
+	public Parent getLayout() {
+		// TODO Auto-generated method stub
+		return rootLayout;
 	}
 }

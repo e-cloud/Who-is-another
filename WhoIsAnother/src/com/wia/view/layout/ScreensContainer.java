@@ -41,6 +41,7 @@
 package com.wia.view.layout;
 
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -49,7 +50,6 @@ import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -63,20 +63,27 @@ import com.wia.controller.AbstractFXController;
 public class ScreensContainer extends StackPane {
 	// Holds the screens to be displayed
 
-	private final HashMap<String, Node> screens = new HashMap<>();
+	private static Logger logger = Logger.getLogger(ScreensContainer.class
+			.getName());
+
+	private final HashMap<String, AbstractFXController> controllers = new HashMap<>();
 
 	public ScreensContainer() {
 		super();
 	}
 
 	// Add the screen to the collection
-	public void addScreen(String name, Node screen) {
-		screens.put(name, screen);
+	public void addController(String name, AbstractFXController screen) {
+		controllers.put(name, screen);
 	}
 
 	// Returns the Node with the appropriate name
-	public Node getScreen(String name) {
-		return screens.get(name);
+	public AbstractFXController getController(String name) {
+		return controllers.get(name);
+	}
+
+	public Parent getScreen(String name) {
+		return controllers.get(name).getLayout();
 	}
 
 	// Loads the fxml file, add the screen to the screens collection and
@@ -85,9 +92,10 @@ public class ScreensContainer extends StackPane {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
 			Parent screen = (Parent) loader.load();
-			addScreen(name, screen);
 
 			AbstractFXController myScreenControler = loader.getController();
+			addController(name, myScreenControler);
+			logger.info(screen.toString());
 			myScreenControler.setScreenContainer(this);
 			myScreenControler.init();
 
@@ -103,9 +111,10 @@ public class ScreensContainer extends StackPane {
 	// screen is removed.
 	// If there isn't any screen being displayed, the new screen is just added
 	// to the root.
-	public boolean switchToScreen(final String name) {
-		if (screens.get(name) != null) { // screen loaded
+	public boolean setScreen(final String name) {
+		if (getScreen(name) != null) { // screen loaded
 			final DoubleProperty opacity = opacityProperty();
+			getController(name).update();
 
 			if (!getChildren().isEmpty()) { // if there is more than one screen
 				Timeline fade = new Timeline(new KeyFrame(Duration.ZERO,
@@ -113,9 +122,9 @@ public class ScreensContainer extends StackPane {
 						500), new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent t) {
-						getChildren().remove(0); // remove the displayed screen
-						getChildren().add(0, screens.get(name)); // add the
-																	// screen
+						getChildren().clear(); // remove the displayed screen
+						getChildren().addAll(getScreen(name)); // add the screen
+
 						Timeline fadeIn = new Timeline(new KeyFrame(
 								Duration.ZERO, new KeyValue(opacity, 0.0)),
 								new KeyFrame(new Duration(400), new KeyValue(
@@ -127,17 +136,20 @@ public class ScreensContainer extends StackPane {
 
 			} else {
 				setOpacity(0.0);
-				getChildren().add(screens.get(name)); // no one else been
-														// displayed, then just
-														// show
+				getChildren().addAll(getScreen(name)); // no one
+														// else
+														// been
+				// displayed, then just
+				// show
 				Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO,
 						new KeyValue(opacity, 0.0)), new KeyFrame(new Duration(
 						1000), new KeyValue(opacity, 1.0)));
 				fadeIn.play();
 			}
+
 			return true;
 		} else {
-			System.out.println("screen " + name + " hasn't been loaded!!! \n");
+			logger.severe("screen " + name + " hasn't been loaded!!! \n");
 			return false;
 		}
 
@@ -157,8 +169,8 @@ public class ScreensContainer extends StackPane {
 	// This method will remove the screen with the given name from the
 	// collection of screens
 	public boolean unloadScreen(String name) {
-		if (screens.remove(name) == null) {
-			System.out.println("Screen didn't exist");
+		if (controllers.remove(name) == null) {
+			logger.warning("Screen didn't exist");
 			return false;
 		} else {
 			return true;

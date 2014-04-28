@@ -5,6 +5,7 @@ package com.wia.controller;
 
 import java.util.Calendar;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
+import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -19,9 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 
+import com.wia.Context;
 import com.wia.model.analysis.GeneralInfo;
 import com.wia.model.analysis.Info;
-import com.wia.util.LogUtil;
 
 /**
  * @author Saint Scott
@@ -29,6 +31,10 @@ import com.wia.util.LogUtil;
  */
 public class StruggleHistoryMonthController extends AbstractFXController {
 
+	private static Logger logger = Logger
+			.getLogger(StruggleHistoryMonthController.class.getName());
+	@FXML
+	private Parent rootLayout;
 	@FXML
 	Button backButton;
 
@@ -59,27 +65,35 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
 				myScreensContainer
-						.switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
+						.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
 			}
 		});
-		yearLink.setText("2007年");
-		monthLink.setText("3月");
-		barlabel.setText("提交题目数2007年3月各天分布");
-		pielabel.setText("2007年3月做题情况总体分析");
-		generalInfo = GeneralInfo.getInstance();
-		initBarChart();
-		initPieChart();
 
 	}
 
+	@Override
+	public void update() {
+		int year = Integer.valueOf((String) Context.getInstance()
+				.getContextObject("year"));
+		int month = Integer.valueOf((String) Context.getInstance()
+				.getContextObject("month"));
+		yearLink.setText(year + "年");
+		monthLink.setText(month + "月");
+		barlabel.setText("提交题目数" + year + "年" + month + "月各天分布");
+		pielabel.setText(year + "年" + month + "月做题情况总体分析");
+		generalInfo = GeneralInfo.getInstance();
+		initBarChart(year, month - 1);
+		initPieChart(year, month - 1);
+	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void initBarChart() {
+	private void initBarChart(int year, int month) {
 		// yearBarChart.setTitle("Growth Curve");
 
 		Map<Integer, Integer> solveMap = generalInfo.getProblemCountPerDay(
-				2007, 2, Info.SOLVE);
+				year, month, Info.SOLVE);
 		Map<Integer, Integer> submitMap = generalInfo.getProblemCountPerDay(
-				2007, 2, Info.SUBMIT);
+				year, month, Info.SUBMIT);
 
 		XYChart.Series solveSeries = new XYChart.Series();
 		solveSeries.setName("解决题目数");
@@ -97,36 +111,57 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 			submitSeries.getData().add(
 					new XYChart.Data(String.valueOf(i + 1), b == null ? 0 : b));
 		}
-		LogUtil.d(submitSeries.getData());
-		LogUtil.d(solveSeries.getData());
 
+		monthBarChart.getData().clear();
 		monthBarChart.getData().addAll(submitSeries, solveSeries);
 		monthBarChart.setBarGap(1.0);
 		monthBarChart.setAnimated(true);
 		monthBarChart.setLegendSide(Side.RIGHT);
 		monthBarChart.setHorizontalZeroLineVisible(true);
-		monthBarChart.setOnMouseClicked(new EventHandler<Event>() {
-
-			@Override
-			public void handle(Event arg0) {
-				// TODO Auto-generated method stub
-				myScreensContainer
-						.switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORYDAYID);
-			}
-		});
+		// monthBarChart.setOnMouseClicked(new EventHandler<Event>() {
+		//
+		// @Override
+		// public void handle(Event arg0) {
+		// // TODO Auto-generated method stub
+		// myScreensContainer
+		// .setScreen(StruggleHistoryRootController.STRUGGLEHISTORYDAYID);
+		// }
+		// });
 	}
 
-	private void initPieChart() {
+	private void initPieChart(int year, int month) {
 		// yearPieChart
-		int submit = generalInfo.getProblemCountPerMonth(2007, Info.SUBMIT)
-				.get(2);
-		int solved = generalInfo.getProblemCountPerMonth(2007, Info.SOLVE).get(
-				2);
+		int submit = generalInfo.getProblemCountPerMonth(year, Info.SUBMIT)
+				.get(month);
+		int solved = generalInfo.getProblemCountPerMonth(year, Info.SOLVE).get(
+				month);
 		ObservableList<PieChart.Data> pieChartData = FXCollections
 				.observableArrayList(new PieChart.Data("解决题目数", solved),
 						new PieChart.Data("提交题目数", submit));
 		monthPieChart.setData(pieChartData);
 		monthBarChart.setAnimated(true);
 		monthPieChart.setLegendSide(Side.RIGHT);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.controller.AbstractFXController#init()
+	 */
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.controller.AbstractFXController#getLayout()
+	 */
+	@Override
+	public Parent getLayout() {
+		// TODO Auto-generated method stub
+		return rootLayout;
 	}
 }

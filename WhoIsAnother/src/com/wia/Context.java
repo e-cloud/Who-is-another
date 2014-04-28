@@ -3,6 +3,9 @@
  */
 package com.wia;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.wia.model.data.Author;
 import com.wia.model.preprocess.DataPreprocessor;
 
@@ -13,7 +16,7 @@ import com.wia.model.preprocess.DataPreprocessor;
 public class Context {
 
 	private Author currentAuthor;
-	private int dataRetrieveAddress = 1;
+	private int dataRetrieveAddress = 0;
 	public final static int LOCAL = 0;
 	public final static int NETWORK = 1;
 
@@ -53,8 +56,30 @@ public class Context {
 	 * @param currentAuthor
 	 *            the currentAuthor to set
 	 */
-	public void resetCurrentAuthor(Author currentAuthor) {
-		this.currentAuthor = currentAuthor;
+	public void resetCurrentAuthor(Author author) {
+		this.currentAuthor = author;
+	}
+
+	private final Map<String, Object> contextObjects = new HashMap<String, Object>();
+
+	public Map<String, Object> getContextObjects() {
+		return contextObjects;
+	}
+
+	public Object getContextObject(String key) {
+		return contextObjects.get(key);
+	}
+
+	public Object removeContextObject(String key) {
+		return contextObjects.remove(key);
+	}
+
+	public void addContextObject(String key, Object value) {
+		contextObjects.put(key, value);
+	}
+
+	public void clearContextObjects() {
+		contextObjects.clear();
 	}
 
 }

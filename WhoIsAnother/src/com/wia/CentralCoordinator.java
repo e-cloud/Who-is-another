@@ -57,7 +57,7 @@ public class CentralCoordinator extends Application {
 				CentralCoordinator.progressFile);
 		mainContainer.loadScreen(CentralCoordinator.ROOTSTAGEID, rootStageFile);
 
-		mainContainer.switchToScreen(CentralCoordinator.ROOTSTAGEID);
+		mainContainer.setScreen(CentralCoordinator.ROOTSTAGEID);
 
 		Group root = new Group();
 		root.getChildren().addAll(mainContainer);

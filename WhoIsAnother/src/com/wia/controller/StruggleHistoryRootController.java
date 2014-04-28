@@ -3,6 +3,8 @@
  */
 package com.wia.controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import com.wia.view.layout.ScreensContainer;
@@ -22,6 +24,8 @@ public class StruggleHistoryRootController extends AbstractFXController {
 	public final static String struggleHistroyMonthFile = "/com/wia/view/StruggleHistoryMonth.fxml";
 	public final static String STRUGGLEHISTORYDAYID = "strugglehistoryday";
 	public final static String struggleHistroyDayFile = "/com/wia/view/StruggleHistoryDay.fxml";
+	@FXML
+	private Parent rootLayout;
 
 	/*
 	 * (non-Javadoc)
@@ -39,10 +43,21 @@ public class StruggleHistoryRootController extends AbstractFXController {
 				struggleHistroyMonthFile);
 		historyContainer.loadScreen(STRUGGLEHISTORYDAYID,
 				struggleHistroyDayFile);
-		historyContainer.switchToScreen(STRUGGLEHISTORGENERALID);
+		historyContainer.setScreen(STRUGGLEHISTORGENERALID);
 
 		AnchorPane pane = (AnchorPane) myScreensContainer
 				.getScreen(RootStageController.STRUGGLEHISTORYROOTID);
 		pane.getChildren().addAll(historyContainer);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.wia.controller.AbstractFXController#getLayout()
+	 */
+	@Override
+	public Parent getLayout() {
+		// TODO Auto-generated method stub
+		return rootLayout;
 	}
 }
