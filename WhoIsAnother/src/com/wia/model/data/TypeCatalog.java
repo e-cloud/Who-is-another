@@ -36,6 +36,13 @@ public class TypeCatalog {
 		return uniqueInstance;
 	}
 
+	public void setCatalog(Map<Integer, String> catalog){
+		this.catalog = catalog;
+	}
+	
+	public Map<Integer, String> getCatalog(){
+		return catalog;
+	}
 	/**
 	 * 输入一个题目的id，返回该题目对应的分类
 	 * 
