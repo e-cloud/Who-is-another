@@ -82,8 +82,8 @@ public class DataPreprocessorTest {
 	// @Ignore
 	@Test
 	public void testRetrieveAuthorFromNet() {
-		Author user = preprocessor.retrieveAuthorFromNet("wdp515105");
-		assertEquals(user.getSubmitted(), 9);
+		Author user = preprocessor.retrieveAuthorFromNet("ScottSaint");
+		assertEquals(user.getSubmitted(), 48);
 		Collection<Problem> problems = user.getProblemMap().values();
 		int count = 0;
 		for (Iterator<Problem> iterator = problems.iterator(); iterator
@@ -91,7 +91,7 @@ public class DataPreprocessorTest {
 			Problem problem = iterator.next();
 			count += problem.getSubmitMap().size();
 		}
-		assertEquals(count, 48);
+		assertEquals(count, 76);
 		logger.info(user.toString());
 	}
 
