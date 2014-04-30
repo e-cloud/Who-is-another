@@ -45,7 +45,7 @@ public class AuthorInfoParser {
 
 		// 通过正则表达式提取from和注册时间
 		Pattern pattern = Pattern
-				.compile("from: ([0-9a-zA-Z]+)\\D+(\\d{4}-\\d{2}-\\d{2})");
+				.compile("from:\\s(.+)\\sregistered on\\s(\\d{4}-\\d{2}-\\d{2})");
 		Matcher matcher = pattern.matcher(targetTD.select("i").get(0).html());
 		matcher.find();
 		String from = matcher.group(1);
@@ -75,7 +75,6 @@ public class AuthorInfoParser {
 		pattern = Pattern.compile("p\\((\\d+),\\d+,\\d+\\)");
 		matcher = pattern.matcher(targetTD.select("p").html());
 		while (matcher.find()) {
-			// LogUtil.d(matcher.group(1));
 			pidSet.add(Integer.valueOf(matcher.group(1)));
 		}
 

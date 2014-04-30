@@ -15,7 +15,7 @@ import com.wia.model.data.Author;
 public class Context {
 
 	private Author currentAuthor;
-	private int dataRetrieveAddress = 0;
+	private int dataRetrieveAddress = 1;
 	public final static int LOCAL = 0;
 	public final static int NETWORK = 1;
 
@@ -50,14 +50,6 @@ public class Context {
 	 */
 	public Author getCurrentAuthor() {
 		return currentAuthor;
-	}
-
-	/**
-	 * @param currentAuthor
-	 *            the currentAuthor to set
-	 */
-	public void resetCurrentAuthor(Author author) {
-		this.currentAuthor = author;
 	}
 
 	private final Map<String, Object> contextObjects = new HashMap<String, Object>();

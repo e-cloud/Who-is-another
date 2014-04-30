@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -19,6 +18,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -82,13 +82,12 @@ public class ParserTest {
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	// @Ignore
+	@Ignore
 	@Test
 	public void testAuthorInfoParser() throws ParseException, IOException {
 		author = new Author(authorID);
 		set = AuthorInfoParser.parse(data, author);
-		Map<String, Author> map = AuthorListParser.parse(data,
-				author.getAuthorID());
+		List<Author> map = AuthorListParser.parse(data);
 		assertEquals(map.size(), 6);
 		logger.info(set.toString());
 	}
@@ -101,7 +100,7 @@ public class ParserTest {
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	// @Ignore
+	@Ignore
 	@Test
 	// (timeout = 20000)
 	public void testSubmitlogsParser() throws ParseException, IOException {
@@ -135,12 +134,12 @@ public class ParserTest {
 	 * @throws ParseException
 	 * @throws IOException
 	 */
+	@Ignore
 	@Test
 	public void testAuthorListParser() throws ParseException, IOException {
 		Fetcher fetcher = new PageFetcher();
 		String content = fetcher.fetch("http://acm.hdu.edu.cn/ranklist.php");
-		Map<String, Author> authorMap = AuthorListParser.parse(content,
-				authorID);
+		List<Author> authorMap = AuthorListParser.parse(content);
 		assertEquals(authorMap.size(), 25);
 	}
 }

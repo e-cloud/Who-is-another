@@ -46,7 +46,7 @@ public class GeneralInfo extends Info {
 
 	public static GeneralInfo getInstance() {
 		if (generalInfo == null) {
-			synchronized (Context.class) {
+			synchronized (GeneralInfo.class) {
 				if (generalInfo == null) {
 					generalInfo = new GeneralInfo();
 				}

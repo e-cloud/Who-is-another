@@ -90,12 +90,11 @@ public class ScreensContainer extends StackPane {
 	// finally injects the screenPane to the controller.
 	public void loadScreen(String name, String resource) {
 		try {
+			// logger.info(ClassLoader.getSystemResource(resource).toString());
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
-			Parent screen = (Parent) loader.load();
-
+			loader.load();
 			AbstractFXController myScreenControler = loader.getController();
 			addController(name, myScreenControler);
-			logger.info(screen.toString());
 			myScreenControler.setScreenContainer(this);
 			myScreenControler.init();
 

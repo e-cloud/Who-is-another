@@ -50,6 +50,11 @@ public class StruggleHistoryRootController extends AbstractFXController {
 		pane.getChildren().addAll(historyContainer);
 	}
 
+	@Override
+	public void update() {
+
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

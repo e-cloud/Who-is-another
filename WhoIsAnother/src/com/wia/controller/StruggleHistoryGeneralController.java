@@ -49,16 +49,20 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 
 	private GeneralInfo generalInfo;
 
-	@FXML
-	private void initialize() {
+	@Override
+	public void update() {
+
 		generalInfo = GeneralInfo.getInstance();
-		Author author = Context.getInstance().getCurrentAuthor();
-		rankLabel.setText(author.getRank() + "");
-		submitLabel.setText(author.getSubmitted() + "");
-		solveLabel.setText(author.getSolved() + "");
-		submissionLabel.setText(author.getSubmissions() + "");
-		acceptLabel.setText(author.getAccepted() + "");
-		initChart();
+		if (generalInfo != null) {
+
+			Author author = Context.getInstance().getCurrentAuthor();
+			rankLabel.setText(author.getRank() + "");
+			submitLabel.setText(author.getSubmitted() + "");
+			solveLabel.setText(author.getSolved() + "");
+			submissionLabel.setText(author.getSubmissions() + "");
+			acceptLabel.setText(author.getAccepted() + "");
+			initChart();
+		}
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -94,6 +98,8 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 							.get(year)));
 
 		}
+
+		generalBarChart.getData().clear();
 		generalBarChart.getData().addAll(submitSeries, solveSeries);
 
 		for (Iterator iterator = submitSeries.getData().iterator(); iterator
@@ -130,7 +136,7 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		}
 		// generalBarChart.boundsInLocalProperty();
 
-		generalBarChart.setBarGap(100);
+		generalBarChart.setBarGap(20);
 		generalBarChart.setAnimated(true);
 		generalBarChart.setLegendSide(Side.RIGHT);
 		generalBarChart.setHorizontalZeroLineVisible(true);

@@ -70,6 +70,6 @@
     </GridPane>
   </children>
   <stylesheets>
-    <URL value="@css/struggle.css" />
+    <URL value="@css/general.css" />
   </stylesheets>
 </AnchorPane>

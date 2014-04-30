@@ -3,8 +3,8 @@
  */
 package com.wia.model.preprocess;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,13 +23,12 @@ public class AuthorListParser {
 
 	/**
 	 * @param data
-	 * @param author
 	 */
-	public static Map<String, Author> parse(String data, String authorID) {
+	public static List<Author> parse(String data) {
 		Document doc = Jsoup.parse(data);
 		Elements targetTRs = doc.select("body > table > tbody >tr").get(3)
 				.select("td").get(1).select("table").last().select("tr");
-		Map<String, Author> authorMap = new HashMap<>();
+		List<Author> authorMap = new LinkedList<>();
 
 		targetTRs.remove(0);
 		Pattern pattern = Pattern.compile("user=([^&]+)&*");
@@ -39,9 +38,7 @@ public class AuthorListParser {
 					"href"));
 			matcher.find();
 			String Id = matcher.group(1);
-			if (Id.equals(authorID)) {
-				continue;
-			}
+
 			// 提取ac率
 			String ratio = element.select("td").get(6).html();
 			double acRatio = Double.valueOf(ratio.substring(0,
@@ -67,7 +64,7 @@ public class AuthorListParser {
 			author.setMotto(nbmotto);
 			author.setNationality(nbnationality);
 			author.setACRatio(acRatio);
-			authorMap.put(Id, author);
+			authorMap.add(author);
 		}
 		return authorMap;
 	}

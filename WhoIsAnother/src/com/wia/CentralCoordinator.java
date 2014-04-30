@@ -20,12 +20,13 @@ public class CentralCoordinator extends Application {
 	private Context context;
 
 	public Stage primaryStage;
+	public final static String baseUrl = "/com/wia/view/";
 	public final static String WELCOMEID = "WELCOME";
-	public final static String welcomeFile = "/com/wia/view/Welcome.fxml";
+	public final static String welcomeFile = baseUrl + "Welcome.fxml";
 	public final static String PROGRESSID = "PROGRESS";
-	public final static String progressFile = "/com/wia/view/ProgressBar.fxml";
+	public final static String progressFile = baseUrl + "ProgressBar.fxml";
 	public final static String ROOTSTAGEID = "ROOTSTAGE";
-	public final static String rootStageFile = "/com/wia/view/RootStage.fxml";
+	public final static String rootStageFile = baseUrl + "RootStage.fxml";
 
 	/*
 	 * (non-Javadoc)
@@ -55,9 +56,8 @@ public class CentralCoordinator extends Application {
 				CentralCoordinator.welcomeFile);
 		mainContainer.loadScreen(CentralCoordinator.PROGRESSID,
 				CentralCoordinator.progressFile);
-		mainContainer.loadScreen(CentralCoordinator.ROOTSTAGEID, rootStageFile);
 
-		mainContainer.setScreen(CentralCoordinator.ROOTSTAGEID);
+		mainContainer.setScreen(CentralCoordinator.WELCOMEID);
 
 		Group root = new Group();
 		root.getChildren().addAll(mainContainer);

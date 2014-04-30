@@ -31,7 +31,7 @@ public class Author {
 	private int accepted;
 	private double ACRatio;
 	private final Map<Integer, Problem> problemMap;
-	private Map<String, Author> neighbourMap;
+	private List<Author> neighbourList;
 
 	public Author(String authorID) {
 		this.authorID = authorID;
@@ -71,16 +71,16 @@ public class Author {
 	/**
 	 * @return the neighbourList
 	 */
-	public Map<String, Author> getNeighbourMap() {
-		return neighbourMap;
+	public List<Author> getNeighbourList() {
+		return neighbourList;
 	}
 
 	/**
-	 * @param neighbourMap
-	 *            the neighbourMap to set
+	 * @param neighbourList
+	 *            the neighbourList to set
 	 */
-	public void setNeighbourMap(Map<String, Author> neighbourMap) {
-		this.neighbourMap = neighbourMap;
+	public void setNeighbourList(List<Author> neighbourList) {
+		this.neighbourList = neighbourList;
 	}
 
 	/**

@@ -27,7 +27,7 @@ public class ProgressBarController extends AbstractFXController {
 
 	@FXML
 	public void handleClick(MouseEvent event) {
-		myScreensContainer.setScreen(CentralCoordinator.ROOTSTAGEID);
+		// myScreensContainer.setScreen(CentralCoordinator.ROOTSTAGEID);
 	}
 
 	@Override
@@ -38,9 +38,10 @@ public class ProgressBarController extends AbstractFXController {
 				updateMessage("Finding Author . . .");
 
 				Context context = Context.getInstance();
-				Author author = DataPreprocessor.run(
-						(String) context.getContextObject("requestID"),
-						Context.NETWORK);
+				DataPreprocessor preprocessor = new DataPreprocessor();
+				Author author = preprocessor
+						.retrieveAuthorFromNet((String) context
+								.getContextObject("requestID"));
 				context.setAuthor(author);
 
 				updateMessage("Finished.");
@@ -55,7 +56,11 @@ public class ProgressBarController extends AbstractFXController {
 					ObservableValue<? extends Worker.State> observableValue,
 					Worker.State oldState, Worker.State newState) {
 				if (newState == Worker.State.SUCCEEDED) {
-
+					myScreensContainer.loadScreen(
+							CentralCoordinator.ROOTSTAGEID,
+							CentralCoordinator.rootStageFile);
+					myScreensContainer
+							.setScreen(CentralCoordinator.ROOTSTAGEID);
 				}
 			}
 		});

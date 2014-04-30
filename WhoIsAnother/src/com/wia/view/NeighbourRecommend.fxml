@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
@@ -13,48 +12,17 @@
 <GridPane fx:id="rootLayout" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.NeighbourRecommendController">
   <!-- TODO Add Nodes -->
   <children>
-    <Label prefHeight="46.0" styleClass="blue-title" text="六位邻居比较后显示你没做的题" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <stylesheets>
-        <URL value="@css/basic_style.css" />
-      </stylesheets>
+    <Label text="六位邻居比较后显示你没做的题" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TableView prefHeight="200.0" prefWidth="518.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="124.0" text="题号" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="186.0" text="题目类型" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="206.0" text="你的提交状态" />
+      </columns>
       <GridPane.margin>
-        <Insets top="20.0" />
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
       </GridPane.margin>
-    </Label>
-    <GridPane prefHeight="528.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-      <children>
-        <Button mnemonicParsing="false" prefHeight="122.0" prefWidth="234.0" styleClass="rec-button" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Button mnemonicParsing="false" prefHeight="129.0" prefWidth="298.0" styleClass="rec-button" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Button mnemonicParsing="false" prefHeight="147.0" prefWidth="317.0" styleClass="rec-button" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="254.0" styleClass="rec-button" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Button mnemonicParsing="false" prefHeight="129.0" prefWidth="237.0" styleClass="rec-button" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-        <Button mnemonicParsing="false" prefHeight="141.0" prefWidth="269.0" styleClass="rec-button" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-        <Button mnemonicParsing="false" prefHeight="136.0" prefWidth="300.0" styleClass="rec-button" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Button mnemonicParsing="false" prefHeight="122.0" prefWidth="259.0" styleClass="rec-button" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-        <Button mnemonicParsing="false" prefHeight="152.0" prefWidth="384.0" styleClass="rec-button" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-        <Button mnemonicParsing="false" prefHeight="157.0" prefWidth="324.0" styleClass="rec-button" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="280.0" styleClass="rec-button" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-        <Button mnemonicParsing="false" prefHeight="122.0" prefWidth="279.0" styleClass="rec-button" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-      </children>
-      <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="55.0" />
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="225.0" />
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="225.0" />
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="225.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="70.0" />
-      </columnConstraints>
-      <rowConstraints>
-        <RowConstraints maxHeight="83.0" minHeight="1.0" prefHeight="20.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="151.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-      </rowConstraints>
-      <stylesheets>
-        <URL value="@css/basic_style.css" />
-      </stylesheets>
-    </GridPane>
+    </TableView>
   </children>
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />

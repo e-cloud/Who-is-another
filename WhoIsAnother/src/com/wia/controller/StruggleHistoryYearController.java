@@ -64,7 +64,7 @@ public class StruggleHistoryYearController extends AbstractFXController {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		generalInfo = GeneralInfo.getInstance();
+
 	}
 
 	@FXML
@@ -83,7 +83,7 @@ public class StruggleHistoryYearController extends AbstractFXController {
 
 	@Override
 	public void update() {
-
+		generalInfo = GeneralInfo.getInstance();
 		int year = Integer.valueOf((String) Context.getInstance()
 				.getContextObject("year"));
 		yearLink.setText(year + "年");

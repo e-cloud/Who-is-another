@@ -37,7 +37,9 @@ public class SpotLightTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Context context = Context.getInstance();
-		Author author = DataPreprocessor.run("wdp515105", Context.NETWORK);
+		DataPreprocessor preprocessor = new DataPreprocessor();
+		Author author = preprocessor.retrieveAuthorFromNet((String) context
+				.getContextObject("requestID"));
 		context.setAuthor(author);
 		spotLight = new SpotLight();
 	}
@@ -67,10 +69,11 @@ public class SpotLightTest {
 	 * Test method for
 	 * {@link com.wia.model.analysis.SpotLight#getAcceptedTimeInterval()}.
 	 */
-	@Ignore
+	// @Ignore
 	@Test
 	public void testGetAcceptedTimeInterval() {
 		assertEquals(spotLight.ACInFirstSubmit(), 2);
+		logger.info(spotLight.ACInFirstSubmit() + "");
 	}
 
 	/**
