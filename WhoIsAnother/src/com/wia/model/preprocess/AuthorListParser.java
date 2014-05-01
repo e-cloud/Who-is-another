@@ -3,7 +3,7 @@
  */
 package com.wia.model.preprocess;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +28,7 @@ public class AuthorListParser {
 		Document doc = Jsoup.parse(data);
 		Elements targetTRs = doc.select("body > table > tbody >tr").get(3)
 				.select("td").get(1).select("table").last().select("tr");
-		List<Author> authorMap = new LinkedList<>();
+		List<Author> authorMap = new ArrayList<>();
 
 		targetTRs.remove(0);
 		Pattern pattern = Pattern.compile("user=([^&]+)&*");
@@ -51,11 +51,12 @@ public class AuthorListParser {
 			String nbauthorName = element.select("td > a").get(0).html();
 			// 提取签名
 			String nbmotto = element.select("td").get(3).html();
-			// 提取提交题目数
-			int nbsubmissions = Integer.valueOf(element.select("td").get(4)
-					.text());
+
 			// 提取解决题目数
-			int nbsolved = Integer.valueOf(element.select("td").get(5).text());
+			int nbsolved = Integer.valueOf(element.select("td").get(4).text());
+			// 提取提交题目数
+			int nbsubmissions = Integer.valueOf(element.select("td").get(5)
+					.text());
 			Author author = new Author(Id);
 			author.setRank(nbrank);
 			author.setAuthorName(nbauthorName);

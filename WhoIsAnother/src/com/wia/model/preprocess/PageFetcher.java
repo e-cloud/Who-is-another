@@ -13,31 +13,37 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClients;
-
-import com.wia.util.IOUtil;
+import org.apache.http.util.EntityUtils;
 
 /**
  * @author Saint Scott
  * 
  */
-public class PageFetcher implements Fetcher {
+public class PageFetcher {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.model.preprocess.Fetcher#fetch(java.lang.String)
-	 */
-	@Override
 	public String fetch(String url) throws ClientProtocolException, IOException {
 		// TODO Auto-generated method stub
-		CloseableHttpClient httpclient = HttpClients.createDefault();
+		DefaultHttpRequestRetryHandler retryHandler = new DefaultHttpRequestRetryHandler(
+				10, true);
+		CloseableHttpClient httpclient = HttpClients.custom()
+				.setRetryHandler(retryHandler).build();
 
 		HttpGet httpGet = new HttpGet(url);
+		// RequestConfig requestConfig = RequestConfig.custom()
+		// .setSocketTimeout(50000).setConnectTimeout(50000)
+		// .setConnectionRequestTimeout(50000).build();// 设置请求和传输超时时间
+		//
+		// httpGet.setConfig(requestConfig);
 
 		CloseableHttpResponse response = httpclient.execute(httpGet);
 
-		while (response.getStatusLine().getStatusCode() != 200) {
+		while (true) {
+			int status = response.getStatusLine().getStatusCode();
+			if (status >= 200 && status < 300) {
+				break;
+			}
 			response.close();
 			response = httpclient.execute(httpGet);
 		}
@@ -45,11 +51,13 @@ public class PageFetcher implements Fetcher {
 		String content = null;
 		try {
 			HttpEntity entity = response.getEntity();
-			content = IOUtil.parseInputStreamWithCharset(entity.getContent(),
-					retrieveCharset(response)).replace("&nbsp;", " ");
+			content = EntityUtils.toString(entity, retrieveCharset(response))
+					.replace("&nbsp;", " ");
+			EntityUtils.consume(entity);
 		} finally {
 			response.close();
 		}
+		httpclient.close();
 		return content;
 	}
 
@@ -62,5 +70,4 @@ public class PageFetcher implements Fetcher {
 			return "gb2312";
 		}
 	}
-
 }

@@ -6,6 +6,9 @@ package com.wia;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.application.Application;
+
+import com.wia.model.analysis.GeneralInfo;
 import com.wia.model.data.Author;
 
 /**
@@ -15,15 +18,15 @@ import com.wia.model.data.Author;
 public class Context {
 
 	private Author currentAuthor;
-	private int dataRetrieveAddress = 1;
-	public final static int LOCAL = 0;
-	public final static int NETWORK = 1;
+
+	private Application coordinator;
 
 	private volatile static Context uniqueInstance;
 
+	private final Map<String, Object> contextObjects;
+
 	private Context() {
-		// currentAuthor = DataPreprocessor.run("wdp515105",
-		// dataRetrieveAddress);
+		contextObjects = new HashMap<String, Object>();
 	}
 
 	public static Context getInstance() {
@@ -37,12 +40,14 @@ public class Context {
 		return uniqueInstance;
 	}
 
-	public void setDataRetrieveAddress(int address) {
-		dataRetrieveAddress = address;
-	}
-
 	public void setAuthor(Author author) {
 		currentAuthor = author;
+		GeneralInfo generalInfo = GeneralInfo.getInstance();
+		if (generalInfo.getRefAuthorID() != null
+				&& !generalInfo.getRefAuthorID().equals(
+						currentAuthor.getAuthorID())) {
+			generalInfo.reset();
+		}
 	}
 
 	/**
@@ -52,7 +57,20 @@ public class Context {
 		return currentAuthor;
 	}
 
-	private final Map<String, Object> contextObjects = new HashMap<String, Object>();
+	/**
+	 * @return the coordinator
+	 */
+	public Application getCoordinator() {
+		return coordinator;
+	}
+
+	/**
+	 * @param coordinator
+	 *            the coordinator to set
+	 */
+	public void setCoordinator(Application coordinator) {
+		this.coordinator = coordinator;
+	}
 
 	public Map<String, Object> getContextObjects() {
 		return contextObjects;
@@ -60,6 +78,10 @@ public class Context {
 
 	public Object getContextObject(String key) {
 		return contextObjects.get(key);
+	}
+
+	public boolean containsKey(String key) {
+		return contextObjects.containsKey(key);
 	}
 
 	public Object removeContextObject(String key) {

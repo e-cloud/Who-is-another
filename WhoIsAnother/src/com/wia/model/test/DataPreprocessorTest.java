@@ -31,14 +31,15 @@ public class DataPreprocessorTest {
 	private static Logger logger = Logger.getLogger(DataPreprocessorTest.class
 			.getName());
 	private static final DataPreprocessor preprocessor = new DataPreprocessor();
-	private static Author author;
+
+	private static List<Author> authors;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		author = new Author("wdp515105");
+		authors = preprocessor.retrieveTopAuthors(100);
 	}
 
 	/**
@@ -70,8 +71,30 @@ public class DataPreprocessorTest {
 	@Ignore
 	@Test
 	public void testRertrieveSimpleAuthor() {
+		Author author = new Author("wdp515105");
 		Set<Integer> pidset = preprocessor.rertrieveSimpleAuthor(author, false);
 		assertEquals(pidset.size(), 9);
+	}
+
+	/**
+	 * Test method for
+	 * {@link com.wia.model.preprocess.DataPreprocessor#rertrieveSimpleAuthorList(java.util.List, boolean)}
+	 * .
+	 */
+	// @Ignore
+	@Test
+	public void testRertrieveSimpleAuthorList() {
+		logger.info(authors.size() + "");
+		List<Set<Integer>> setList = preprocessor
+				.rertrieveSimpleAuthorList(authors);
+		int size = 0;
+		for (Iterator<Set<Integer>> iterator = setList.iterator(); iterator
+				.hasNext();) {
+			Set<Integer> set = iterator.next();
+			size += set.size();
+		}
+		logger.info(size + "");
+		// logger.info(setList.toString());
 	}
 
 	/**
@@ -79,11 +102,12 @@ public class DataPreprocessorTest {
 	 * {@link com.wia.model.preprocess.DataPreprocessor#retrieveAuthorFromNet(java.lang.String)}
 	 * .
 	 */
-	// @Ignore
+	@Ignore
 	@Test
 	public void testRetrieveAuthorFromNet() {
-		Author user = preprocessor.retrieveAuthorFromNet("ScottSaint");
-		assertEquals(user.getSubmitted(), 48);
+		// candidate "2011330300713" "haifei" "wdp515105"
+		Author user = preprocessor.retrieveAuthorFromNet("haifei");
+		assertEquals(user.getSubmitted(), 234);
 		Collection<Problem> problems = user.getProblemMap().values();
 		int count = 0;
 		for (Iterator<Problem> iterator = problems.iterator(); iterator
@@ -91,7 +115,7 @@ public class DataPreprocessorTest {
 			Problem problem = iterator.next();
 			count += problem.getSubmitMap().size();
 		}
-		assertEquals(count, 76);
+		assertEquals(user.getSubmissions(), count);
 		logger.info(user.toString());
 	}
 

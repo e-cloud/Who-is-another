@@ -7,20 +7,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.wia.model.preprocess.Fetcher;
 import com.wia.util.IOUtil;
 
 /**
  * @author Administrator
  * 
  */
-public class FileFetcher implements Fetcher {
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.model.preprocess.Fetcher#fetch(java.lang.String)
-	 */
-	@Override
+public class FileFetcher {
+
 	public String fetch(String url) {
 		InputStream is;
 		String content = null;

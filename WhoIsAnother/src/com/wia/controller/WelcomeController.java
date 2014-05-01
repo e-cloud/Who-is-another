@@ -4,9 +4,12 @@
 package com.wia.controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import com.wia.CentralCoordinator;
 import com.wia.Context;
@@ -29,22 +32,25 @@ public class WelcomeController extends AbstractFXController {
 		myScreensContainer.setScreen(CentralCoordinator.PROGRESSID);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#init()
-	 */
+	@FXML
+	private void initailize() {
+		textField.setOnKeyTyped(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if (event.getCode().equals(KeyCode.ENTER)) {
+					handleGo(null);
+				}
+			}
+		});
+	}
+
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#getLayout()
-	 */
 	@Override
 	public Parent getLayout() {
 		// TODO Auto-generated method stub

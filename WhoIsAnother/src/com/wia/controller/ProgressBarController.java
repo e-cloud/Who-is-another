@@ -5,12 +5,13 @@ package com.wia.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ProgressBar;
 
 import com.wia.CentralCoordinator;
 import com.wia.Context;
@@ -24,11 +25,8 @@ import com.wia.model.preprocess.DataPreprocessor;
 public class ProgressBarController extends AbstractFXController {
 	@FXML
 	private Parent rootLayout;
-
 	@FXML
-	public void handleClick(MouseEvent event) {
-		// myScreensContainer.setScreen(CentralCoordinator.ROOTSTAGEID);
-	}
+	private ProgressBar progressBar;
 
 	@Override
 	public void update() {
@@ -43,6 +41,13 @@ public class ProgressBarController extends AbstractFXController {
 						.retrieveAuthorFromNet((String) context
 								.getContextObject("requestID"));
 				context.setAuthor(author);
+
+				if (!context.containsKey("ranklist")) {
+					ObservableList<Author> authors = FXCollections
+							.observableList(preprocessor
+									.retrieveTopAuthors(100));
+					context.addContextObject("ranklist", authors);
+				}
 
 				updateMessage("Finished.");
 				return null;

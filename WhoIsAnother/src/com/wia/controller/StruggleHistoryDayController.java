@@ -47,12 +47,24 @@ public class StruggleHistoryDayController extends AbstractFXController {
 	@FXML
 	private Label pielabel;
 	@FXML
-	private BarChart dayBarChart;
+	private BarChart<?, ?> dayBarChart;
 	@FXML
 	private PieChart dayPieChart;
 
 	private GeneralInfo generalInfo;
 	private Collection<Problem> problems;
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Parent getLayout() {
+		// TODO Auto-generated method stub
+		return rootLayout;
+	}
 
 	@FXML
 	private void initialize() {
@@ -112,25 +124,21 @@ public class StruggleHistoryDayController extends AbstractFXController {
 		}
 
 		dayBarChart.getData().clear();
-		dayBarChart.getData().addAll(solveSeries, unSolveSeries);
+		if (solveSeries.getData().size() > 0) {
+			dayBarChart.getData().add(solveSeries);
+		}
+		if (unSolveSeries.getData().size() > 0) {
+			dayBarChart.getData().add(unSolveSeries);
+		}
 
 		dayBarChart.setBarGap(1.0);
 		dayBarChart.setAnimated(true);
 		dayBarChart.setLegendSide(Side.RIGHT);
 		dayBarChart.setHorizontalZeroLineVisible(true);
-		// monthBarChart.setOnMouseClicked(new EventHandler<Event>() {
-		//
-		// @Override
-		// public void handle(Event arg0) {
-		// // TODO Auto-generated method stub
-		// myScreensContainer
-		// .setScreen(StruggleHistoryRootController.STRUGGLEHISTORYDAYID);
-		// }
-		// });
+
 	}
 
 	private void initPieChart(int year, int month, int day) {
-		// yearPieChart
 		int solvecount = 0;
 		for (Iterator<Problem> iterator = problems.iterator(); iterator
 				.hasNext();) {
@@ -140,32 +148,14 @@ public class StruggleHistoryDayController extends AbstractFXController {
 			}
 		}
 		ObservableList<PieChart.Data> pieChartData = FXCollections
-				.observableArrayList(new PieChart.Data("解决题目数", solvecount),
-						new PieChart.Data("提交题目数", problems.size()));
+				.observableArrayList(
+						new PieChart.Data("Solved-" + solvecount, solvecount),
+						new PieChart.Data("UnSolved-"
+								+ (problems.size() - solvecount), problems
+								.size() - solvecount));
+
 		dayPieChart.setData(pieChartData);
 		dayPieChart.setAnimated(true);
 		dayPieChart.setLegendSide(Side.RIGHT);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#init()
-	 */
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#getLayout()
-	 */
-	@Override
-	public Parent getLayout() {
-		// TODO Auto-generated method stub
-		return rootLayout;
 	}
 }

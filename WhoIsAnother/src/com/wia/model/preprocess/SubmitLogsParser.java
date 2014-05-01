@@ -6,6 +6,7 @@ package com.wia.model.preprocess;
 import java.text.ParseException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,10 +28,21 @@ public class SubmitLogsParser {
 			throws ParseException {
 		// TODO Auto-generated method stub
 		Document doc = Jsoup.parse(data);
+		// if (doc.text().contains("1007")) {
+		// System.out.println("1007");
+		// }
 		// path body > table > tbody > tr[3] > td > div > table > tbody > tr
 		// 获取含主要内容的根标签
-		Element mainDiv = doc.select("body > table > tbody >tr").get(3)
-				.select("td > div").get(0);
+		Element mainDiv = null;
+		try {
+			mainDiv = doc.select("body > table > tbody >tr").get(3)
+					.select("td > div").get(0);
+		} catch (IndexOutOfBoundsException e) {
+			// TODO: handle exception
+			Logger.getLogger(SubmitLogsParser.class.getName()).warning(
+					"Empty Page!");
+			return -1;
+		}
 		Elements targetTR = mainDiv.select("table > tbody > tr");
 
 		// 通过迭代提取当前页面的所有submitLog对象
@@ -71,10 +83,10 @@ public class SubmitLogsParser {
 				Pattern pattern = Pattern.compile("first=([^&]+)&*");
 				Matcher matcher = pattern.matcher(element.attr("href"));
 				matcher.find();
-
 				return Integer.valueOf(matcher.group(1));
 			}
 		}
+
 		return 0;
 	}
 

@@ -9,8 +9,6 @@ import java.util.Set;
 
 import javafx.util.Pair;
 
-import com.wia.Context;
-
 /**
  * @author Saint Scott
  * 
@@ -27,7 +25,7 @@ public class TypeCatalog {
 
 	public static TypeCatalog getInstance() {
 		if (uniqueInstance == null) {
-			synchronized (Context.class) {
+			synchronized (TypeCatalog.class) {
 				if (uniqueInstance == null) {
 					uniqueInstance = new TypeCatalog();
 				}
@@ -36,13 +34,14 @@ public class TypeCatalog {
 		return uniqueInstance;
 	}
 
-	public void setCatalog(Map<Integer, String> catalog){
+	public void setCatalog(Map<Integer, String> catalog) {
 		this.catalog = catalog;
 	}
-	
-	public Map<Integer, String> getCatalog(){
+
+	public Map<Integer, String> getCatalog() {
 		return catalog;
 	}
+
 	/**
 	 * 输入一个题目的id，返回该题目对应的分类
 	 * 

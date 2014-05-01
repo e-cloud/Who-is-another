@@ -40,9 +40,8 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 	@FXML
 	Button backButton;
 
-	@SuppressWarnings("rawtypes")
 	@FXML
-	private BarChart monthBarChart;
+	private BarChart<?, ?> monthBarChart;
 	@FXML
 	private PieChart monthPieChart;
 
@@ -58,6 +57,18 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 	private Label pielabel;
 
 	private GeneralInfo generalInfo;
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Parent getLayout() {
+		// TODO Auto-generated method stub
+		return rootLayout;
+	}
 
 	@FXML
 	private void initialize() {
@@ -90,7 +101,6 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initBarChart(int year, int month) {
-		// yearBarChart.setTitle("Growth Curve");
 
 		Map<Integer, Integer> solveMap = generalInfo.getProblemCountPerDay(
 				year, month, Info.SOLVE);
@@ -108,10 +118,15 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 		for (int i = 0; i < monthsize; i++) {
 			Integer a = solveMap.get(i);
 			Integer b = submitMap.get(i);
+			if (a == null & b == null) {
+				continue;
+			}
 			solveSeries.getData().add(
-					new XYChart.Data(String.valueOf(i + 1), a == null ? 0 : a));
+					new XYChart.Data<String, Integer>(String.valueOf(i + 1),
+							a == null ? 0 : a));
 			submitSeries.getData().add(
-					new XYChart.Data(String.valueOf(i + 1), b == null ? 0 : b));
+					new XYChart.Data<String, Integer>(String.valueOf(i + 1),
+							b == null ? 0 : b));
 		}
 
 		monthBarChart.getData().clear();
@@ -120,81 +135,41 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 		for (Iterator iterator = submitSeries.getData().iterator(); iterator
 				.hasNext();) {
 			final XYChart.Data data = (XYChart.Data) iterator.next();
-			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-					new EventHandler<MouseEvent>() {
-						@Override
-						public void handle(MouseEvent e) {
-							Context.getInstance().addContextObject("day",
-									data.getXValue());
-							myScreensContainer
-									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYDAYID);
-						}
-					});
+			data.getNode().addEventHandler(
+					MouseEvent.MOUSE_CLICKED,
+					new BarEventHandler(data,
+							StruggleHistoryRootController.STRUGGLEHISTORYDAYID,
+							myScreensContainer, "day"));
 		}
 
 		for (Iterator iterator = solveSeries.getData().iterator(); iterator
 				.hasNext();) {
 			final XYChart.Data data = (XYChart.Data) iterator.next();
-			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-					new EventHandler<MouseEvent>() {
-						@Override
-						public void handle(MouseEvent e) {
-							Context.getInstance().addContextObject("day",
-									data.getXValue());
-							myScreensContainer
-									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYDAYID);
-						}
-					});
+			data.getNode().addEventHandler(
+					MouseEvent.MOUSE_CLICKED,
+					new BarEventHandler(data,
+							StruggleHistoryRootController.STRUGGLEHISTORYDAYID,
+							myScreensContainer, "day"));
 		}
 
-		monthBarChart.setBarGap(1.0);
+		monthBarChart.setBarGap(5);
 		monthBarChart.setAnimated(true);
 		monthBarChart.setLegendSide(Side.RIGHT);
 		monthBarChart.setHorizontalZeroLineVisible(true);
-		// monthBarChart.setOnMouseClicked(new EventHandler<Event>() {
-		//
-		// @Override
-		// public void handle(Event arg0) {
-		// // TODO Auto-generated method stub
-		// myScreensContainer
-		// .setScreen(StruggleHistoryRootController.STRUGGLEHISTORYDAYID);
-		// }
-		// });
 	}
 
 	private void initPieChart(int year, int month) {
-		// yearPieChart
 		int submit = generalInfo.getProblemCountPerMonth(year, Info.SUBMIT)
 				.get(month);
 		int solved = generalInfo.getProblemCountPerMonth(year, Info.SOLVE).get(
 				month);
 		ObservableList<PieChart.Data> pieChartData = FXCollections
-				.observableArrayList(new PieChart.Data("解决题目数", solved),
-						new PieChart.Data("提交题目数", submit));
+				.observableArrayList(new PieChart.Data("Solved-" + solved,
+						solved), new PieChart.Data("UnSolved-"
+						+ (submit - solved), submit - solved));
 		monthPieChart.setData(pieChartData);
 		monthBarChart.setAnimated(true);
 		monthPieChart.setLegendSide(Side.RIGHT);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#init()
-	 */
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#getLayout()
-	 */
-	@Override
-	public Parent getLayout() {
-		// TODO Auto-generated method stub
-		return rootLayout;
-	}
 }

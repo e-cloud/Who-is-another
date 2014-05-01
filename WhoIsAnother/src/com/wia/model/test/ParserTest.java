@@ -26,7 +26,6 @@ import com.wia.model.data.Author;
 import com.wia.model.data.SubmitLog;
 import com.wia.model.preprocess.AuthorInfoParser;
 import com.wia.model.preprocess.AuthorListParser;
-import com.wia.model.preprocess.Fetcher;
 import com.wia.model.preprocess.PageFetcher;
 import com.wia.model.preprocess.SubmitLogsParser;
 
@@ -48,7 +47,7 @@ public class ParserTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Fetcher fetcher = new PageFetcher();
+		PageFetcher fetcher = new PageFetcher();
 		data = fetcher.fetch("http://acm.hdu.edu.cn/userstatus.php?user="
 				+ authorID);
 	}
@@ -105,7 +104,7 @@ public class ParserTest {
 	// (timeout = 20000)
 	public void testSubmitlogsParser() throws ParseException, IOException {
 		List<SubmitLog> submitLogs = new ArrayList<>();
-		Fetcher fetcher = new PageFetcher();
+		PageFetcher fetcher = new PageFetcher();
 		for (Iterator<Integer> iterator = set.iterator(); iterator.hasNext();) {
 			int pid = iterator.next();
 			data = fetcher.fetch("http://acm.hdu.edu.cn/status.php?user="
@@ -137,7 +136,7 @@ public class ParserTest {
 	@Ignore
 	@Test
 	public void testAuthorListParser() throws ParseException, IOException {
-		Fetcher fetcher = new PageFetcher();
+		PageFetcher fetcher = new PageFetcher();
 		String content = fetcher.fetch("http://acm.hdu.edu.cn/ranklist.php");
 		List<Author> authorMap = AuthorListParser.parse(content);
 		assertEquals(authorMap.size(), 25);

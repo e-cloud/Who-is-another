@@ -16,8 +16,7 @@ import com.wia.view.layout.ScreensContainer;
  */
 public class CentralCoordinator extends Application {
 
-	@SuppressWarnings("unused")
-	private Context context;
+	ScreensContainer mainContainer;
 
 	public Stage primaryStage;
 	public final static String baseUrl = "/com/wia/view/";
@@ -37,7 +36,8 @@ public class CentralCoordinator extends Application {
 	public void init() throws Exception {
 		// TODO Auto-generated method stub
 		super.init();
-		context = Context.getInstance();
+		Context context = Context.getInstance();
+		context.setCoordinator(this);
 	}
 
 	/*
@@ -51,7 +51,7 @@ public class CentralCoordinator extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Who is another");
 
-		ScreensContainer mainContainer = new ScreensContainer();
+		mainContainer = new ScreensContainer();
 		mainContainer.loadScreen(CentralCoordinator.WELCOMEID,
 				CentralCoordinator.welcomeFile);
 		mainContainer.loadScreen(CentralCoordinator.PROGRESSID,
@@ -76,6 +76,10 @@ public class CentralCoordinator extends Application {
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
 		super.stop();
+	}
+
+	public void setScreen(String screenID) {
+		mainContainer.setScreen(screenID);
 	}
 
 	public Stage getPrimaryStage() {

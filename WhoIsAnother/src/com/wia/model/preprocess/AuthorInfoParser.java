@@ -26,6 +26,21 @@ public class AuthorInfoParser {
 
 	/**
 	 * @param data
+	 * @return
+	 */
+	public static Set<Integer> parse(String data) {
+		// 提取pid集合
+		Set<Integer> pidSet = new HashSet<Integer>();
+		Pattern pattern = Pattern.compile("p\\((\\d+),\\d+,\\d+\\)");
+		Matcher matcher = pattern.matcher(data);
+		while (matcher.find()) {
+			pidSet.add(Integer.valueOf(matcher.group(1)));
+		}
+		return pidSet;
+	}
+
+	/**
+	 * @param data
 	 * @param author
 	 * @throws ParseException
 	 */
@@ -71,12 +86,7 @@ public class AuthorInfoParser {
 		int accepted = Integer.valueOf(tds.get(11).html());
 
 		// 提取pid集合
-		Set<Integer> pidSet = new HashSet<Integer>();
-		pattern = Pattern.compile("p\\((\\d+),\\d+,\\d+\\)");
-		matcher = pattern.matcher(targetTD.select("p").html());
-		while (matcher.find()) {
-			pidSet.add(Integer.valueOf(matcher.group(1)));
-		}
+		Set<Integer> pidSet = parse(targetTD.select("p").html());
 
 		double acRatio = 0;
 		Elements targetTRs = targetTD.select("table").get(1).select("tr");

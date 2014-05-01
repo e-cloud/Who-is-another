@@ -62,6 +62,10 @@ public class GeneralInfo extends Info {
 		generalInfo = new GeneralInfo();
 	}
 
+	public String getRefAuthorID() {
+		return author != null ? author.getAuthorID() : null;
+	}
+
 	/**
 	 * 初始化GeneralInfo，传入数据，并计算所有节点的简单field的值
 	 */

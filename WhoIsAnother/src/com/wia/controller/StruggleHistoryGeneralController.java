@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Side;
 import javafx.scene.Parent;
@@ -31,9 +30,8 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 	private static Logger logger = Logger
 			.getLogger(StruggleHistoryGeneralController.class.getName());
 
-	@SuppressWarnings("rawtypes")
 	@FXML
-	private BarChart generalBarChart;
+	private BarChart<?, ?> generalBarChart;
 	@FXML
 	private Label rankLabel;
 	@FXML
@@ -92,7 +90,6 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		submitSeries.setName("提交题目数");
 		for (Iterator iterator = treeSet.iterator(); iterator.hasNext();) {
 			Integer year = (Integer) iterator.next();
-
 			submitSeries.getData()
 					.add(new XYChart.Data(String.valueOf(year), submitMap
 							.get(year)));
@@ -105,79 +102,36 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		for (Iterator iterator = submitSeries.getData().iterator(); iterator
 				.hasNext();) {
 			final XYChart.Data data = (XYChart.Data) iterator.next();
-			data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED,
-					new EventHandler<MouseEvent>() {
-						@Override
-						public void handle(MouseEvent e) {
-							Context.getInstance().addContextObject("year",
-									data.getXValue());
-							myScreensContainer
-									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
-						}
-					});
+			data.getNode().addEventHandler(
+					MouseEvent.MOUSE_CLICKED,
+					new BarEventHandler(data,
+							StruggleHistoryRootController.STRUGGLEHISTORYEARID,
+							myScreensContainer, "year"));
 
 		}
 
 		for (Iterator iterator = solveSeries.getData().iterator(); iterator
 				.hasNext();) {
 			final XYChart.Data data = (XYChart.Data) iterator.next();
-
-			data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED,
-					new EventHandler<MouseEvent>() {
-						@Override
-						public void handle(MouseEvent e) {
-							Context.getInstance().addContextObject("year",
-									data.getXValue());
-							myScreensContainer
-									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
-						}
-					});
+			data.getNode().addEventHandler(
+					MouseEvent.MOUSE_CLICKED,
+					new BarEventHandler(data,
+							StruggleHistoryRootController.STRUGGLEHISTORYEARID,
+							myScreensContainer, "year"));
 
 		}
 		// generalBarChart.boundsInLocalProperty();
-
-		generalBarChart.setBarGap(20);
+		generalBarChart.setBarGap(5);
 		generalBarChart.setAnimated(true);
 		generalBarChart.setLegendSide(Side.RIGHT);
 		generalBarChart.setHorizontalZeroLineVisible(true);
-		// generalBarChart.onMouseClickedProperty().set(new
-		// EventHandler<Event>() {
-		//
-		// @Override
-		// public void handle(Event event) {
-		// // TODO Auto-generated method stub
-		// LogUtil.d(event.getSource() + "property");
-		// }
-		// });
-
-		// generalBarChart.setOnMouseClicked(new EventHandler<Event>() {
-		//
-		// @Override
-		// public void handle(Event event) {
-		// // TODO Auto-generated method stub
-		//
-		// myScreensContainer
-		// .switchToScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
-		// }
-		// });
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#init()
-	 */
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#getLayout()
-	 */
 	@Override
 	public Parent getLayout() {
 		// TODO Auto-generated method stub

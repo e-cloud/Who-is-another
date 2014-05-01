@@ -39,9 +39,8 @@ public class StruggleHistoryYearController extends AbstractFXController {
 	@FXML
 	Button backButton;
 
-	@SuppressWarnings("rawtypes")
 	@FXML
-	private BarChart yearBarChart;
+	private BarChart<?, ?> yearBarChart;
 	@FXML
 	private PieChart yearPieChart;
 
@@ -103,15 +102,18 @@ public class StruggleHistoryYearController extends AbstractFXController {
 		Map<Integer, Integer> submitMap = generalInfo.getProblemCountPerMonth(
 				year, Info.SUBMIT);
 
-		XYChart.Series solveSeries = new XYChart.Series();
+		XYChart.Series solveSeries = new XYChart.Series<>();
 		solveSeries.setName("解决题目数");
 
-		XYChart.Series submitSeries = new XYChart.Series();
+		XYChart.Series submitSeries = new XYChart.Series<>();
 		submitSeries.setName("提交题目数");
 
 		for (int i = 0; i < 12; i++) {
 			Integer a = solveMap.get(i);
 			Integer b = submitMap.get(i);
+			if (a == null & b == null) {
+				continue;
+			}
 			solveSeries.getData().add(
 					new XYChart.Data(String.valueOf(i + 1), a == null ? 0 : a));
 			submitSeries.getData().add(
@@ -121,48 +123,34 @@ public class StruggleHistoryYearController extends AbstractFXController {
 		yearBarChart.getData().clear();
 		yearBarChart.getData().addAll(submitSeries, solveSeries);
 
-		for (Iterator iterator = submitSeries.getData().iterator(); iterator
+		for (Iterator<?> iterator = submitSeries.getData().iterator(); iterator
 				.hasNext();) {
 			final XYChart.Data data = (XYChart.Data) iterator.next();
-			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-					new EventHandler<MouseEvent>() {
-						@Override
-						public void handle(MouseEvent e) {
-							Context.getInstance().addContextObject("month",
-									data.getXValue());
-							myScreensContainer
-									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYMONTHID);
-						}
-					});
+			data.getNode()
+					.addEventHandler(
+							MouseEvent.MOUSE_CLICKED,
+							new BarEventHandler(
+									data,
+									StruggleHistoryRootController.STRUGGLEHISTORYMONTHID,
+									myScreensContainer, "month"));
 		}
 
-		for (Iterator iterator = solveSeries.getData().iterator(); iterator
+		for (Iterator<?> iterator = solveSeries.getData().iterator(); iterator
 				.hasNext();) {
 			final XYChart.Data data = (XYChart.Data) iterator.next();
-			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-					new EventHandler<MouseEvent>() {
-						@Override
-						public void handle(MouseEvent e) {
-							Context.getInstance().addContextObject("month",
-									data.getXValue());
-							myScreensContainer
-									.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYMONTHID);
-						}
-					});
+			data.getNode()
+					.addEventHandler(
+							MouseEvent.MOUSE_CLICKED,
+							new BarEventHandler(
+									data,
+									StruggleHistoryRootController.STRUGGLEHISTORYMONTHID,
+									myScreensContainer, "month"));
 		}
-
+		yearBarChart.setBarGap(5);
 		yearBarChart.setAnimated(true);
 		yearBarChart.setLegendSide(Side.RIGHT);
 		yearBarChart.setHorizontalZeroLineVisible(true);
-		// yearBarChart.setOnMouseClicked(new EventHandler<Event>() {
-		//
-		// @Override
-		// public void handle(Event arg0) {
-		// // TODO Auto-generated method stub
-		// myScreensContainer
-		// .setScreen(StruggleHistoryRootController.STRUGGLEHISTORYMONTHID);
-		// }
-		// });
+
 	}
 
 	private void initPieChart(int year) {
@@ -170,8 +158,9 @@ public class StruggleHistoryYearController extends AbstractFXController {
 		int submit = generalInfo.getProblemCount(year, Info.SUBMIT);
 		int solved = generalInfo.getProblemCount(year, Info.SOLVE);
 		ObservableList<PieChart.Data> pieChartData = FXCollections
-				.observableArrayList(new PieChart.Data("解决题目数", solved),
-						new PieChart.Data("提交题目数", submit));
+				.observableArrayList(new PieChart.Data("Solved-" + solved,
+						solved), new PieChart.Data("UnSolved-"
+						+ (submit - solved), submit - solved));
 		yearPieChart.setData(pieChartData);
 		yearBarChart.setAnimated(true);
 		yearPieChart.setLegendSide(Side.RIGHT);

@@ -5,6 +5,8 @@ package com.wia.model.preprocess;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,7 +40,7 @@ public class DataPreprocessor {
 	public Set<Integer> rertrieveSimpleAuthor(Author author,
 			boolean isIncludeNeighbour) {
 
-		Fetcher fetcher = new PageFetcher();
+		PageFetcher fetcher = new PageFetcher();
 		Set<Integer> pidSet = null;
 		try {
 			String data = fetcher.fetch(getUserStatusUrl(author.getAuthorID()));
@@ -61,6 +63,40 @@ public class DataPreprocessor {
 	}
 
 	/**
+	 * @param author
+	 * @param isIncludeNeighbour
+	 * @return
+	 */
+	public List<Set<Integer>> rertrieveSimpleAuthorList(List<Author> authors) {
+		List<Set<Integer>> setList = new ArrayList<>();
+		ExecutorService exec = Executors.newFixedThreadPool(200);
+		List<Future<String>> result = new ArrayList<>();
+
+		for (Iterator<Author> iterator = authors.iterator(); iterator.hasNext();) {
+			Author author = iterator.next();
+			result.add(exec.submit(new CrawlTask(UserStatusUrl
+					+ author.getAuthorID())));
+		}
+		for (Iterator<Future<String>> iterator = result.iterator(); iterator
+				.hasNext();) {
+			Future<String> future = iterator.next();
+			try {
+				Set<Integer> pidSet = AuthorInfoParser.parse(future.get());
+				setList.add(pidSet);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				exec.shutdown();
+			}
+		}
+		return setList;
+	}
+
+	/**
 	 * @param authorID
 	 * @return
 	 */
@@ -70,15 +106,23 @@ public class DataPreprocessor {
 
 		Set<Integer> pidSet = rertrieveSimpleAuthor(author, true);
 		Queue<String> queue = generateURLQueue(pidSet, authorID);
+		SubmitlogCrawlTask.urlQueue = queue;
 
-		int threadcount = pidSet.size() >= 200 ? 200 : pidSet.size();
+		int threadcount = pidSet.size() >= 100 ? 100 : pidSet.size();
 
 		ExecutorService exec = Executors.newFixedThreadPool(threadcount);
-		List<Future<List<SubmitLog>>> result = new LinkedList<>();
+		List<Future<List<SubmitLog>>> result = new ArrayList<>();
 
-		while (!queue.isEmpty()) {
-			result.add(exec.submit(new SubmitlogCrawlTask(authorID, queue
-					.remove())));
+		Collection<SubmitlogCrawlTask> tasks = new ArrayList<>();
+
+		while (threadcount-- != 0) {
+			tasks.add(new SubmitlogCrawlTask(authorID));
+		}
+		try {
+			result.addAll(exec.invokeAll(tasks));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		for (Iterator<Future<List<SubmitLog>>> iterator = result.iterator(); iterator
@@ -146,21 +190,23 @@ public class DataPreprocessor {
 			String url = RanklistUrl + (1 + 25 * i);
 			result.add(exec.submit(new CrawlTask(url)));
 		}
-		try {
-			for (Iterator<Future<String>> iterator = result.iterator(); iterator
-					.hasNext();) {
+
+		for (Iterator<Future<String>> iterator = result.iterator(); iterator
+				.hasNext();) {
+			try {
 				Future<String> future = iterator.next();
 				List<Author> subList = AuthorListParser.parse(future.get());
 				authorList.addAll(subList);
+
+			} catch (InterruptedException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				exec.shutdown();
 			}
-		} catch (InterruptedException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			exec.shutdown();
 		}
 
 		return authorList;
@@ -205,51 +251,9 @@ public class DataPreprocessor {
 	 * @param first
 	 * @return 指定参数对应的url
 	 */
-	private String getRealTimeStatusUrl(int pid, String authorID, int first) {
+	static String getRealTimeStatusUrl(int pid, String authorID, int first) {
 		return RealTimeStatusUrl + pid + "&user=" + authorID + "&first="
 				+ first;
-	}
-
-	/**
-	 * 此类返参线程主要完成指定url的抓取，同时如果有下一页，递归抓取（还没想好如何用并发队列抓取） 运行完毕返回 List< SubmitLog >
-	 * 
-	 * @author Saint Scott
-	 * 
-	 */
-	private class SubmitlogCrawlTask implements Callable<List<SubmitLog>> {
-		private String url;
-		private final String authorID;
-
-		/**
-		 * 
-		 */
-		public SubmitlogCrawlTask(String authorID, String url) {
-			// TODO Auto-generated constructor stub
-			this.url = url;
-			this.authorID = authorID;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.Callable#call()
-		 */
-		@Override
-		public List<SubmitLog> call() throws Exception {
-			// TODO Auto-generated method stub
-			PageFetcher fetcher = new PageFetcher();
-			List<SubmitLog> submitLogs = new LinkedList<>();
-			String data = fetcher.fetch(url);
-			int first = SubmitLogsParser.parse(data, submitLogs);
-			if (first > 0) {
-				url = getRealTimeStatusUrl(submitLogs.get(0).getPid(),
-						authorID, first);
-				submitLogs.addAll(call());
-			}
-
-			return submitLogs;
-		}
-
 	}
 
 	/**
@@ -270,11 +274,6 @@ public class DataPreprocessor {
 			this.url = url;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see java.util.concurrent.Callable#call()
-		 */
 		@Override
 		public String call() throws Exception {
 			// TODO Auto-generated method stub

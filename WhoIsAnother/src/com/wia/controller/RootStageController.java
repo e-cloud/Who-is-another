@@ -112,7 +112,6 @@ public class RootStageController extends AbstractFXController {
 
 	@FXML
 	private void handleClick(MouseEvent event) {
-		System.out.println(((Label) event.getSource()).getId());
 		rightPaneContainer.setScreen(((Label) event.getSource()).getId());
 	}
 }
