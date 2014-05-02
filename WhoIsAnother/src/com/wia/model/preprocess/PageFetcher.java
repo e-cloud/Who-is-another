@@ -67,7 +67,7 @@ public class PageFetcher {
 		if (header.getValue().contains("charset")) {
 			return header.getValue().split("charset=")[1];
 		} else {
-			return "gb2312";
+			return "gb18030";
 		}
 	}
 }

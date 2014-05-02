@@ -15,8 +15,8 @@
     <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
         <Label text="直接与特定ID比较：" />
-        <TextField prefWidth="241.0" />
-        <Button mnemonicParsing="false" prefHeight="19.999900817871094" text="比较" />
+        <TextField fx:id="compareField" prefWidth="241.0" />
+        <Button fx:id="compareButton" mnemonicParsing="false" prefHeight="19.999900817871094" text="比较" />
       </children>
       <GridPane.margin>
         <Insets right="10.0" />

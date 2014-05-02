@@ -12,7 +12,7 @@
   <!-- TODO Add Nodes -->
   <children>
     <Label text="Help" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <Label text="http://acm.hdu.edu.cn/  if questions." GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label text="http://acm.hdu.edu.cn/  if questions." textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1" />
   </children>
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
