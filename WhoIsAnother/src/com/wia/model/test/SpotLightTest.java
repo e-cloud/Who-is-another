@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -6,7 +7,13 @@ package com.wia.model.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.Date;
+
+import javafx.util.Pair;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,6 +48,7 @@ public class SpotLightTest {
 		Author author = preprocessor.retrieveAuthorFromNet("wdp515105");
 		context.setAuthor(author);
 		spotLight = new SpotLight();
+		spotLight.init();
 	}
 
 	/**
@@ -71,18 +79,24 @@ public class SpotLightTest {
 	// @Ignore
 	@Test
 	public void testGetAcceptedTimeInterval() {
-		assertEquals(spotLight.ACInFirstSubmit(), 2);
-		logger.info(spotLight.ACInFirstSubmit() + "");
+		int[] acceptedTimeInterval = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 0, };
+		int[] compare = spotLight.getAcceptedTimeInterval();
+		for(int i = 0;i < 23;i++)
+			assertEquals(acceptedTimeInterval[i],compare[i]);
 	}
 
 	/**
 	 * Test method for
 	 * {@link com.wia.model.analysis.SpotLight#getSubmitTimeInterval()}.
 	 */
-	@Ignore
+	//@Ignore
 	@Test
 	public void testGetSubmitTimeInterval() {
-		fail("Not yet implemented");
+		int[] submitTimeInterval = {0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 3, 0, 2, 2, 0, 0, 0, 0, 4, 4, 4, 15, 5, 0, };
+		int[] compare = spotLight.getSubmitTimeInterval();
+		for(int i = 0;i < 23;i++)
+			assertEquals(submitTimeInterval[i],compare[i]);
 	}
 
 	/**
@@ -92,7 +106,7 @@ public class SpotLightTest {
 	@Ignore
 	@Test
 	public void testACInFirstSubmit() {
-		fail("Not yet implemented");
+		assertEquals(spotLight.ACInFirstSubmit(), 2);
 	}
 
 	/**
@@ -102,7 +116,15 @@ public class SpotLightTest {
 	@Ignore
 	@Test
 	public void testProblemSolvedTop10() {
-		fail("Not yet implemented");
+		List<Pair<String,Integer>> date = spotLight.problemSolvedTop10();
+		List<Pair<String, Integer>> compare = new ArrayList<>();
+		compare.add(new Pair<String,Integer>("2007-03-31",3));
+		compare.add(new Pair<String,Integer>("2007-03-16",1));
+		compare.add(new Pair<String,Integer>("2007-04-01",1));
+		compare.add(new Pair<String,Integer>("2007-01-17",0));
+		compare.add(new Pair<String,Integer>("2007-01-14",0));
+		compare.add(new Pair<String,Integer>("2007-03-17",0));
+		compare.add(new Pair<String,Integer>("2007-03-18",0));
 	}
 
 	/**
@@ -111,7 +133,7 @@ public class SpotLightTest {
 	@Ignore
 	@Test
 	public void testHowManyDays() {
-		fail("Not yet implemented");
+		assertEquals(spotLight.howManyDays(), 2661);
 	}
 
 }
