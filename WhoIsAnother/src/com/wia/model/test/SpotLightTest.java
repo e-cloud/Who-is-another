@@ -38,8 +38,7 @@ public class SpotLightTest {
 	public static void setUpBeforeClass() throws Exception {
 		Context context = Context.getInstance();
 		DataPreprocessor preprocessor = new DataPreprocessor();
-		Author author = preprocessor.retrieveAuthorFromNet((String) context
-				.getContextObject("requestID"));
+		Author author = preprocessor.retrieveAuthorFromNet("wdp515105");
 		context.setAuthor(author);
 		spotLight = new SpotLight();
 	}
