@@ -5,6 +5,7 @@ package com.wia.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.chart.BarChart;
 
 /**
  * @author Saint Scott
@@ -13,6 +14,8 @@ import javafx.scene.Parent;
 public class AceRecommendController extends AbstractFXController {
 	@FXML
 	private Parent rootLayout;
+	@FXML
+	private BarChart<?, ?> rcmdChart;
 
 	/*
 	 * (non-Javadoc)

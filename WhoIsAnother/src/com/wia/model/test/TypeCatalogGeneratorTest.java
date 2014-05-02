@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.wia.model.local;
+package com.wia.model.test;
 
 import java.io.IOException;
 import java.util.Map;
@@ -12,6 +12,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.wia.model.local.TypeCatalogGenerator;
 
 /**
  * @author Saint Scott
@@ -58,7 +60,9 @@ public class TypeCatalogGeneratorTest {
 	 */
 	@Test
 	public void testGenerateCatalogMap() throws IOException {
-		Map<Integer, String> catalogMap = generator.GenerateCatalogMap();
+		Map<Integer, String> catalogMap = generator
+				.generateCatalogMap(getClass().getResource(
+						"/com/wia/model/local/DefaultCatalog.json").getPath());
 		logger.info(catalogMap.toString());
 	}
 

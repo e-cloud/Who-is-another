@@ -5,6 +5,7 @@ package com.wia.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.layout.GridPane;
 
 /**
  * @author Saint Scott
@@ -12,7 +13,7 @@ import javafx.scene.Parent;
  */
 public class NeighbourRecommendController extends AbstractFXController {
 	@FXML
-	private Parent rootLayout;
+	private GridPane rootLayout;
 
 	/*
 	 * (non-Javadoc)
