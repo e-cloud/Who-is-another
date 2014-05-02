@@ -18,9 +18,9 @@ import com.wia.util.FileUtil;
  * 
  */
 public class TypeCatalogGenerator {
-	public Map<Integer, String> GenerateCatalogMap() throws IOException {
-		File inputFile = new File(TypeCatalogGenerator.class.getResource(
-				"DefaultCatalog.json").getPath());
+	public Map<Integer, String> generateCatalogMap(String pathname)
+			throws IOException {
+		File inputFile = new File(pathname);
 		String str = FileUtil.readFile(inputFile);
 		JSONArray cataArray = JSONArray.fromObject(str);
 

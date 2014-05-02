@@ -13,16 +13,6 @@
   <!-- TODO Add Nodes -->
   <children>
     <Label text="六位邻居比较后显示你没做的题" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <TableView prefHeight="200.0" prefWidth="518.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-      <columns>
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="124.0" text="题号" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="186.0" text="题目类型" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="206.0" text="你的提交状态" />
-      </columns>
-      <GridPane.margin>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </GridPane.margin>
-    </TableView>
   </children>
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
