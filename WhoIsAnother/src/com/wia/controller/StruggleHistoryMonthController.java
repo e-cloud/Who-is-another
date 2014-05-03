@@ -164,8 +164,8 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 		int solved = generalInfo.getProblemCountPerMonth(year, Info.SOLVE).get(
 				month);
 		ObservableList<PieChart.Data> pieChartData = FXCollections
-				.observableArrayList(new PieChart.Data("Solved-" + solved,
-						solved), new PieChart.Data("UnSolved-"
+				.observableArrayList(new PieChart.Data("Solved:" + solved,
+						solved), new PieChart.Data("UnSolved:"
 						+ (submit - solved), submit - solved));
 		monthPieChart.setData(pieChartData);
 		monthBarChart.setAnimated(true);

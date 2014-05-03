@@ -149,8 +149,8 @@ public class StruggleHistoryDayController extends AbstractFXController {
 		}
 		ObservableList<PieChart.Data> pieChartData = FXCollections
 				.observableArrayList(
-						new PieChart.Data("Solved-" + solvecount, solvecount),
-						new PieChart.Data("UnSolved-"
+						new PieChart.Data("Solved:" + solvecount, solvecount),
+						new PieChart.Data("UnSolved:"
 								+ (problems.size() - solvecount), problems
 								.size() - solvecount));
 

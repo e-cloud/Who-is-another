@@ -42,6 +42,7 @@ public class Context {
 
 	public void setAuthor(Author author) {
 		currentAuthor = author;
+		contextObjects.clear();
 		GeneralInfo generalInfo = GeneralInfo.getInstance();
 		if (generalInfo.getRefAuthorID() != null
 				&& !generalInfo.getRefAuthorID().equals(

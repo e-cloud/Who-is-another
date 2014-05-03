@@ -158,8 +158,8 @@ public class StruggleHistoryYearController extends AbstractFXController {
 		int submit = generalInfo.getProblemCount(year, Info.SUBMIT);
 		int solved = generalInfo.getProblemCount(year, Info.SOLVE);
 		ObservableList<PieChart.Data> pieChartData = FXCollections
-				.observableArrayList(new PieChart.Data("Solved-" + solved,
-						solved), new PieChart.Data("UnSolved-"
+				.observableArrayList(new PieChart.Data("Solved:" + solved,
+						solved), new PieChart.Data("UnSolved:"
 						+ (submit - solved), submit - solved));
 		yearPieChart.setData(pieChartData);
 		yearBarChart.setAnimated(true);
