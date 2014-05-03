@@ -43,6 +43,7 @@ public class WelcomeController extends AbstractFXController {
 				}
 			}
 		});
+		textField.setText("jpg");
 	}
 
 	@Override

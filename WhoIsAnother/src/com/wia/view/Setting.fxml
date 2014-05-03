@@ -34,7 +34,7 @@
         <HBox id="HBox" alignment="CENTER" spacing="5.0">
           <children>
             <Label text="刷新用户数据：" />
-            <ToggleButton mnemonicParsing="false" text="状态" />
+            <Button fx:id="refreshButton" mnemonicParsing="false" text="刷新" />
           </children>
         </HBox>
         <Label text="（刷新用户数据会删除本地相应用户缓存，重新从网络中拉取数据，再缓存到本地文件。）" />

@@ -75,22 +75,12 @@ public class SpotLight {
 			Problem p = problemIterator.next();
 			Iterator<SubmitLog> submitIterator = p.getSubmitMap().values()
 					.iterator();
-			// Iterator<SubmitLog> compare =
-			// p.getSubmitMap().values().iterator();
-			// SubmitLog submitlog = compare.next();
-			// List<SubmitLog> list;
 			List<SubmitLog> list = new ArrayList<SubmitLog>();
 			Iterator<SubmitLog> log = p.getSubmitMap().values().iterator();
 			while (log.hasNext()) {
 				SubmitLog l = log.next();
 				list.add(l);
 			}
-			/*
-			 * Collections.sort(list,new Comparator<SubmitLog>() {
-			 * 
-			 * @Override public int compare(SubmitLog p1,SubmitLog p2) { if
-			 * (p1.getRid() > p2.getRid()) return 0; else return 1; } });
-			 */
 			int min = list.get(0).getRid();
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).getRid() < min)
@@ -99,7 +89,6 @@ public class SpotLight {
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).getRid() == min)
 					if (list.get(i).getStatus().toString() == "AC")
-						// System.out.println(list.get(0).getPid());
 						ACInFirstSubmit++;
 			}
 			while (submitIterator.hasNext()) {
@@ -111,17 +100,12 @@ public class SpotLight {
 					int index = s.getSubmitTime().get(Calendar.HOUR_OF_DAY);
 					unsolvedTimeInterval[index]++;
 				}
-				// if (s.getSubmitTime().before(submitlog.getSubmitTime()))
-				// compare = submitIterator;
 			}
-			// if(compare.next().getStatus().toString() == "AC")
-
 		}
 		for (int i = 0; i < 24; i++) {
 			submitTimeInterval[i] = acceptedTimeInterval[i]
 					+ unsolvedTimeInterval[i];
 		}
-		System.out.print("1");
 	}
 
 	/**

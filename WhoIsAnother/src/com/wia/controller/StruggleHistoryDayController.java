@@ -113,13 +113,13 @@ public class StruggleHistoryDayController extends AbstractFXController {
 		for (Iterator iterator = problems.iterator(); iterator.hasNext();) {
 			Problem problem = (Problem) iterator.next();
 			if (problem.isSolved()) {
-				solveSeries.getData().add(
-						new XYChart.Data(problem.getPid() + "", problem
-								.getSubmitCount()));
+				XYChart.Data data = new XYChart.Data(problem.getPid() + "",
+						problem.getSubmitCount());
+				solveSeries.getData().add(data);
 			} else {
-				unSolveSeries.getData().add(
-						new XYChart.Data(problem.getPid() + "", problem
-								.getSubmitCount()));
+				XYChart.Data data = new XYChart.Data(problem.getPid() + "",
+						problem.getSubmitCount());
+				unSolveSeries.getData().add(data);
 			}
 		}
 

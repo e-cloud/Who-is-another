@@ -60,7 +60,8 @@ public class TypeCatalog {
 	 * @return the problem's type
 	 */
 	public String getType(int pid) {
-		return catalog.get(pid);
+		String type = catalog.get(pid);
+		return type == null ? "其他类" : type;
 	}
 
 	/**

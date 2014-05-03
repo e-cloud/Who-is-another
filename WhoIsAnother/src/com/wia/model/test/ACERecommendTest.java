@@ -6,6 +6,8 @@ package com.wia.model.test;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.util.Pair;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,7 +66,7 @@ public class ACERecommendTest {
 	@Test
 	public void testRecommand() {
 		ACERecommend recommend = new ACERecommend();
-		List<Integer> rcmdList = recommend.recommand(author, 10);
+		List<Pair<Integer, Integer>> rcmdList = recommend.recommand(author, 10);
 		logger.info(rcmdList.toString());
 	}
 

@@ -72,13 +72,12 @@ public class RanklistController extends AbstractFXController {
 
 		ranklistTable.getSelectionModel().selectedItemProperty()
 				.addListener(new ChangeListener<Author>() {
-
 					@Override
 					public void changed(
 							ObservableValue<? extends Author> observable,
 							Author oldValue, Author newValue) {
 						Context.getInstance().addContextObject("competitor",
-								newValue);
+								newValue.getAuthorID());
 						myScreensContainer
 								.setScreen(RootStageController.COMPARATORID);
 					}
@@ -89,7 +88,7 @@ public class RanklistController extends AbstractFXController {
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
 				Context.getInstance().addContextObject("competitor",
-						new Author(compareField.getText()));
+						compareField.getText());
 				myScreensContainer.setScreen(RootStageController.COMPARATORID);
 			}
 		});

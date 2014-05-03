@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 import javafx.util.Pair;
 
+import com.wia.Context;
 import com.wia.model.data.Author;
 import com.wia.model.preprocess.DataPreprocessor;
 import com.wia.model.test.ACERecommendTest;
@@ -83,24 +84,26 @@ public class ACERecommend {
 		}
 	}
 
-	public List<Integer> recommand(Author author, int rcmdSize) {
-		DataPreprocessor preprocessor = new DataPreprocessor();
+	@SuppressWarnings("unchecked")
+	public List<Pair<Integer, Integer>> recommand(Author author, int rcmdSize) {
+		Context context = Context.getInstance();
 
-		List<Author> authors = preprocessor.retrieveTopAuthors(100);
+		if (!context.containsKey("acercmdmap")) {
+			DataPreprocessor preprocessor = new DataPreprocessor();
+			List<Author> authors = preprocessor.retrieveTopAuthors(100);
 
-		List<Set<Integer>> setList = preprocessor
-				.rertrieveSimpleAuthorList(authors);
+			List<Set<Integer>> setList = preprocessor
+					.rertrieveSimpleAuthorList(authors);
 
-		Map<Integer, Integer> map = calculate(setList);
-
+			Map<Integer, Integer> map = calculate(setList);
+			context.addContextObject("acercmdmap", map);
+		}
+		Map<Integer, Integer> map = (Map<Integer, Integer>) context
+				.getContextObject("acercmdmap");
 		removeDuplicate(author, map);
 
 		List<Pair<Integer, Integer>> pairs = sort(map);
-		logger.info(pairs.toString());
-		List<Integer> rcmdList = new ArrayList<>();
-		for (int i = 0; i < rcmdSize; i++) {
-			rcmdList.add(pairs.get(i).getKey());
-		}
-		return rcmdList;
+
+		return pairs.subList(0, rcmdSize);
 	}
 }
