@@ -50,7 +50,7 @@ public class IOUtil {
 	 * @return parsed string
 	 * @throws IOException
 	 */
-	public static String parseInputStreamWithCharset(InputStream is)
+	public static String parseInputStream(InputStream is)
 			throws IOException {
 		return parseInputStreamWithCharset(is, "utf-8");
 	}

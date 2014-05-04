@@ -26,8 +26,8 @@ public class TypeCatalog {
 		// TODO read the default classification file and initialize the catalog
 		TypeCatalogGenerator generator = new TypeCatalogGenerator();
 		try {
-			this.catalog = generator.generateCatalogMap(getClass().getResource(
-					"/com/wia/model/local/DefaultCatalog.json").getPath());
+			this.catalog = generator
+					.generateCatalogMap("/com/wia/model/local/DefaultCatalog.json");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
