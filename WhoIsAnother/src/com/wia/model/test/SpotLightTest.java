@@ -127,10 +127,10 @@ public class SpotLightTest {
 	/**
 	 * Test method for {@link com.wia.model.analysis.SpotLight#howManyDays()}.
 	 */
-	@Ignore
+	//@Ignore
 	@Test
 	public void testHowManyDays() {
-		assertEquals(spotLight.howManyDays(), 2661);
+		assertEquals(spotLight.howManyDays(), 2669);
 	}
 
 }
