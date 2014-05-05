@@ -3,15 +3,15 @@
  */
 package com.wia.model.local;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import com.wia.util.FileUtil;
+import com.wia.util.IOUtil;
 
 /**
  * @author sean
@@ -20,9 +20,8 @@ import com.wia.util.FileUtil;
 public class TypeCatalogGenerator {
 	public Map<Integer, String> generateCatalogMap(String pathname)
 			throws IOException {
-		File inputFile = new File(pathname);
-		String str = FileUtil.readFile(inputFile);
-		JSONArray cataArray = JSONArray.fromObject(str);
+		InputStream is = getClass().getResourceAsStream(pathname);
+		JSONArray cataArray = JSONArray.fromObject(IOUtil.parseInputStream(is));
 
 		Map<Integer, String> catalogMap = new HashMap<Integer, String>();
 		for (int i = 0; i < cataArray.size(); i++) {
