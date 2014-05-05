@@ -58,6 +58,8 @@ public class NeighbourRecommendController extends AbstractFXController {
 					initChart(nblist);
 					myScreensContainer.getChildren().removeAll(greylayer,
 							indicator);
+					rootLayout.getParent().getParent().getParent()
+							.setDisable(false);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -67,6 +69,7 @@ public class NeighbourRecommendController extends AbstractFXController {
 				}
 			}
 		});
+		rootLayout.getParent().getParent().getParent().setDisable(true);
 		// if(indicator.progressProperty().isBound()){
 		// indicator.progressProperty().unbind();;
 		// }

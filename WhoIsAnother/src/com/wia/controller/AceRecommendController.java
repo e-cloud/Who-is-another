@@ -54,6 +54,8 @@ public class AceRecommendController extends AbstractFXController {
 				try {
 					List<Pair<Integer, Integer>> pairs = task.get();
 					initChart(pairs);
+					rootLayout.getParent().getParent().getParent()
+							.setDisable(false);
 					myScreensContainer.getChildren().removeAll(greylayer,
 							indicator);
 				} catch (InterruptedException e) {
@@ -71,7 +73,7 @@ public class AceRecommendController extends AbstractFXController {
 		//
 		// indicator.progressProperty().bind(task.progressProperty());
 		// indicator.visibleProperty().bind(task.runningProperty());
-
+		rootLayout.getParent().getParent().getParent().setDisable(true);
 		myScreensContainer.getChildren().addAll(greylayer, indicator);
 		new Thread(task).start();
 

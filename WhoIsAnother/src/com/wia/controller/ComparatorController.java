@@ -95,6 +95,8 @@ public class ComparatorController extends AbstractFXController {
 					try {
 						Author competitor = task.get();
 						initChart(competitor);
+						rootLayout.getParent().getParent().getParent()
+								.setDisable(true);
 						myScreensContainer.getChildren().removeAll(greylayer,
 								indicator);
 					} catch (InterruptedException e) {
@@ -111,7 +113,7 @@ public class ComparatorController extends AbstractFXController {
 			// }
 			// indicator.progressProperty().bind(task.progressProperty());
 			// indicator.visibleProperty().bind(task.runningProperty());
-
+			rootLayout.getParent().getParent().getParent().setDisable(true);
 			myScreensContainer.getChildren().addAll(greylayer, indicator);
 			new Thread(task).start();
 		}
