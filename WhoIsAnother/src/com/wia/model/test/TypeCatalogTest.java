@@ -3,6 +3,8 @@
  */
 package com.wia.model.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.logging.Logger;
 
 import org.junit.AfterClass;
@@ -20,7 +22,7 @@ import com.wia.model.preprocess.DataPreprocessor;
  */
 public class TypeCatalogTest {
 
-	private static Logger logger = Logger.getLogger(SpotLightTest.class
+	private static Logger logger = Logger.getLogger(LightSpotTest.class
 			.getName());
 
 	/**
@@ -46,7 +48,7 @@ public class TypeCatalogTest {
 	 */
 	@Test
 	public void testGetType() {
-		logger.info(TypeCatalog.getInstance().getType(1017));
+		assertEquals("基础题", TypeCatalog.getInstance().getType(1017));
 	}
 
 	/**

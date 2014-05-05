@@ -15,7 +15,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.wia.model.data.Author;
@@ -68,7 +67,7 @@ public class DataPreprocessorTest {
 	 * {@link com.wia.model.preprocess.DataPreprocessor#rertrieveSimpleAuthor(com.wia.model.data.Author, boolean)}
 	 * .
 	 */
-	@Ignore
+	// @Ignore
 	@Test
 	public void testRertrieveSimpleAuthor() {
 		Author author = new Author("wdp515105");
@@ -84,7 +83,6 @@ public class DataPreprocessorTest {
 	// @Ignore
 	@Test
 	public void testRertrieveSimpleAuthorList() {
-		logger.info(authors.size() + "");
 		List<Set<Integer>> setList = preprocessor
 				.rertrieveSimpleAuthorList(authors);
 		int size = 0;
@@ -102,12 +100,12 @@ public class DataPreprocessorTest {
 	 * {@link com.wia.model.preprocess.DataPreprocessor#retrieveAuthorFromNet(java.lang.String)}
 	 * .
 	 */
-	@Ignore
+	// @Ignore
 	@Test
 	public void testRetrieveAuthorFromNet() {
 		// candidate "2011330300713" "haifei" "wdp515105"
-		Author user = preprocessor.retrieveAuthorFromNet("haifei");
-		assertEquals(user.getSubmitted(), 234);
+		Author user = preprocessor.retrieveAuthorFromNet("jpg");
+		assertEquals(user.getSubmitted(), 40);
 		Collection<Problem> problems = user.getProblemMap().values();
 		int count = 0;
 		for (Iterator<Problem> iterator = problems.iterator(); iterator
@@ -116,7 +114,6 @@ public class DataPreprocessorTest {
 			count += problem.getSubmitMap().size();
 		}
 		assertEquals(user.getSubmissions(), count);
-		logger.info(user.toString());
 	}
 
 	/**
@@ -124,12 +121,12 @@ public class DataPreprocessorTest {
 	 * {@link com.wia.model.preprocess.DataPreprocessor#retrieveTopAuthors(int, int)}
 	 * .
 	 */
-	@Ignore
+	// @Ignore
 	@Test
 	public void testRetrieveTopAuthors() {
 		int top = 100;
 		List<Author> authors = preprocessor.retrieveTopAuthors(top, 5);
-		assertEquals(authors.size(), top / 4);
+		assertEquals(authors.size(), top);
 	}
 
 }

@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.wia.Context;
-import com.wia.model.analysis.Recommend;
+import com.wia.model.analysis.NeighbourRecommend;
 import com.wia.model.data.Author;
 import com.wia.model.preprocess.DataPreprocessor;
 
@@ -19,7 +19,7 @@ import com.wia.model.preprocess.DataPreprocessor;
  * @author acer
  *
  */
-public class RecommendTest {
+public class NeighbourRecommendTest {
 
 	/**
 	 * @throws java.lang.Exception
@@ -33,12 +33,12 @@ public class RecommendTest {
 	}
 
 	/**
-	 * Test method for {@link com.wia.model.analysis.Recommend#neighborRecommend()}.
+	 * Test method for {@link com.wia.model.analysis.NeighbourRecommend#neighborRecommend()}.
 	 */
 	@Test
 	public void testNeighborRecommend() {
-		Recommend recommend = new Recommend();
-		List<Integer> list = recommend.neighborRecommend();
+		NeighbourRecommend neighbourRecommend = new NeighbourRecommend();
+		List<Integer> list = neighbourRecommend.neighborRecommend();
 		assertEquals(list.size() , 21);
 		
 	}

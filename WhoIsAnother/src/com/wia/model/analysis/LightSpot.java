@@ -24,7 +24,7 @@ import com.wia.model.data.SubmitLog;
  * @author 123
  * 
  */
-public class SpotLight {
+public class LightSpot {
 	private final int[] acceptedTimeInterval = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, };
 	private final int[] unsolvedTimeInterval = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -37,7 +37,7 @@ public class SpotLight {
 	/**
 	 * 构造函数，并初始化author对象
 	 */
-	public SpotLight() {
+	public LightSpot() {
 		Context context = Context.getInstance();
 		this.author = context.getCurrentAuthor();
 		this.ACInFirstSubmit = 0;

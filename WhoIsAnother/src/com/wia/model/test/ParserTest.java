@@ -18,7 +18,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -81,14 +80,13 @@ public class ParserTest {
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	@Ignore
+	// @Ignore
 	@Test
 	public void testAuthorInfoParser() throws ParseException, IOException {
 		author = new Author(authorID);
 		set = AuthorInfoParser.parse(data, author);
 		List<Author> map = AuthorListParser.parse(data);
-		assertEquals(map.size(), 6);
-		logger.info(set.toString());
+		assertEquals(map.size(), 7);
 	}
 
 	/**
@@ -99,7 +97,7 @@ public class ParserTest {
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	@Ignore
+	// @Ignore
 	@Test
 	// (timeout = 20000)
 	public void testSubmitlogsParser() throws ParseException, IOException {
@@ -121,7 +119,6 @@ public class ParserTest {
 				}
 			}
 		}
-		logger.info(author.toString());
 		assertEquals(submitLogs.size(), author.getSubmissions());
 	}
 
@@ -133,7 +130,7 @@ public class ParserTest {
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	@Ignore
+	// @Ignore
 	@Test
 	public void testAuthorListParser() throws ParseException, IOException {
 		PageFetcher fetcher = new PageFetcher();

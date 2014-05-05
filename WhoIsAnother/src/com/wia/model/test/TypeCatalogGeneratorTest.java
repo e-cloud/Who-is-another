@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -61,9 +62,8 @@ public class TypeCatalogGeneratorTest {
 	@Test
 	public void testGenerateCatalogMap() throws IOException {
 		Map<Integer, String> catalogMap = generator
-				.generateCatalogMap(getClass().getResource(
-						"/com/wia/model/local/DefaultCatalog.json").getPath());
-		logger.info(catalogMap.toString());
+				.generateCatalogMap("/com/wia/model/local/DefaultCatalog.json");
+		Assert.assertEquals(489, catalogMap.size());
 	}
 
 }

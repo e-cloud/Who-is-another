@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.util.Pair;
 
 import com.wia.Context;
-import com.wia.model.analysis.SpotLight;
+import com.wia.model.analysis.LightSpot;
 
 /**
  * @author Saint Scott
@@ -46,9 +46,9 @@ public class LightSpotController extends AbstractFXController {
 		// TODO Auto-generated method stub
 		Context context = Context.getInstance();
 		if (!context.containsKey("lightspot")) {
-			context.addContextObject("lightspot", new SpotLight());
+			context.addContextObject("lightspot", new LightSpot());
 		}
-		SpotLight spotLight = (SpotLight) context.getContextObject("lightspot");
+		LightSpot lightSpot = (LightSpot) context.getContextObject("lightspot");
 		// 初始化时段表
 		XYChart.Series solveSeries = new XYChart.Series();
 		solveSeries.setName("解决题目数");
@@ -56,8 +56,8 @@ public class LightSpotController extends AbstractFXController {
 		XYChart.Series submitSeries = new XYChart.Series();
 		submitSeries.setName("提交题目数");
 
-		int[] solveInts = spotLight.getAcceptedTimeInterval();
-		int[] submitInts = spotLight.getSubmitTimeInterval();
+		int[] solveInts = lightSpot.getAcceptedTimeInterval();
+		int[] submitInts = lightSpot.getSubmitTimeInterval();
 		for (int i = 0; i < solveInts.length; i++) {
 			solveSeries.getData().add(
 					new XYChart.Data<String, Integer>(String.valueOf(i + 1),
@@ -72,7 +72,7 @@ public class LightSpotController extends AbstractFXController {
 		// 初始化解决题目数前十
 		XYChart.Series solveSeries2 = new XYChart.Series();
 		solveSeries2.setName("解决题目数");
-		List<Pair<String, Integer>> solveTop10 = spotLight.problemSolvedTop10();
+		List<Pair<String, Integer>> solveTop10 = lightSpot.problemSolvedTop10();
 		for (Iterator iterator = solveTop10.iterator(); iterator.hasNext();) {
 			Pair<String, Integer> pair = (Pair<String, Integer>) iterator
 					.next();
@@ -84,8 +84,8 @@ public class LightSpotController extends AbstractFXController {
 		top10Chart.getData().add(solveSeries2);
 
 		// 初始化各个标签
-		daysLabel.setText(String.valueOf(spotLight.howManyDays()));
-		firstACLabel.setText(String.valueOf(spotLight.ACInFirstSubmit()));
+		daysLabel.setText(String.valueOf(lightSpot.howManyDays()));
+		firstACLabel.setText(String.valueOf(lightSpot.ACInFirstSubmit()));
 	}
 
 	@Override

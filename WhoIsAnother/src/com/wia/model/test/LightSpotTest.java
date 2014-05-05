@@ -19,7 +19,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.wia.Context;
-import com.wia.model.analysis.SpotLight;
+import com.wia.model.analysis.LightSpot;
 import com.wia.model.data.Author;
 import com.wia.model.preprocess.DataPreprocessor;
 
@@ -27,12 +27,12 @@ import com.wia.model.preprocess.DataPreprocessor;
  * @author Saint Scott
  * 
  */
-public class SpotLightTest {
+public class LightSpotTest {
 
-	private static Logger logger = Logger.getLogger(SpotLightTest.class
+	private static Logger logger = Logger.getLogger(LightSpotTest.class
 			.getName());
 
-	private static SpotLight spotLight;
+	private static LightSpot lightSpot;
 
 	/**
 	 * @throws java.lang.Exception
@@ -43,8 +43,8 @@ public class SpotLightTest {
 		DataPreprocessor preprocessor = new DataPreprocessor();
 		Author author = preprocessor.retrieveAuthorFromNet("wdp515105");
 		context.setAuthor(author);
-		spotLight = new SpotLight();
-		//spotLight.init();
+		lightSpot = new LightSpot();
+		// lightSpot.init();
 	}
 
 	/**
@@ -70,51 +70,50 @@ public class SpotLightTest {
 
 	/**
 	 * Test method for
-	 * {@link com.wia.model.analysis.SpotLight#getAcceptedTimeInterval()}.
+	 * {@link com.wia.model.analysis.LightSpot#getAcceptedTimeInterval()}.
 	 */
 	// @Ignore
 	@Test
 	public void testGetAcceptedTimeInterval() {
-		int[] acceptedTimeInterval = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 1, 2, 2, };
-		int[] compare = spotLight.getAcceptedTimeInterval();
+		int[] acceptedTimeInterval = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, };
+		int[] compare = lightSpot.getAcceptedTimeInterval();
 		for (int i = 0; i < 24; i++)
 			assertEquals(acceptedTimeInterval[i], compare[i]);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.wia.model.analysis.SpotLight#getSubmitTimeInterval()}.
+	 * {@link com.wia.model.analysis.LightSpot#getSubmitTimeInterval()}.
 	 */
 	// @Ignore
 	@Test
 	public void testGetSubmitTimeInterval() {
-		int[] submitTimeInterval = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 3, 0, 2, 2,
-				0, 0, 0, 0, 4, 4, 4, 15, 5, };
-		int[] compare = spotLight.getSubmitTimeInterval();
+		int[] submitTimeInterval = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 3, 0, 2,
+				2, 0, 0, 0, 0, 4, 4, 4, 15, 5 };
+		int[] compare = lightSpot.getSubmitTimeInterval();
 		for (int i = 0; i < 24; i++)
-			System.out.println(compare[i]);
-			//assertEquals(submitTimeInterval[i], compare[i]);
+			assertEquals(submitTimeInterval[i], compare[i]);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.wia.model.analysis.SpotLight#ACInFirstSubmit()}.
+	 * {@link com.wia.model.analysis.LightSpot#ACInFirstSubmit()}.
 	 */
 	@Ignore
 	@Test
 	public void testACInFirstSubmit() {
-		assertEquals(spotLight.ACInFirstSubmit(), 2);
+		assertEquals(lightSpot.ACInFirstSubmit(), 2);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.wia.model.analysis.SpotLight#problemSolvedTop10()}.
+	 * {@link com.wia.model.analysis.LightSpot#problemSolvedTop10()}.
 	 */
 	@Ignore
 	@Test
 	public void testProblemSolvedTop10() {
-		List<Pair<String, Integer>> date = spotLight.problemSolvedTop10();
+		List<Pair<String, Integer>> date = lightSpot.problemSolvedTop10();
 		List<Pair<String, Integer>> compare = new ArrayList<>();
 		compare.add(new Pair<String, Integer>("2007-03-31", 3));
 		compare.add(new Pair<String, Integer>("2007-03-16", 1));
@@ -126,12 +125,12 @@ public class SpotLightTest {
 	}
 
 	/**
-	 * Test method for {@link com.wia.model.analysis.SpotLight#howManyDays()}.
+	 * Test method for {@link com.wia.model.analysis.LightSpot#howManyDays()}.
 	 */
-	//@Ignore
+	// @Ignore
 	@Test
 	public void testHowManyDays() {
-		assertEquals(spotLight.howManyDays(), 2669);
+		assertEquals(lightSpot.howManyDays(), 2668);
 	}
 
 }

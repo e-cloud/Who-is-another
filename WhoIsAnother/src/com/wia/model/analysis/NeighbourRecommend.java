@@ -16,7 +16,7 @@ import com.wia.model.preprocess.DataPreprocessor;
  * @author acer
  *
  */
-public class Recommend {
+public class NeighbourRecommend {
 	
 	public List<Integer> neighborRecommend() { 
 		Context context = Context.getInstance();

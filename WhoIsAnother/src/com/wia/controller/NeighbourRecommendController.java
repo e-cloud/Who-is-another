@@ -20,7 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-import com.wia.model.analysis.Recommend;
+import com.wia.model.analysis.NeighbourRecommend;
 import com.wia.model.data.TypeCatalog;
 
 /**
@@ -106,8 +106,8 @@ public class NeighbourRecommendController extends AbstractFXController {
 		@Override
 		public List<Integer> call() throws Exception {
 			// TODO Auto-generated method stub
-			Recommend recommend = new Recommend();
-			List<Integer> nblist = recommend.neighborRecommend();
+			NeighbourRecommend neighbourRecommend = new NeighbourRecommend();
+			List<Integer> nblist = neighbourRecommend.neighborRecommend();
 			return nblist;
 		}
 	}
