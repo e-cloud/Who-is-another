@@ -106,6 +106,7 @@ public class SpotLight {
 			submitTimeInterval[i] = acceptedTimeInterval[i]
 					+ unsolvedTimeInterval[i];
 		}
+		int p = 5;
 	}
 
 	/**
@@ -132,11 +133,22 @@ public class SpotLight {
 					}
 				});
 		// 取出前十天
-		for (int i = 0; i < tempProblemSolvedTop10.size(); i++) {
+		if(tempProblemSolvedTop10.size() > 10)
+		{
+			for (int i = 0; i < 10; i++) {
 			Pair<Date, Integer> p = tempProblemSolvedTop10.get(i);
 			Pair<String, Integer> p1 = new Pair<String, Integer>(stdf.format(p
 					.getKey()), p.getValue());
 			getProblemSolvedTop10.add(p1);
+			}
+		}
+		else {
+			for (int i = 0; i < tempProblemSolvedTop10.size(); i++) {
+				Pair<Date, Integer> p = tempProblemSolvedTop10.get(i);
+				Pair<String, Integer> p1 = new Pair<String, Integer>(stdf.format(p
+						.getKey()), p.getValue());
+				getProblemSolvedTop10.add(p1);
+				}
 		}
 		return getProblemSolvedTop10;
 	}
