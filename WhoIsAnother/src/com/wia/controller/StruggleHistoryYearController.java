@@ -17,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -36,8 +35,6 @@ public class StruggleHistoryYearController extends AbstractFXController {
 			.getLogger(StruggleHistoryYearController.class.getName());
 	@FXML
 	private Parent rootLayout;
-	@FXML
-	Button backButton;
 
 	@FXML
 	private BarChart<?, ?> yearBarChart;
@@ -68,7 +65,7 @@ public class StruggleHistoryYearController extends AbstractFXController {
 
 	@FXML
 	private void initialize() {
-		backButton.setOnMouseClicked(new EventHandler<Event>() {
+		generalLink.setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
 			public void handle(Event event) {

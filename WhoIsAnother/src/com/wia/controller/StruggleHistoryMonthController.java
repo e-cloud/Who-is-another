@@ -18,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -37,8 +36,6 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 			.getLogger(StruggleHistoryMonthController.class.getName());
 	@FXML
 	private Parent rootLayout;
-	@FXML
-	Button backButton;
 
 	@FXML
 	private BarChart<?, ?> monthBarChart;
@@ -72,13 +69,22 @@ public class StruggleHistoryMonthController extends AbstractFXController {
 
 	@FXML
 	private void initialize() {
-		backButton.setOnMouseClicked(new EventHandler<Event>() {
+		yearLink.setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
 				myScreensContainer
 						.setScreen(StruggleHistoryRootController.STRUGGLEHISTORYEARID);
+			}
+		});
+		generalLink.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				// TODO Auto-generated method stub
+				myScreensContainer
+						.setScreen(StruggleHistoryRootController.STRUGGLEHISTORGENERALID);
 			}
 		});
 

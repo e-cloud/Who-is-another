@@ -15,19 +15,21 @@
   <children>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button" text="Back">
-          <HBox.margin>
-            <Insets left="10.0" fx:id="x1" />
-          </HBox.margin>
-        </Button>
         <Hyperlink fx:id="generalLink" styleClass="Hyperlink" text="概览" />
         <Label text="&gt;" />
         <Hyperlink fx:id="yearLink" styleClass="Hyperlink" text="2014年" />
         <Label text="&gt;" />
         <Hyperlink fx:id="monthLink" styleClass="Hyperlink" text="1月" />
       </children>
+      <padding>
+        <Insets left="10.0" fx:id="x1" />
+      </padding>
     </HBox>
-    <Label fx:id="barlabel" styleClass="text-title" text="提交题目数2014年1月各日分布" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="1" />
+    <Label fx:id="barlabel" styleClass="text-title" text="提交题目数2014年1月各日分布" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <GridPane.margin>
+        <Insets left="10.0" fx:id="x1" />
+      </GridPane.margin>
+    </Label>
     <BarChart fx:id="monthBarChart" prefWidth="546.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2">
       <xAxis>
         <CategoryAxis side="BOTTOM" />

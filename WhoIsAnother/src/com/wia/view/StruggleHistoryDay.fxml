@@ -15,7 +15,6 @@
   <children>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <Button fx:id="backButton" mnemonicParsing="false" styleClass="back-button" text="Back" />
         <Hyperlink fx:id="generalLink" styleClass="Hyperlink" text="概览" />
         <Label text="&gt;" />
         <Hyperlink fx:id="yearLink" styleClass="Hyperlink" text="2014年" />

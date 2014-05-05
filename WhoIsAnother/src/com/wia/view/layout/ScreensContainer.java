@@ -128,6 +128,7 @@ public class ScreensContainer extends StackPane {
 								new KeyFrame(new Duration(400), new KeyValue(
 										opacity, 1.0)));
 						fadeIn.play();
+						getController(name).update();
 					}
 				}, new KeyValue(opacity, 0.0)));
 				fade.play();
@@ -143,8 +144,8 @@ public class ScreensContainer extends StackPane {
 						new KeyValue(opacity, 0.0)), new KeyFrame(new Duration(
 						1000), new KeyValue(opacity, 1.0)));
 				fadeIn.play();
+				getController(name).update();
 			}
-			getController(name).update();
 			return true;
 		} else {
 			logger.severe("screen " + name + " hasn't been loaded!!! \n");

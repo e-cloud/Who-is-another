@@ -6,12 +6,18 @@ package com.wia.controller;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import com.wia.model.analysis.Recommend;
@@ -27,10 +33,51 @@ public class NeighbourRecommendController extends AbstractFXController {
 	@FXML
 	private GridPane gridPane;
 
+	private ProgressIndicator indicator;
+	private Region greylayer;
+
+	@FXML
+	private void initialize() {
+		indicator = new ProgressIndicator();
+		indicator.setMaxSize(200, 200);
+		greylayer = new Region();
+		greylayer.setStyle("-fx-background-color: rgba(0, 0, 0, 0.4)");
+	}
+
 	@Override
 	public void update() {
-		Recommend recommend = new Recommend();
-		List<Integer> nblist = recommend.neighborRecommend();
+		System.out.println(1);
+		final Task<List<Integer>> task = new DownloadTask();
+		task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+			@Override
+			public void handle(WorkerStateEvent arg0) {
+				// TODO Auto-generated method stub
+				try {
+					List<Integer> nblist = task.get();
+					initChart(nblist);
+					myScreensContainer.getChildren().removeAll(greylayer,
+							indicator);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		// if(indicator.progressProperty().isBound()){
+		// indicator.progressProperty().unbind();;
+		// }
+		// indicator.progressProperty().bind(task.progressProperty());
+		// indicator.visibleProperty().bind(task.runningProperty());
+
+		myScreensContainer.getChildren().addAll(greylayer, indicator);
+		new Thread(task).start();
+	}
+
+	private void initChart(List<Integer> nblist) {
 		Map<String, List<Integer>> nbrcmdmap = TypeCatalog.getInstance()
 				.classify(nblist);
 
@@ -48,6 +95,17 @@ public class NeighbourRecommendController extends AbstractFXController {
 			}
 			vBox.getChildren().add(flowPane);
 			gridPane.add(vBox, 0, rowIndex++);
+		}
+	}
+
+	private class DownloadTask extends Task<List<Integer>> {
+
+		@Override
+		public List<Integer> call() throws Exception {
+			// TODO Auto-generated method stub
+			Recommend recommend = new Recommend();
+			List<Integer> nblist = recommend.neighborRecommend();
+			return nblist;
 		}
 	}
 
