@@ -4,7 +4,6 @@
 package com.wia.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -103,11 +102,11 @@ public class RootStageController extends AbstractFXController {
 		rightPaneContainer.loadScreen(HELPID, helpFile);
 		rightPaneContainer.setScreen(STRUGGLEHISTORYROOTID);
 
-		Group root = new Group();
-		root.getChildren().addAll(rightPaneContainer);
+		// Group root = new Group();
+		// root.getChildren().addAll(rightPaneContainer);
 		BorderPane borderLayout = (BorderPane) myScreensContainer
 				.getScreen(CentralCoordinator.ROOTSTAGEID);
-		borderLayout.setCenter(root);
+		borderLayout.setCenter(rightPaneContainer);
 	}
 
 	@FXML

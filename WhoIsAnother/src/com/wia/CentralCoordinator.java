@@ -4,7 +4,6 @@
 package com.wia;
 
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -59,9 +58,9 @@ public class CentralCoordinator extends Application {
 
 		mainContainer.setScreen(CentralCoordinator.WELCOMEID);
 
-		Group root = new Group();
-		root.getChildren().addAll(mainContainer);
-		Scene scene = new Scene(root);
+		// Group root = new Group();
+		// root.getChildren().addAll(mainContainer);
+		Scene scene = new Scene(mainContainer);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
