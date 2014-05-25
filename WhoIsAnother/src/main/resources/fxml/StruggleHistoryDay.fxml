@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+
+<GridPane fx:id="rootLayout" alignment="CENTER" prefHeight="600.0" prefWidth="800.0" styleClass="layout" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.StruggleHistoryDayController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <HBox id="HBox" alignment="CENTER_LEFT" spacing="0.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <Hyperlink fx:id="generalLink" styleClass="Hyperlink" text="概览" />
+        <Label text="&gt;" />
+        <Hyperlink fx:id="yearLink" styleClass="Hyperlink" text="2014年" />
+        <Label text="&gt;" />
+        <Hyperlink fx:id="monthLink" styleClass="Hyperlink" text="1月" />
+        <Label text="&gt;" />
+        <Label fx:id="dayLabel" styleClass="Hyperlink" text="1日" />
+      </children>
+      <GridPane.margin>
+        <Insets left="10.0" fx:id="x2" />
+      </GridPane.margin>
+    </HBox>
+    <Label fx:id="barlabel" styleClass="text-title" text="2014年1月1日题目提交详细情况" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="1" />
+    <BarChart fx:id="dayBarChart" GridPane.columnIndex="0" GridPane.rowIndex="2">
+      <xAxis>
+        <CategoryAxis side="BOTTOM" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis side="LEFT" />
+      </yAxis>
+    </BarChart>
+    <Label fx:id="pielabel" styleClass="text-title" text="2014年1月1日做题情况总体分析" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="3" />
+    <PieChart id="PieChart" fx:id="dayPieChart" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="51.0" minHeight="10.0" percentHeight="8.0" prefHeight="51.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-1.0" minHeight="10.0" percentHeight="8.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-1.0" minHeight="10.0" percentHeight="48.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-1.0" minHeight="10.0" percentHeight="8.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-1.0" minHeight="10.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+  <stylesheets>
+    <URL value="@../css/general.css" />
+  </stylesheets>
+</GridPane>

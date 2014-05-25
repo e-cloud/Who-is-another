@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+
+<GridPane fx:id="rootLayout" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.AceRecommendController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <BarChart fx:id="rcmdChart" title="TOP100差异比较及共性分析后的结果：" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <xAxis>
+        <CategoryAxis side="BOTTOM" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis side="LEFT" />
+      </yAxis>
+      <GridPane.margin>
+        <Insets top="20.0" />
+      </GridPane.margin>
+    </BarChart>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="685.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>
