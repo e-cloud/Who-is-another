@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HelloWorldController">
+   <children>
+      <TextArea fx:id="Catalog" layoutX="14.0" layoutY="14.0" prefHeight="330.0" prefWidth="572.0" />
+      <Button fx:id="ImportButton" layoutX="31.0" layoutY="357.0" mnemonicParsing="false" onAction="#handle" prefHeight="23.0" prefWidth="65.0" text="导入" />
+      <Button fx:id="ExportButton" layoutX="134.0" layoutY="357.0" mnemonicParsing="false" onAction="#handle" prefHeight="23.0" prefWidth="65.0" text="导出" />
+      <Button fx:id="EditButton" layoutX="235.0" layoutY="357.0" mnemonicParsing="false" onAction="#handle" prefHeight="23.0" prefWidth="65.0" text="编辑" />
+      <Button fx:id="SaveButton" layoutX="339.0" layoutY="357.0" mnemonicParsing="false" onAction="#handle" prefHeight="23.0" prefWidth="65.0" text="另存" />
+   </children>
+</AnchorPane>
