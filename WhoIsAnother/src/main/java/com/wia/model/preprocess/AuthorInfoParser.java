@@ -28,7 +28,7 @@ public class AuthorInfoParser {
 	 * @param data
 	 * @return
 	 */
-	public static Set<Integer> parse(String data) {
+	private static Set<Integer> parse(String data) {
 		// 提取pid集合
 		Set<Integer> pidSet = new HashSet<Integer>();
 		Pattern pattern = Pattern.compile("p\\((\\d+),\\d+,\\d+\\)");
@@ -47,6 +47,11 @@ public class AuthorInfoParser {
 	public static Set<Integer> parse(String data, Author author)
 			throws ParseException {
 		// TODO Auto-generated method stub
+		if (data.contains("System Message")
+				|| data.contains("<DIV>No such user.</DIV>")) {
+			return null;
+		}
+
 		Document doc = Jsoup.parse(data);
 		// path body > table > tbody > tr[3] > td > table > tr > td
 		Element targetTD = doc.select("body > table > tbody >tr").get(3)
@@ -93,8 +98,10 @@ public class AuthorInfoParser {
 		for (Element element : targetTRs) {
 			if (element.select("td").get(0).html().equals(String.valueOf(rank))) {
 				String ratio = element.select("td").get(6).html();
-				acRatio = Double.valueOf(ratio.substring(0,
-						ratio.lastIndexOf('%')));
+				if (ratio.length() > 1) {
+					acRatio = Double.valueOf(ratio.substring(0,
+							ratio.lastIndexOf('%')));
+				}
 				break;
 			}
 		}

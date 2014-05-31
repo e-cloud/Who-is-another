@@ -16,7 +16,6 @@ import java.util.Set;
 
 import javafx.util.Pair;
 
-import com.wia.Context;
 import com.wia.model.data.Author;
 import com.wia.model.data.Problem;
 import com.wia.model.data.SubmitLog;
@@ -29,41 +28,19 @@ public class GeneralInfo extends Info {
 
 	private final Author author;
 	private final Map<Integer, YearInfo> years;
-	private final Context context;
-
-	private volatile static GeneralInfo generalInfo;
 
 	/**
 	 * 
 	 */
-	private GeneralInfo() {
+	public GeneralInfo(Author author) {
 		// TODO Auto-generated constructor stub
-		context = Context.getInstance();
-		this.author = context.getCurrentAuthor();
+		this.author = author;
 		years = new HashMap<Integer, YearInfo>();
 		init();
 	}
 
-	public static GeneralInfo getInstance() {
-		if (generalInfo == null) {
-			synchronized (GeneralInfo.class) {
-				if (generalInfo == null) {
-					generalInfo = new GeneralInfo();
-				}
-			}
-		}
-		return generalInfo;
-	}
-
-	/**
-	 * 重置GenearlInfo的实例，一般是因为切换用户
-	 */
-	public void reset() {
-		generalInfo = new GeneralInfo();
-	}
-
-	public String getRefAuthorID() {
-		return author != null ? author.getAuthorID() : null;
+	public Author getRefAuthor() {
+		return author;
 	}
 
 	/**

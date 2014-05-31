@@ -6,23 +6,14 @@ package com.wia;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.application.Application;
-
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
-
-import com.wia.model.analysis.GeneralInfo;
-import com.wia.model.data.Author;
 
 /**
  * @author Saint Scott
  * 
  */
 public class Context {
-
-	private Author currentAuthor;
-
-	private Application coordinator;
 
 	private volatile static Context uniqueInstance;
 
@@ -40,6 +31,10 @@ public class Context {
 		}
 		return uniqueInstance;
 	}
+
+	/*
+	 * configuration part
+	 */
 
 	private PropertiesConfiguration config = null;
 
@@ -62,38 +57,9 @@ public class Context {
 		config.setProperty(key, value);
 	}
 
-	public void setAuthor(Author author) {
-		currentAuthor = author;
-		contextObjects.clear();
-		GeneralInfo generalInfo = GeneralInfo.getInstance();
-		if (generalInfo.getRefAuthorID() != null
-				&& !generalInfo.getRefAuthorID().equals(
-						currentAuthor.getAuthorID())) {
-			generalInfo.reset();
-		}
-	}
-
-	/**
-	 * @return the currentAuthor
+	/*
+	 * context object part
 	 */
-	public Author getCurrentAuthor() {
-		return currentAuthor;
-	}
-
-	/**
-	 * @return the coordinator
-	 */
-	public Application getCoordinator() {
-		return coordinator;
-	}
-
-	/**
-	 * @param coordinator
-	 *            the coordinator to set
-	 */
-	public void setCoordinator(Application coordinator) {
-		this.coordinator = coordinator;
-	}
 
 	private final Map<String, Object> contextObjects = new HashMap<String, Object>();
 

@@ -23,6 +23,22 @@ import org.apache.http.util.EntityUtils;
  */
 public class PageFetcher {
 
+	private static int count = 0;
+	private static int repeatCount = 0;
+
+	public static void resetCounter() {
+		count = 0;
+		repeatCount = 0;
+	}
+
+	public static int getCounter() {
+		return count;
+	}
+
+	public static int getRepeatCounter() {
+		return repeatCount;
+	}
+
 	public String fetch(String url) throws ClientProtocolException, IOException {
 		// TODO Auto-generated method stub
 		DefaultHttpRequestRetryHandler retryHandler = new DefaultHttpRequestRetryHandler(
@@ -40,10 +56,12 @@ public class PageFetcher {
 		CloseableHttpResponse response = httpclient.execute(httpGet);
 
 		while (true) {
+			count++;
 			int status = response.getStatusLine().getStatusCode();
 			if (status >= 200 && status < 300) {
 				break;
 			}
+			repeatCount++;
 			response.close();
 			response = httpclient.execute(httpGet);
 		}

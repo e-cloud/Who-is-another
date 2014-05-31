@@ -3,8 +3,6 @@
  */
 package com.wia.controller;
 
-import javafx.scene.Parent;
-
 import com.wia.view.ScreensContainer;
 
 /**
@@ -13,7 +11,7 @@ import com.wia.view.ScreensContainer;
  */
 public abstract class AbstractFXController {
 
-	protected ScreensContainer myScreensContainer;
+	protected ScreensContainer myScreensContainer = null;
 
 	/**
 	 * 
@@ -26,14 +24,4 @@ public abstract class AbstractFXController {
 	public void setScreenContainer(ScreensContainer screensContainer) {
 		myScreensContainer = screensContainer;
 	};
-
-	/**
-	 * @return
-	 */
-	public abstract Parent getLayout();
-
-	public void update() {
-
-	}
-
 }

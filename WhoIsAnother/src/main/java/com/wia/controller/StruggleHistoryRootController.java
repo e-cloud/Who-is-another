@@ -3,10 +3,15 @@
  */
 package com.wia.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
+import com.wia.model.analysis.GeneralInfo;
+import com.wia.model.data.Author;
 import com.wia.view.ScreensContainer;
 
 /**
@@ -14,51 +19,38 @@ import com.wia.view.ScreensContainer;
  * 
  */
 public class StruggleHistoryRootController extends AbstractFXController {
-	private ScreensContainer historyContainer;
 
 	public final static String ID_SH_GENERAL = "strugglehistorygeneral";
 	public final static String file_sh_general = "/fxml/StruggleHistoryGeneral.fxml";
-	public final static String ID_SH_YEAR = "strugglehistoryyear";
-	public final static String file_sh_year = "/fxml/StruggleHistoryYear.fxml";
-	public final static String ID_SH_MONTH = "strugglehistorymonth";
-	public final static String file_sh_month = "/fxml/StruggleHistoryMonth.fxml";
-	public final static String ID_SH_DAY = "strugglehistoryday";
-	public final static String file_sh_day = "/fxml/StruggleHistoryDay.fxml";
+	public final static String ID_SH_DETAIL = "strugglehistorydetail";
+	public final static String file_sh_detail = "/fxml/StruggleHistoryDetail.fxml";
+
+	public final static String GENERALINFO = "generalinfo";
+	public final static String AUTHOR = "author";
+	public final static String YEAR = "year";
+	public final static String MONTH = "month";
+	public final static String DAY = "day";
+
 	@FXML
 	private Parent rootLayout;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#init()
-	 */
+	private ScreensContainer historyContainer;
+
 	@Override
 	public void init() {
 		historyContainer = new ScreensContainer();
-		historyContainer.loadScreen(ID_SH_GENERAL, file_sh_general);
-		historyContainer.loadScreen(ID_SH_YEAR, file_sh_year);
-		historyContainer.loadScreen(ID_SH_MONTH, file_sh_month);
-		historyContainer.loadScreen(ID_SH_DAY, file_sh_day);
+		historyContainer.registerScreen(ID_SH_GENERAL, file_sh_general);
+		historyContainer.registerScreen(ID_SH_DETAIL, file_sh_detail);
+
+		Map<String, Object> userdata = new HashMap<>();
+		userdata.put("user", myScreensContainer.getUserData());
+		userdata.put("generalinfo",
+				new GeneralInfo((Author) myScreensContainer.getUserData()));
+		historyContainer.setUserData(userdata);
+
+		((StackPane) rootLayout).getChildren().addAll(historyContainer);
+
 		historyContainer.setScreen(ID_SH_GENERAL);
 
-		AnchorPane pane = (AnchorPane) myScreensContainer
-				.getScreen(RootStageController.ID_SH_ROOT);
-		pane.getChildren().addAll(historyContainer);
-	}
-
-	@Override
-	public void update() {
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#getLayout()
-	 */
-	@Override
-	public Parent getLayout() {
-		// TODO Auto-generated method stub
-		return rootLayout;
 	}
 }

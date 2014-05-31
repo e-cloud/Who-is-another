@@ -3,24 +3,25 @@
  */
 package com.wia.controller;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import org.controlsfx.dialog.Dialogs;
+
 import com.wia.model.analysis.NeighbourRecommend;
+import com.wia.model.data.Author;
 import com.wia.model.data.TypeCatalog;
 
 /**
@@ -33,49 +34,19 @@ public class NeighbourRecommendController extends AbstractFXController {
 	@FXML
 	private GridPane gridPane;
 
-	private ProgressIndicator indicator;
-	private Region greylayer;
-
-	@FXML
-	private void initialize() {
-		indicator = new ProgressIndicator();
-		indicator.setMaxSize(200, 200);
-		greylayer = new Region();
-		greylayer.setStyle("-fx-background-color: rgba(0, 0, 0, 0.4)");
-	}
-
 	@Override
-	public void update() {
-		final Task<List<Integer>> task = new DownloadTask();
-		task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+	public void init() {
+		Author author = (Author) myScreensContainer.getUserData();
 
-			@Override
-			public void handle(WorkerStateEvent arg0) {
-				// TODO Auto-generated method stub
-				try {
-					List<Integer> nblist = task.get();
-					initChart(nblist);
-					myScreensContainer.getChildren().removeAll(greylayer,
-							indicator);
-					rootLayout.getParent().getParent().getParent()
-							.setDisable(false);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		rootLayout.getParent().getParent().getParent().setDisable(true);
-		// if(indicator.progressProperty().isBound()){
-		// indicator.progressProperty().unbind();;
-		// }
-		// indicator.progressProperty().bind(task.progressProperty());
-		// indicator.visibleProperty().bind(task.runningProperty());
+		Task<List<Integer>> task = new AnalysizeTask(author);
 
-		myScreensContainer.getChildren().addAll(greylayer, indicator);
+		Dialogs.create()
+				.title("Progress Dialog")
+				.masthead(
+						"Downloading Author " + author.getAuthorID()
+								+ "'s neighbours' information!")
+				.showWorkerProgress(task);
+
 		new Thread(task).start();
 	}
 
@@ -83,48 +54,62 @@ public class NeighbourRecommendController extends AbstractFXController {
 		Map<String, List<Integer>> nbrcmdmap = TypeCatalog.getInstance()
 				.classify(nblist);
 
-		int rowIndex = 1;
-		if (gridPane.getChildren().size() > 1) {
-			gridPane.getChildren().remove(1, gridPane.getChildren().size() - 1);
-		}
+		int rowIndex = 0;
 
 		for (Iterator<String> iterator = nbrcmdmap.keySet().iterator(); iterator
 				.hasNext();) {
 			String type = iterator.next();
-			VBox vBox = new VBox();
-			vBox.getChildren().add(new Label(type));
-			FlowPane flowPane = new FlowPane(20, 10);
-			for (Iterator<Integer> iterator2 = nbrcmdmap.get(type).iterator(); iterator2
-					.hasNext();) {
-				Integer integer = iterator2.next();
-				flowPane.getChildren().add(new Label(integer.toString()));
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(
+						"/fxml/FlowPid.fxml"));
+				VBox vBox = loader.load();
+				FlowPane flowPane = ((FlowPidController) loader.getController())
+						.init(type);
+
+				for (Iterator<Integer> iterator2 = nbrcmdmap.get(type)
+						.iterator(); iterator2.hasNext();) {
+					Integer integer = iterator2.next();
+					flowPane.getChildren().add(new Label(integer.toString()));
+				}
+				gridPane.add(vBox, 0, rowIndex++);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			vBox.getChildren().add(flowPane);
-			gridPane.add(vBox, 0, rowIndex++);
 		}
 	}
 
-	private class DownloadTask extends Task<List<Integer>> {
+	private class AnalysizeTask extends Task<List<Integer>> {
+
+		private final Author author;
+
+		public AnalysizeTask(Author author) {
+			this.author = author;
+		}
 
 		@Override
 		public List<Integer> call() throws Exception {
 			// TODO Auto-generated method stub
-			NeighbourRecommend neighbourRecommend = new NeighbourRecommend();
-			List<Integer> nblist = neighbourRecommend.neighborRecommend();
-			return nblist;
+			NeighbourRecommend neighbourRecommend = new NeighbourRecommend(
+					author);
+			return neighbourRecommend.recommend();
 		}
-	}
 
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Parent getLayout() {
-		// TODO Auto-generated method stub
-		return rootLayout;
+		@Override
+		protected void succeeded() {
+			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub
+			try {
+				List<Integer> nblist = this.get();
+				initChart(nblist);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

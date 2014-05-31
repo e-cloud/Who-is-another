@@ -40,9 +40,12 @@ public class AuthorListParser {
 			String Id = matcher.group(1);
 
 			// 提取ac率
+			double acRatio = 0;
 			String ratio = element.select("td").get(6).html();
-			double acRatio = Double.valueOf(ratio.substring(0,
-					ratio.lastIndexOf('%')));
+			if (ratio.length() > 1) {
+				acRatio = Double.valueOf(ratio.substring(0,
+						ratio.lastIndexOf('%')));
+			}
 
 			int nbrank = Integer.valueOf(element.select("td").get(0).html());
 			String nbnationality = element.select("td > img").get(0)

@@ -14,8 +14,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.util.Pair;
 
-import com.wia.Context;
 import com.wia.model.analysis.LightSpot;
+import com.wia.model.data.Author;
 
 /**
  * @author Saint Scott
@@ -25,9 +25,9 @@ public class LightSpotController extends AbstractFXController {
 	@FXML
 	private Parent rootLayout;
 	@FXML
-	private LineChart<?, ?> intervalChart;
+	private LineChart<String, Integer> intervalChart;
 	@FXML
-	private BarChart<?, ?> top10Chart;
+	private BarChart<String, Integer> top10Chart;
 
 	@FXML
 	private Label daysLabel;
@@ -40,20 +40,17 @@ public class LightSpotController extends AbstractFXController {
 		intervalChart.setTitle("Advanced Bar Chart");
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("unchecked")
 	@Override
-	public void update() {
+	public void init() {
 		// TODO Auto-generated method stub
-		Context context = Context.getInstance();
-		if (!context.containsKey("lightspot")) {
-			context.addContextObject("lightspot", new LightSpot());
-		}
-		LightSpot lightSpot = (LightSpot) context.getContextObject("lightspot");
+		LightSpot lightSpot = new LightSpot(
+				(Author) myScreensContainer.getUserData());
 		// 初始化时段表
-		XYChart.Series solveSeries = new XYChart.Series();
+		XYChart.Series<String, Integer> solveSeries = new XYChart.Series<String, Integer>();
 		solveSeries.setName("解决题目数");
 
-		XYChart.Series submitSeries = new XYChart.Series();
+		XYChart.Series<String, Integer> submitSeries = new XYChart.Series<String, Integer>();
 		submitSeries.setName("提交题目数");
 
 		int[] solveInts = lightSpot.getAcceptedTimeInterval();
@@ -70,12 +67,12 @@ public class LightSpotController extends AbstractFXController {
 		intervalChart.getData().addAll(submitSeries, solveSeries);
 
 		// 初始化解决题目数前十
-		XYChart.Series solveSeries2 = new XYChart.Series();
+		XYChart.Series<String, Integer> solveSeries2 = new XYChart.Series<String, Integer>();
 		solveSeries2.setName("解决题目数");
 		List<Pair<String, Integer>> solveTop10 = lightSpot.problemSolvedTop10();
-		for (Iterator iterator = solveTop10.iterator(); iterator.hasNext();) {
-			Pair<String, Integer> pair = (Pair<String, Integer>) iterator
-					.next();
+		for (Iterator<Pair<String, Integer>> iterator = solveTop10.iterator(); iterator
+				.hasNext();) {
+			Pair<String, Integer> pair = iterator.next();
 			solveSeries2.getData().add(
 					new XYChart.Data<String, Integer>(pair.getKey(), pair
 							.getValue()));
@@ -86,18 +83,6 @@ public class LightSpotController extends AbstractFXController {
 		// 初始化各个标签
 		daysLabel.setText(String.valueOf(lightSpot.howManyDays()));
 		firstACLabel.setText(String.valueOf(lightSpot.ACInFirstSubmit()));
-	}
-
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Parent getLayout() {
-		// TODO Auto-generated method stub
-		return rootLayout;
 	}
 
 }

@@ -7,7 +7,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javafx.util.Pair;
 
@@ -18,18 +17,14 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.wia.Context;
 import com.wia.model.data.Author;
-import com.wia.model.preprocess.DataPreprocessor;
+import com.wia.model.preprocess.DetailAuthorCrawler;
 
 /**
  * @author Saint Scott
  * 
  */
 public class LightSpotTest {
-
-	private static Logger logger = Logger.getLogger(LightSpotTest.class
-			.getName());
 
 	private static LightSpot lightSpot;
 
@@ -38,11 +33,8 @@ public class LightSpotTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Context context = Context.getInstance();
-		DataPreprocessor preprocessor = new DataPreprocessor();
-		Author author = preprocessor.retrieveAuthorFromNet("wdp515105");
-		context.setAuthor(author);
-		lightSpot = new LightSpot();
+		Author author = new DetailAuthorCrawler("wdp515105").crawl();
+		lightSpot = new LightSpot(author);
 		// lightSpot.init();
 	}
 
@@ -121,15 +113,10 @@ public class LightSpotTest {
 		compare.add(new Pair<String, Integer>("2007-01-14", 0));
 		compare.add(new Pair<String, Integer>("2007-03-17", 0));
 		compare.add(new Pair<String, Integer>("2007-03-18", 0));
-	}
 
-	/**
-	 * Test method for {@link com.wia.model.analysis.LightSpot#howManyDays()}.
-	 */
-	// @Ignore
-	@Test
-	public void testHowManyDays() {
-		assertEquals(lightSpot.howManyDays(), 2668);
+		for (int i = 0; i < date.size(); i++) {
+			date.get(i).equals(compare.get(i));
+		}
 	}
 
 }

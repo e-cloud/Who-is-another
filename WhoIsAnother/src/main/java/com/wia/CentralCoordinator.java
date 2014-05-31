@@ -3,8 +3,6 @@
  */
 package com.wia;
 
-import java.util.Properties;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,12 +16,9 @@ import com.wia.view.ScreensContainer;
 public class CentralCoordinator extends Application {
 
 	ScreensContainer mainContainer;
-	Properties dProperties;
 	public Stage primaryStage;
 	public final static String ID_WELCOME = "WELCOME";
 	public static String file_welcome = "/fxml/Welcome.fxml";
-	public final static String ID_PROGRESS = "PROGRESS";
-	public static String file_progress = "/fxml/ProgressBar.fxml";
 	public final static String ID_ROOTSTAGE = "ROOTSTAGE";
 	public static String file_rootstage = "/fxml/RootStage.fxml";
 
@@ -37,8 +32,6 @@ public class CentralCoordinator extends Application {
 		// TODO Auto-generated method stub
 		super.init();
 		Context context = Context.getInstance();
-		context.setCoordinator(this);
-		// file_welcome = (String) context.getConfigProperty("");
 	}
 
 	/*
@@ -53,12 +46,12 @@ public class CentralCoordinator extends Application {
 		this.primaryStage.setTitle("Who is another");
 
 		mainContainer = new ScreensContainer();
-		mainContainer.loadScreen(CentralCoordinator.ID_WELCOME,
+		mainContainer.registerScreen(CentralCoordinator.ID_WELCOME,
 				CentralCoordinator.file_welcome);
-		mainContainer.loadScreen(CentralCoordinator.ID_PROGRESS,
-				CentralCoordinator.file_progress);
+		mainContainer.registerScreen(CentralCoordinator.ID_ROOTSTAGE,
+				CentralCoordinator.file_rootstage);
 
-		mainContainer.setScreen(CentralCoordinator.ID_WELCOME);
+		mainContainer.setScreen(CentralCoordinator.ID_ROOTSTAGE);
 
 		// Group root = new Group();
 		// root.getChildren().addAll(mainContainer);

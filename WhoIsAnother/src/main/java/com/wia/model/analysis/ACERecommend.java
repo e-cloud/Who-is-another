@@ -12,21 +12,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import javafx.util.Pair;
 
 import com.wia.Context;
 import com.wia.model.data.Author;
-import com.wia.model.preprocess.DataPreprocessor;
+import com.wia.model.preprocess.AuthorPidListCrawler;
+import com.wia.model.preprocess.TopAuthorsCrawler;
 
 /**
  * @author Saint Scott
  * 
  */
 public class ACERecommend {
-	private static Logger logger = Logger.getLogger(ACERecommend.class
-			.getName());
+
+	private final Author author;
+
+	public ACERecommend(Author author) {
+		this.author = author;
+	}
 
 	private Map<Integer, Integer> calculate(List<Set<Integer>> setList) {
 
@@ -75,7 +79,7 @@ public class ACERecommend {
 		return result;
 	}
 
-	private void removeDuplicate(Author author, Map<Integer, Integer> data) {
+	private void removeDuplicate(Map<Integer, Integer> data) {
 		for (Iterator<Integer> iterator = author.getProblemMap().keySet()
 				.iterator(); iterator.hasNext();) {
 			Integer pid = iterator.next();
@@ -83,23 +87,29 @@ public class ACERecommend {
 		}
 	}
 
+	/**
+	 * @param author
+	 *            目标用户
+	 * @param rcmdSize
+	 *            推荐题目数
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
-	public List<Pair<Integer, Integer>> recommand(Author author, int rcmdSize) {
+	public List<Pair<Integer, Integer>> recommend(int rcmdSize) {
 		Context context = Context.getInstance();
 
 		if (!context.containsKey("acercmdmap")) {
-			DataPreprocessor preprocessor = new DataPreprocessor();
-			List<Author> authors = preprocessor.retrieveTopAuthors(100);
+			List<Author> authors = new TopAuthorsCrawler(100).crawl();
 
-			List<Set<Integer>> setList = preprocessor
-					.rertrieveSimpleAuthorList(authors);
+			List<Set<Integer>> setList = new AuthorPidListCrawler(authors)
+					.crawl();
 
 			Map<Integer, Integer> map = calculate(setList);
 			context.addContextObject("acercmdmap", map);
 		}
 		Map<Integer, Integer> map = (Map<Integer, Integer>) context
 				.getContextObject("acercmdmap");
-		removeDuplicate(author, map);
+		removeDuplicate(map);
 
 		List<Pair<Integer, Integer>> pairs = sort(map);
 

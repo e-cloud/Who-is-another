@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<GridPane fx:id="rootLayout" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.AceRecommendController">
+<GridPane fx:id="rootLayout" prefHeight="400.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.AceRecommendController">
   <!-- TODO Add Nodes -->
   <children>
     <BarChart fx:id="rcmdChart" title="TOP100差异比较及共性分析后的结果：" GridPane.columnIndex="0" GridPane.rowIndex="0">

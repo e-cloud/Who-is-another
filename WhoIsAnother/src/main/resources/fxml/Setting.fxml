@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
@@ -8,38 +9,35 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<GridPane fx:id="rootLayout" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.wia.controller.SettingController">
+<GridPane fx:id="rootLayout" prefHeight="400.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.SettingController">
   <!-- TODO Add Nodes -->
   <children>
-    <HBox id="HBox" alignment="CENTER" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <children>
-        <Label text="如果你想切换默认用户：请输入新用户的Author ID：" />
-        <TextField fx:id="switchTextField" prefWidth="200.0" />
-        <Button fx:id="switchButton" mnemonicParsing="false" text="确认" />
-      </children>
-    </HBox>
-    <VBox id="VBox" alignment="CENTER" spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-      <children>
-        <HBox id="HBox" alignment="CENTER" spacing="5.0">
-          <children>
-            <Label text="缓存数据到本地：" />
-            <Button mnemonicParsing="false" text="确认" />
-          </children>
-        </HBox>
+  <HBox id="HBox" alignment="CENTER_LEFT">
+    <children>
+      <Label text="缓存数据到本地：" />
+            <ToggleButton fx:id="yesButton" mnemonicParsing="false" selected="true" text="是" />
+            <ToggleButton fx:id="noButton" mnemonicParsing="false" text="否" />
         <Label text="（鉴于用户信息不会经常改动，缓存数据到本地有助于加快加载速度以及减少网络通信）" />
-      </children>
-    </VBox>
-    <VBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-      <children>
-        <HBox id="HBox" alignment="CENTER" spacing="5.0">
-          <children>
-            <Label text="刷新用户数据：" />
-            <Button fx:id="refreshButton" mnemonicParsing="false" text="刷新" />
-          </children>
-        </HBox>
+    </children>
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+  </HBox>
+  <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" GridPane.rowIndex="1">
+    <children>
+      <Label text="刷新用户数据：" />
+      <Button fx:id="refreshButton" mnemonicParsing="false" text="刷新" />
         <Label text="（刷新用户数据会删除本地相应用户缓存，重新从网络中拉取数据，再缓存到本地文件。）" />
-      </children>
-    </VBox>
+    </children>
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+  </HBox>
+      <Button fx:id="typeManageButton" mnemonicParsing="false" text="分类管理" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Button>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="-1.0" minWidth="10.0" prefWidth="-1.0" />

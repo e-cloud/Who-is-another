@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import org.apache.http.util.CharArrayBuffer;
 
@@ -15,6 +17,16 @@ import org.apache.http.util.CharArrayBuffer;
  * 
  */
 public class IOUtil {
+
+	public static String urlEncode(String targetString) {
+		try {
+			return URLEncoder.encode(targetString, "gb18030");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return targetString;
+	}
 
 	/**
 	 * 将指定编码集的输入流解析为字符串

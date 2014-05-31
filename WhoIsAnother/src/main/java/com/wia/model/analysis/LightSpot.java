@@ -15,7 +15,6 @@ import java.util.List;
 
 import javafx.util.Pair;
 
-import com.wia.Context;
 import com.wia.model.data.Author;
 import com.wia.model.data.Problem;
 import com.wia.model.data.SubmitLog;
@@ -37,9 +36,8 @@ public class LightSpot {
 	/**
 	 * 构造函数，并初始化author对象
 	 */
-	public LightSpot() {
-		Context context = Context.getInstance();
-		this.author = context.getCurrentAuthor();
+	public LightSpot(Author author) {
+		this.author = author;
 		this.ACInFirstSubmit = 0;
 		init();
 	}
@@ -106,7 +104,6 @@ public class LightSpot {
 			submitTimeInterval[i] = acceptedTimeInterval[i]
 					+ unsolvedTimeInterval[i];
 		}
-		int p = 5;
 	}
 
 	/**
@@ -118,7 +115,7 @@ public class LightSpot {
 		SimpleDateFormat stdf = new SimpleDateFormat("yyyy-MM-dd");
 		List<Pair<Date, Integer>> tempProblemSolvedTop10;
 		List<Pair<String, Integer>> getProblemSolvedTop10 = new ArrayList<Pair<String, Integer>>();
-		GeneralInfo generalInfo = GeneralInfo.getInstance();
+		GeneralInfo generalInfo = new GeneralInfo(author);
 		tempProblemSolvedTop10 = generalInfo.getPairList(Info.SOLVE);
 		// 对每一天的题目数进行排序
 		Collections.sort(tempProblemSolvedTop10,

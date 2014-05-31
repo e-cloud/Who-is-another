@@ -25,15 +25,4 @@ public class HelpController extends AbstractFXController {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.controller.AbstractFXController#getLayout()
-	 */
-	@Override
-	public Parent getLayout() {
-		// TODO Auto-generated method stub
-		return rootLayout;
-	}
-
 }

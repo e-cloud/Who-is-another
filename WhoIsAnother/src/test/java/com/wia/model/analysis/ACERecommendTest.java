@@ -5,7 +5,6 @@ package com.wia.model.analysis;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javafx.util.Pair;
 
@@ -17,16 +16,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.wia.model.data.Author;
-import com.wia.model.preprocess.DataPreprocessor;
+import com.wia.model.preprocess.DetailAuthorCrawler;
 
 /**
  * @author Saint Scott
  * 
  */
 public class ACERecommendTest {
-	private static Logger logger = Logger.getLogger(ACERecommendTest.class
-			.getName());
-	private static final DataPreprocessor preprocessor = new DataPreprocessor();
 
 	private static Author author;
 
@@ -35,7 +31,7 @@ public class ACERecommendTest {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		author = preprocessor.retrieveAuthorFromNet("jpg");
+		author = new DetailAuthorCrawler("jpg").crawl();
 	}
 
 	/**
@@ -66,8 +62,8 @@ public class ACERecommendTest {
 	 */
 	@Test
 	public void testRecommand() {
-		ACERecommend recommend = new ACERecommend();
-		List<Pair<Integer, Integer>> rcmdList = recommend.recommand(author, 10);
+		ACERecommend recommend = new ACERecommend(author);
+		List<Pair<Integer, Integer>> rcmdList = recommend.recommend(10);
 		List<Pair<Integer, Integer>> compareList = new ArrayList<>();
 		// "1016=97, 1019=97, 1010=97, 1012=97, 1013=97, 1003=97, 1005=97, 1097=97, 1108=97, 1028=97"
 		compareList.add(new Pair<Integer, Integer>(1016, 97));

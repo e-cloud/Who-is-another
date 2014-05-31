@@ -8,9 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.wia.Context;
 import com.wia.model.data.Author;
-import com.wia.model.preprocess.DataPreprocessor;
+import com.wia.model.preprocess.AuthorPidListCrawler;
 
 /**
  * @author acer
@@ -18,14 +17,17 @@ import com.wia.model.preprocess.DataPreprocessor;
  */
 public class NeighbourRecommend {
 
-	public List<Integer> neighborRecommend() {
-		Context context = Context.getInstance();
-		Author author = context.getCurrentAuthor();
+	private final Author author;
+
+	public NeighbourRecommend(Author author) {
+		this.author = author;
+	}
+
+	public List<Integer> recommend() {
 		Set<Integer> authorPidList = author.getProblemMap().keySet();
 		List<Author> neighbours = author.getNeighbourList();
-		DataPreprocessor da = new DataPreprocessor(); // DataPreprocessor 实例化
-		List<Set<Integer>> neighborsPidList = da
-				.rertrieveSimpleAuthorList(neighbours);
+		List<Set<Integer>> neighborsPidList = new AuthorPidListCrawler(
+				neighbours).crawl();
 
 		Set<Integer> temp = new HashSet<Integer>();
 

@@ -24,6 +24,12 @@ import com.wia.model.data.SubmitLog.JudgeStatus;
  */
 public class SubmitLogsParser {
 
+	/**
+	 * @param data
+	 * @param submitLogs
+	 * @return 返回runid
+	 * @throws ParseException
+	 */
 	public static int parse(String data, List<SubmitLog> submitLogs)
 			throws ParseException {
 		// TODO Auto-generated method stub

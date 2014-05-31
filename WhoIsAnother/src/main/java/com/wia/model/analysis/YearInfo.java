@@ -47,11 +47,6 @@ public class YearInfo extends Info {
 		return yearValue.get(Calendar.YEAR);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.model.analysis.Info#add(com.wia.model.data.SubmitLog)
-	 */
 	@Override
 	protected void add(SubmitLog submitLog) {
 		// TODO Auto-generated method stub
@@ -66,11 +61,6 @@ public class YearInfo extends Info {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.wia.model.analysis.Info#calculateFields()
-	 */
 	@Override
 	protected void calculateFields() {
 		// TODO Auto-generated method stub
@@ -137,7 +127,9 @@ public class YearInfo extends Info {
 	 * 获取某一天的提交题目列表
 	 * 
 	 * @param month
+	 *            range from [0,11]
 	 * @param day
+	 *            starts from 1
 	 * @return problem 集合
 	 */
 	protected Collection<Problem> getProblemList(int month, int day) {
@@ -171,6 +163,7 @@ public class YearInfo extends Info {
 	 * 获取某月中每一天相应 field 的值的map
 	 * 
 	 * @param month
+	 *            range from [0,11]
 	 * @param field
 	 * <br/>
 	 *            Acceptable fields:<br/>

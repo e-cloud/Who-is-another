@@ -10,9 +10,8 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.wia.Context;
 import com.wia.model.data.Author;
-import com.wia.model.preprocess.DataPreprocessor;
+import com.wia.model.preprocess.DetailAuthorCrawler;
 
 /**
  * @author acer
@@ -20,15 +19,14 @@ import com.wia.model.preprocess.DataPreprocessor;
  */
 public class NeighbourRecommendTest {
 
+	private static Author author;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Context context = Context.getInstance();
-		DataPreprocessor preprocessor = new DataPreprocessor();
-		Author author = preprocessor.retrieveAuthorFromNet("wdp515105");
-		context.setAuthor(author);
+		author = new DetailAuthorCrawler("wdp515105").crawl();
 	}
 
 	/**
@@ -37,8 +35,8 @@ public class NeighbourRecommendTest {
 	 */
 	@Test
 	public void testNeighborRecommend() {
-		NeighbourRecommend neighbourRecommend = new NeighbourRecommend();
-		List<Integer> list = neighbourRecommend.neighborRecommend();
+		NeighbourRecommend neighbourRecommend = new NeighbourRecommend(author);
+		List<Integer> list = neighbourRecommend.recommend();
 		assertEquals(list.size(), 21);
 
 	}

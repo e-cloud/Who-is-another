@@ -8,18 +8,16 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.layout.Region;
 import javafx.util.Pair;
 
-import com.wia.Context;
+import org.controlsfx.dialog.Dialogs;
+
 import com.wia.model.analysis.ACERecommend;
+import com.wia.model.data.Author;
 
 /**
  * @author Saint Scott
@@ -29,58 +27,24 @@ public class AceRecommendController extends AbstractFXController {
 	@FXML
 	private Parent rootLayout;
 	@FXML
-	private BarChart<?, ?> rcmdChart;
-
-	private ProgressIndicator indicator;
-	private Region greylayer;
-
-	@FXML
-	private void initialize() {
-		indicator = new ProgressIndicator();
-		indicator.setMaxSize(200, 200);
-		greylayer = new Region();
-		greylayer.setStyle("-fx-background-color: rgba(0, 0, 0, 0.4)");
-	}
+	private BarChart<String, Integer> rcmdChart;
 
 	@Override
-	public void update() {
-		final Task<List<Pair<Integer, Integer>>> task = new DownloadTask();
-		task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+	public void init() {
+		Author author = (Author) myScreensContainer.getUserData();
 
-			@Override
-			public void handle(WorkerStateEvent arg0) {
-				// TODO Auto-generated method stub
-				try {
-					List<Pair<Integer, Integer>> pairs = task.get();
-					initChart(pairs);
-					rootLayout.getParent().getParent().getParent()
-							.setDisable(false);
-					myScreensContainer.getChildren().removeAll(greylayer,
-							indicator);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		// if(indicator.progressProperty().isBound()){
-		// indicator.progressProperty().unbind();;
-		// }
-		//
-		// indicator.progressProperty().bind(task.progressProperty());
-		// indicator.visibleProperty().bind(task.runningProperty());
-		rootLayout.getParent().getParent().getParent().setDisable(true);
-		myScreensContainer.getChildren().addAll(greylayer, indicator);
+		Task<List<Pair<Integer, Integer>>> task = new AnalysizeTask(author);
+
+		Dialogs.create().title("Progress Dialog")
+				.masthead("Downloading Top 100 Authors' information!")
+				.showWorkerProgress(task);
+
 		new Thread(task).start();
 
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initChart(List<Pair<Integer, Integer>> pairs) {
-		XYChart.Series series = new XYChart.Series();
+		XYChart.Series<String, Integer> series = new XYChart.Series<String, Integer>();
 		series.setName("提交人次");
 		for (Iterator<Pair<Integer, Integer>> iterator = pairs.iterator(); iterator
 				.hasNext();) {
@@ -90,30 +54,39 @@ public class AceRecommendController extends AbstractFXController {
 							.getValue()));
 		}
 
-		rcmdChart.getData().clear();
 		rcmdChart.getData().add(series);
 	}
 
-	private class DownloadTask extends Task<List<Pair<Integer, Integer>>> {
+	private class AnalysizeTask extends Task<List<Pair<Integer, Integer>>> {
+
+		private final Author author;
+
+		public AnalysizeTask(Author author) {
+			this.author = author;
+		}
 
 		@Override
 		public List<Pair<Integer, Integer>> call() throws Exception {
 			// TODO Auto-generated method stub
-			return new ACERecommend().recommand(Context.getInstance()
-					.getCurrentAuthor(), 10);
+			ACERecommend aceRecommend = new ACERecommend(author);
+			return aceRecommend.recommend(10);
 		}
-	}
 
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Parent getLayout() {
-		// TODO Auto-generated method stub
-		return rootLayout;
+		@Override
+		protected void succeeded() {
+			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub
+			try {
+				List<Pair<Integer, Integer>> acelist = this.get();
+				initChart(acelist);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

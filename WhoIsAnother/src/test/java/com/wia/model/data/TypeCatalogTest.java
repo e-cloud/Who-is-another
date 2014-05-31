@@ -11,8 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.wia.Context;
-import com.wia.model.preprocess.DataPreprocessor;
+import com.wia.model.preprocess.DetailAuthorCrawler;
 
 /**
  * @author Saint Scott
@@ -23,15 +22,14 @@ public class TypeCatalogTest {
 	private static Logger logger = Logger.getLogger(TypeCatalogTest.class
 			.getName());
 
+	private static Author author;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Context context = Context.getInstance();
-		DataPreprocessor preprocessor = new DataPreprocessor();
-		Author author = preprocessor.retrieveAuthorFromNet("jpg");
-		context.setAuthor(author);
+		author = new DetailAuthorCrawler("jpg").crawl();
 	}
 
 	/**
@@ -55,7 +53,6 @@ public class TypeCatalogTest {
 	 */
 	@Test
 	public void testCount() {
-		Author author = Context.getInstance().getCurrentAuthor();
 		logger.info(TypeCatalog.getInstance()
 				.count(author.getProblemMap().keySet()).toString());
 	}
@@ -66,7 +63,6 @@ public class TypeCatalogTest {
 	 */
 	@Test
 	public void testClassify() {
-		Author author = Context.getInstance().getCurrentAuthor();
 		logger.info(TypeCatalog.getInstance()
 				.classify(author.getProblemMap().keySet()).toString());
 	}

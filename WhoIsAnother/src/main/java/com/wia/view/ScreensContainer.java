@@ -67,32 +67,49 @@ public class ScreensContainer extends StackPane {
 			.getName());
 
 	private final HashMap<String, AbstractFXController> controllers = new HashMap<>();
+	private final HashMap<String, String> screenMap = new HashMap<>();
+	private final HashMap<String, Parent> screens = new HashMap<>();
+
+	private String currentScreen = null;
 
 	public ScreensContainer() {
 		super();
 	}
 
-	// Add the screen to the collection
-	public void addController(String name, AbstractFXController screen) {
+	public void registerScreen(String name, String resource) {
+		screenMap.put(name, resource);
+	}
+
+	private String getAddress(String name) {
+		return screenMap.get(name);
+	}
+
+	// Add the Controller to the collection
+	private void addController(String name, AbstractFXController screen) {
 		controllers.put(name, screen);
 	}
 
-	// Returns the Node with the appropriate name
+	// Returns the Controller with the appropriate name
 	public AbstractFXController getController(String name) {
 		return controllers.get(name);
 	}
 
+	private void addScreen(String name, Parent screen) {
+		screens.put(name, screen);
+	}
+
 	public Parent getScreen(String name) {
-		return controllers.get(name).getLayout();
+		return screens.get(name);
 	}
 
 	// Loads the fxml file, add the screen to the screens collection and
 	// finally injects the screenPane to the controller.
-	public void loadScreen(String name, String resource) {
+	private void loadScreen(String name) {
 		try {
 			// logger.info(ClassLoader.getSystemResource(resource).toString());
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
-			loader.load();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(
+					screenMap.get(name)));
+			addScreen(name, loader.load());
 			AbstractFXController myScreenControler = loader.getController();
 			addController(name, myScreenControler);
 			myScreenControler.setScreenContainer(this);
@@ -111,9 +128,15 @@ public class ScreensContainer extends StackPane {
 	// If there isn't any screen being displayed, the new screen is just added
 	// to the root.
 	public boolean setScreen(final String name) {
-		if (getScreen(name) != null) { // screen loaded
-			final DoubleProperty opacity = opacityProperty();
+		if (name == currentScreen) {
+			return true;
+		}
+		if (getAddress(name) != null) { // screen loaded
 
+			loadScreen(name);
+			currentScreen = name;
+
+			final DoubleProperty opacity = opacityProperty();
 			if (!getChildren().isEmpty()) { // if there is more than one screen
 				Timeline fade = new Timeline(new KeyFrame(Duration.ZERO,
 						new KeyValue(opacity, 1.0)), new KeyFrame(new Duration(
@@ -121,48 +144,32 @@ public class ScreensContainer extends StackPane {
 					@Override
 					public void handle(ActionEvent t) {
 						getChildren().clear(); // remove the displayed screen
-						getChildren().addAll(getScreen(name)); // add the screen
+						getChildren().add(getScreen(name)); // add the screen
 
 						Timeline fadeIn = new Timeline(new KeyFrame(
 								Duration.ZERO, new KeyValue(opacity, 0.0)),
 								new KeyFrame(new Duration(400), new KeyValue(
 										opacity, 1.0)));
 						fadeIn.play();
-						getController(name).update();
 					}
 				}, new KeyValue(opacity, 0.0)));
 				fade.play();
 
 			} else {
 				setOpacity(0.0);
-				getChildren().addAll(getScreen(name)); // no one
-														// else
-														// been
-				// displayed, then just
-				// show
+				getChildren().add(getScreen(name)); // no one else been
+													// displayed, then just show
 				Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO,
 						new KeyValue(opacity, 0.0)), new KeyFrame(new Duration(
 						1000), new KeyValue(opacity, 1.0)));
 				fadeIn.play();
-				getController(name).update();
 			}
 			return true;
 		} else {
-			logger.severe("screen " + name + " hasn't been loaded!!! \n");
+			logger.severe("screen's address" + name
+					+ " hasn't been registered!!! \n");
 			return false;
 		}
-
-		/*
-		 * Node screenToRemove; if(screens.get(name) != null){ //screen loaded
-		 * if(!getChildren().isEmpty()){ //if there is more than one screen
-		 * getChildren().add(0, screens.get(name)); //add the screen
-		 * screenToRemove = getChildren().get(1); getChildren().remove(1);
-		 * //remove the displayed screen }else{
-		 * getChildren().add(screens.get(name)); //no one else been displayed,
-		 * then just show } return true; }else {
-		 * System.out.println("screen hasn't been loaded!!! \n"); return false;
-		 * }
-		 */
 	}
 
 	// This method will remove the screen with the given name from the

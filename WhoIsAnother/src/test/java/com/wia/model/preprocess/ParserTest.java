@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -31,7 +30,6 @@ import com.wia.model.data.SubmitLog;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ParserTest {
 
-	private static Logger logger = Logger.getLogger(ParserTest.class.getName());
 	private static String data = null;
 	private static Set<Integer> set = null;
 	private static String authorID = "wdp515105";

@@ -1,0 +1,6 @@
+.breadcrumbbar {
+    -fx-skin: "jfxtras.labs.internal.scene.control.skin.BreadcrumbBarSkin";
+}
+.breadcrumbbar-ui {
+    -fx-background-color: white;
+}
