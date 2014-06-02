@@ -15,8 +15,19 @@
   <HBox id="HBox" alignment="CENTER_LEFT">
     <children>
       <Label text="缓存数据到本地：" />
-            <ToggleButton fx:id="yesButton" mnemonicParsing="false" selected="true" text="是" />
-            <ToggleButton fx:id="noButton" mnemonicParsing="false" text="否" />
+            <RadioButton fx:id="radioOn" mnemonicParsing="false" text="ON">
+               <toggleGroup>
+                  <ToggleGroup fx:id="cacheGroup" />
+               </toggleGroup>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </RadioButton>
+            <RadioButton fx:id="radioOFF" mnemonicParsing="false" text="OFF" toggleGroup="$cacheGroup">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </RadioButton>
         <Label text="（鉴于用户信息不会经常改动，缓存数据到本地有助于加快加载速度以及减少网络通信）" />
     </children>
          <GridPane.margin>
@@ -33,7 +44,7 @@
             <Insets left="20.0" />
          </GridPane.margin>
   </HBox>
-      <Button fx:id="typeManageButton" mnemonicParsing="false" text="分类管理" GridPane.rowIndex="2">
+      <Button fx:id="typeManageButton" mnemonicParsing="false" onAction="#handleTypeManage" text="分类管理" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" />
          </GridPane.margin>

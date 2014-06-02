@@ -4,7 +4,7 @@
 
   <groupId>com.wia</groupId>
   <artifactId>WhoIsAnother</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>WhoIsAnother</name>
@@ -12,7 +12,113 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.jarDirectory>${project.build.directory}/dist</project.build.jarDirectory>
   </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <!-- <plugin> <groupId>com.zenjava</groupId> <artifactId>javafx-maven-plugin</artifactId> 
+        <configuration> <mainClass>com.wia.CentralCoordinator</mainClass> </configuration> 
+        </plugin> -->
+      <!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <outputDirectory>${project.build.jarDirectory}</outputDirectory>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>com.wia.MainDirector</mainClass>
+            </manifest>
+          </archive>
+          <excludes>
+            <exclude>*.properties</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <!-- 打包source文件为jar文件 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <configuration>
+          <outputDirectory>${project.build.jarDirectory}</outputDirectory>
+          <attach>true</attach>
+          <encoding>UTF-8</encoding>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- 拷贝依赖的jar包到lib目录 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.8</version>
+        <executions>
+          <execution>
+            <id>copy</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.jarDirectory}/lib</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>false</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- 以utf-8编码拷贝配置文件，拷贝过程中是可以做变量替换的，也就是说你的配置文件可以是个模板，里面的${}所包含的内容是可以拷贝过程中替换的 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <encoding>UTF-8</encoding>
+              <outputDirectory>${project.build.jarDirectory}</outputDirectory>
+              <!-- 把配置文件拷到和jar包同一个路径下 -->
+              <resources>
+                <resource>
+                  <directory>src/main/resources/</directory>
+                  <includes>
+                    <include>*.properties</include>
+                  </includes>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 
   <dependencies>
@@ -22,27 +128,54 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
       <version>4.3.3</version>
     </dependency>
+
     <dependency>
       <groupId>net.sf.json-lib</groupId>
       <artifactId>json-lib</artifactId>
       <version>2.4</version>
       <classifier>jdk15</classifier>
     </dependency>
+    
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
       <version>1.7.3</version>
     </dependency>
+
     <dependency>
       <groupId>commons-configuration</groupId>
       <artifactId>commons-configuration</artifactId>
       <version>1.10</version>
     </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+    </dependency>
+
+    <!-- for logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.7</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+
 
     <dependency>
       <groupId>org.controlsfx</groupId>
@@ -50,8 +183,11 @@
       <version>8.0.5</version>
     </dependency>
 
-<dependency> <groupId>org.jfxtras</groupId> <artifactId>jfxtras-labs</artifactId> 
-      <version>8.0-r1</version> </dependency>
+    <dependency>
+      <groupId>org.jfxtras</groupId>
+      <artifactId>jfxtras-labs</artifactId>
+      <version>8.0-r1</version>
+    </dependency>
     <!-- <dependency> <groupId>org.jfxtras</groupId> <artifactId>jfxtras-common</artifactId> 
       <version>8.0-r1</version> </dependency> <dependency> <groupId>org.jfxtras</groupId> 
       <artifactId>jfxtras-fxml</artifactId> <version>8.0-r1</version> </dependency> 
@@ -73,82 +209,5 @@
       <version>2.0.2</version> <type>jar</type> </dependency> -->
 
   </dependencies>
-
-  <build>
-    <plugins>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-
-      <!-- <plugin> <groupId>com.zenjava</groupId> <artifactId>javafx-maven-plugin</artifactId> 
-        <configuration> <mainClass>com.wia.CentralCoordinator</mainClass> </configuration> 
-        </plugin> -->
-      <!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.wia.CentralCoordinator</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-      <!-- 拷贝依赖的jar包到lib目录 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/lib</outputDirectory>
-              <overWriteReleases>false</overWriteReleases>
-              <overWriteSnapshots>false</overWriteSnapshots>
-              <overWriteIfNewer>true</overWriteIfNewer>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- 解决资源文件的编码问题 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-      <!-- 打包source文件为jar文件 -->
-      <plugin>
-        <artifactId>maven-source-plugin</artifactId>
-        <configuration>
-          <attach>true</attach>
-          <encoding>UTF-8</encoding>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

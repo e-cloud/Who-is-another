@@ -5,7 +5,6 @@ package com.wia.model.local;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,8 +18,6 @@ import org.junit.Test;
  * 
  */
 public class TypeCatalogGeneratorTest {
-	private static Logger logger = Logger
-			.getLogger(TypeCatalogGeneratorTest.class.getName());
 	private static TypeCatalogGenerator generator = new TypeCatalogGenerator();
 
 	/**

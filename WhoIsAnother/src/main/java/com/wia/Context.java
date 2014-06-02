@@ -18,7 +18,12 @@ public class Context {
 	private volatile static Context uniqueInstance;
 
 	private Context() {
-
+		try {
+			loadConfig();
+		} catch (ConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static Context getInstance() {
@@ -38,14 +43,12 @@ public class Context {
 
 	private PropertiesConfiguration config = null;
 
-	@SuppressWarnings("unused")
 	private void loadConfig() throws ConfigurationException {
 		config = new PropertiesConfiguration("application.properties");
 		config.setAutoSave(true);
 	}
 
-	@SuppressWarnings("unused")
-	private void saveConfig() throws ConfigurationException {
+	public void saveConfig() throws ConfigurationException {
 		config.save();
 	}
 

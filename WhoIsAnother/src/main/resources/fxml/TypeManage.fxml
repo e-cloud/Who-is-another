@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="rootLayout" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.TypeManageController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <TextArea fx:id="catalog" layoutX="14.0" layoutY="14.0" prefHeight="330.0" prefWidth="572.0" />
+      <HBox alignment="CENTER" maxHeight="40.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="importButton" mnemonicParsing="false" onAction="#handleImport" prefWidth="80.0" text="导入" />
+            <Button fx:id="exportButton" mnemonicParsing="false" onAction="#handleExport" prefWidth="80.0" text="导出" />
+            <ToggleButton fx:id="editButton" mnemonicParsing="false" prefWidth="80.0" text="编辑/更改" />
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" prefWidth="80.0" text="保存更改" />
+            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#handleQuitChange" prefWidth="80.0" text="放弃更改" />
+            <Button fx:id="restoreButton" mnemonicParsing="false" onAction="#handleRestoreDefault" prefWidth="80.0" text="恢复默认" />
+         </children>
+      </HBox>
+   </children>
+</GridPane>

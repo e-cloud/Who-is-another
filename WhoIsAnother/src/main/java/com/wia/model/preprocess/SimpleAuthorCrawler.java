@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.wia.model.data.Author;
-import com.wia.util.IOUtil;
+import com.wia.util.UrlUtil;
 
 /**
  * @author Saint Scott
@@ -86,6 +86,6 @@ public class SimpleAuthorCrawler {
 	 * @return 指定参数对应的url
 	 */
 	private String getUserStatusUrl(String authorID) {
-		return UserStatusUrl + IOUtil.urlEncode(authorID);
+		return UserStatusUrl + UrlUtil.encode(authorID);
 	}
 }

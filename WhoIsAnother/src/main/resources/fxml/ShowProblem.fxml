@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<GridPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.ProblemViewController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Label text="题目号：" />
+            <TextField fx:id="problem_id" prefHeight="23.0" prefWidth="74.0" />
+            <Button fx:id="ok_1" mnemonicParsing="false" prefHeight="23.0" prefWidth="62.0" text="查看" />
+            <Button fx:id="do_it" mnemonicParsing="false" prefHeight="23.0" prefWidth="62.0" text="做题" />
+         </children>
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </HBox>
+      <WebView fx:id="show_problem" minHeight="-1.0" minWidth="-1.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </WebView>
+   </children>
+</GridPane>

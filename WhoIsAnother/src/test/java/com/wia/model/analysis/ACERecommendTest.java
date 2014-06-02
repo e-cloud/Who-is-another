@@ -65,17 +65,18 @@ public class ACERecommendTest {
 		ACERecommend recommend = new ACERecommend(author);
 		List<Pair<Integer, Integer>> rcmdList = recommend.recommend(10);
 		List<Pair<Integer, Integer>> compareList = new ArrayList<>();
-		// "1016=97, 1019=97, 1010=97, 1012=97, 1013=97, 1003=97, 1005=97, 1097=97, 1108=97, 1028=97"
-		compareList.add(new Pair<Integer, Integer>(1016, 97));
-		compareList.add(new Pair<Integer, Integer>(1019, 97));
-		compareList.add(new Pair<Integer, Integer>(1010, 97));
-		compareList.add(new Pair<Integer, Integer>(1012, 97));
-		compareList.add(new Pair<Integer, Integer>(1013, 97));
-		compareList.add(new Pair<Integer, Integer>(1003, 97));
-		compareList.add(new Pair<Integer, Integer>(1005, 97));
-		compareList.add(new Pair<Integer, Integer>(1097, 97));
-		compareList.add(new Pair<Integer, Integer>(1108, 97));
-		compareList.add(new Pair<Integer, Integer>(1028, 97));
+		// <[1003=98, 1005=98, 1010=98, 1012=98, 1013=98, 1016=98, 1019=98,
+		// 1028=98, 1042=98, 1058=98]>
+		compareList.add(new Pair<Integer, Integer>(1003, 98));
+		compareList.add(new Pair<Integer, Integer>(1005, 98));
+		compareList.add(new Pair<Integer, Integer>(1010, 98));
+		compareList.add(new Pair<Integer, Integer>(1012, 98));
+		compareList.add(new Pair<Integer, Integer>(1013, 98));
+		compareList.add(new Pair<Integer, Integer>(1016, 98));
+		compareList.add(new Pair<Integer, Integer>(1019, 98));
+		compareList.add(new Pair<Integer, Integer>(1028, 98));
+		compareList.add(new Pair<Integer, Integer>(1042, 98));
+		compareList.add(new Pair<Integer, Integer>(1058, 98));
 		Assert.assertEquals(compareList, rcmdList);
 	}
 

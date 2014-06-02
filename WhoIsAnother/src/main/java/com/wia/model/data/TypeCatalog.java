@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.wia.Context;
 import com.wia.model.local.TypeCatalogGenerator;
 
 /**
@@ -26,7 +27,16 @@ public class TypeCatalog {
 		// TODO read the default classification file and initialize the catalog
 		TypeCatalogGenerator generator = new TypeCatalogGenerator();
 		try {
-			this.catalog = generator.generateCatalogMap("/DefaultCatalog.json");
+			Context context = Context.getInstance();
+			String userCatalogAddress = (String) context
+					.getConfigProperty("UserCatalog");
+			if (userCatalogAddress != null) {
+				this.catalog = generator.generateCatalogMap(userCatalogAddress);
+			} else {
+				this.catalog = generator.generateCatalogMap((String) context
+						.getConfigProperty("DefaultCatalog"));
+			}
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,8 +54,10 @@ public class TypeCatalog {
 		return uniqueInstance;
 	}
 
-	public void reset(Map<Integer, String> catalog) {
-		this.catalog = catalog;
+	public static void reset() {
+		synchronized (TypeCatalog.class) {
+			uniqueInstance = null;
+		}
 	}
 
 	public Map<Integer, String> getCatalog() {

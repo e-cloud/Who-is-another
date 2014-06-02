@@ -11,7 +11,7 @@ import java.util.Map;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import com.wia.util.IOUtil;
+import org.apache.commons.io.IOUtils;
 
 /**
  * @author sean
@@ -21,7 +21,7 @@ public class TypeCatalogGenerator {
 	public Map<Integer, String> generateCatalogMap(String pathname)
 			throws IOException {
 		InputStream is = getClass().getResourceAsStream(pathname);
-		JSONArray cataArray = JSONArray.fromObject(IOUtil.parseInputStream(is));
+		JSONArray cataArray = JSONArray.fromObject(IOUtils.toString(is));
 
 		Map<Integer, String> catalogMap = new HashMap<Integer, String>();
 		for (int i = 0; i < cataArray.size(); i++) {

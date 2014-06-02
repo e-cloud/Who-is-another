@@ -12,10 +12,13 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import org.controlsfx.dialog.Dialogs;
 
@@ -45,6 +48,10 @@ public class RootStageController extends AbstractFXController {
 	public final static String file_setting = "/fxml/Setting.fxml";
 	public final static String ID_HELP = "help";
 	public final static String file_help = "/fxml/Help.fxml";
+	public final static String ID_SHOWPROBLEM = "SHOWPROBLEM";
+	public final static String file_showproblem = "/fxml/ShowProblem.fxml";
+	public final static String ID_SUBMITCODE = "SUBMITCODE";
+	public final static String file_submitcode = "/fxml/submitCode.fxml";
 
 	@FXML
 	private BorderPane rootLayout;
@@ -61,6 +68,8 @@ public class RootStageController extends AbstractFXController {
 	private Button profile;
 	@FXML
 	private Button comparator;
+	@FXML
+	private Button submitButton;
 
 	@FXML
 	private Button addUser;
@@ -103,6 +112,29 @@ public class RootStageController extends AbstractFXController {
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				showRootDocumentScreen(ID_SETTING);
+			}
+		});
+		submitButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+
+				ScreensContainer container = new ScreensContainer();
+				container.registerScreen(ID_SHOWPROBLEM, file_showproblem);
+				container.registerScreen(ID_SUBMITCODE, file_submitcode);
+
+				Stage dialogStage = new Stage();
+				dialogStage.setTitle("在线提交");
+				dialogStage.initModality(Modality.WINDOW_MODAL);
+				dialogStage.initOwner(rootLayout.getScene().getWindow());
+
+				Scene scene = new Scene(container);
+				dialogStage.setScene(scene);
+				container.setScreen(ID_SHOWPROBLEM);
+
+				dialogStage.showAndWait();
+
 			}
 		});
 		tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);

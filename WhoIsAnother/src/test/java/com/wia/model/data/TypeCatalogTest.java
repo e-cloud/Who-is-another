@@ -5,11 +5,11 @@ package com.wia.model.data;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.logging.Logger;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.wia.model.preprocess.DetailAuthorCrawler;
 
@@ -19,8 +19,8 @@ import com.wia.model.preprocess.DetailAuthorCrawler;
  */
 public class TypeCatalogTest {
 
-	private static Logger logger = Logger.getLogger(TypeCatalogTest.class
-			.getName());
+	private static Logger logger = LoggerFactory
+			.getLogger(TypeCatalogTest.class.getName());
 
 	private static Author author;
 

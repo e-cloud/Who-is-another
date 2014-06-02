@@ -3,11 +3,21 @@
  */
 package com.wia.controller;
 
+import java.io.IOException;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * @author Saint Scott
@@ -19,9 +29,9 @@ public class SettingController extends AbstractFXController {
 	@FXML
 	private Button refreshButton;
 	@FXML
-	private ToggleButton yesButton;
+	private RadioButton radioOn;
 	@FXML
-	private ToggleButton noButton;
+	private RadioButton radioOFF;
 	@FXML
 	private ToggleGroup cacheGroup;
 	@FXML
@@ -29,7 +39,43 @@ public class SettingController extends AbstractFXController {
 
 	@FXML
 	private void initialize() {
+		radioOn.setUserData(true);
+		radioOFF.setUserData(false);
+		cacheGroup.selectToggle(radioOn);
+		cacheGroup.selectedToggleProperty().addListener(
+				new ChangeListener<Toggle>() {
 
+					@Override
+					public void changed(
+							ObservableValue<? extends Toggle> observable,
+							Toggle oldValue, Toggle newValue) {
+						// TODO set the value observable.getvalue.getuserdata()
+
+					}
+				});
+	}
+
+	@FXML
+	private void handleTypeManage(ActionEvent event) {
+		try {
+			// Load the fxml file and create a new stage for the popup
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(
+					"/fxml/TypeManage.fxml"));
+			Parent page = loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("分类管理（不可编辑）");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(rootLayout.getScene().getWindow());
+
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			dialogStage.showAndWait();
+
+		} catch (IOException e) {
+			// Exception gets thrown if the fxml file could not be loaded
+			e.printStackTrace();
+		}
 	}
 
 	@Override

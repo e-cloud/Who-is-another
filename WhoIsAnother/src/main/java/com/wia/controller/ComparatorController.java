@@ -73,6 +73,7 @@ public class ComparatorController extends AbstractFXController {
 	@SuppressWarnings("unchecked")
 	@FXML
 	private void initialize() {
+
 		addCompetitor.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

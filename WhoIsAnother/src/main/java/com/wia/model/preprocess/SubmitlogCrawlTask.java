@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 import org.apache.http.client.ClientProtocolException;
 
 import com.wia.model.data.SubmitLog;
-import com.wia.util.IOUtil;
+import com.wia.util.UrlUtil;
 
 /**
  * 此类返参线程主要完成指定url的抓取，同时如果有下一页，递归抓取（还没想好如何用并发队列抓取） 运行完毕返回 List< SubmitLog >
@@ -88,7 +88,7 @@ class SubmitlogCrawlTask implements Callable<List<SubmitLog>> {
 	 * @return 指定参数对应的ur
 	 */
 	private String getRealTimeStatusUrl(int pid, String authorID, int first) {
-		return RealTimeStatusUrl + pid + "&user=" + IOUtil.urlEncode(authorID)
+		return RealTimeStatusUrl + pid + "&user=" + UrlUtil.encode(authorID)
 				+ "&first=" + first;
 	}
 }

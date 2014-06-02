@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
-import com.wia.CentralCoordinator;
+import com.wia.MainDirector;
 
 /**
  * @author Saint Scott
@@ -29,7 +29,7 @@ public class WelcomeController extends AbstractFXController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				myScreensContainer.setScreen(CentralCoordinator.ID_ROOTSTAGE);
+				myScreensContainer.setScreen(MainDirector.ID_ROOTSTAGE);
 			}
 		});
 	}
