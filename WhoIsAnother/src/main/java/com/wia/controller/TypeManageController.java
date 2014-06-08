@@ -1,7 +1,9 @@
 package com.wia.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,13 +17,17 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.controlsfx.dialog.Dialogs;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonschema.core.exceptions.ProcessingException;
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import com.github.fge.jsonschema.main.JsonSchema;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.wia.Context;
 import com.wia.model.data.TypeCatalog;
 
@@ -133,30 +139,62 @@ public class TypeManageController {
 		}
 	}
 
+	/**
+	 * @param event
+	 */
 	@FXML
 	private void handleSave(ActionEvent event) {
 		String data = catalog.getText();
+
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper2 = new ObjectMapper();
 		try {
-			// check
-			JSONArray.fromObject(data);
+			JsonNode test = mapper.readTree(data); // 要测试的数据
 
-			catalog.setUserData(data);
-			FileUtils.writeStringToFile(new File("catalog/UserCatalog.json"),
-					data, "utf-8");
-			editButton.selectedProperty().set(false);
+			BufferedReader fileReader = new BufferedReader(
+					new InputStreamReader(getClass().getResourceAsStream(
+							"/type-schema.json")));
 
-			// TODO change the context configuration
-			Context.getInstance().setConfigProperty("UserCatalog",
-					"catalog/UserCatalog.json");
-			TypeCatalog.reset();
+			JsonNode sc = mapper2.readTree(fileReader);
 
-		} catch (JSONException e) {
-			// TODO: handle exception
-			Dialogs.create().title("Error Dialog")
+			final JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
+
+			final JsonSchema schema = factory.getJsonSchema(sc); // 把规则转为schema
+
+			ProcessingReport report; // 测试信息报告
+
+			report = schema.validate(test);
+			if (report.isSuccess()) { // 通过4位数测试
+				catalog.setUserData(data);
+				FileUtils.writeStringToFile(
+						new File("catalog/UserCatalog.json"), data, "utf-8");
+				editButton.selectedProperty().set(false);
+
+				// TODO change the context configuration
+				Context.getInstance().setConfigProperty("UserCatalog",
+						"catalog/UserCatalog.json");
+				TypeCatalog.reset();
+			} else { // 没有通过测试
+				Dialogs.create()
+						.title("Error Dialog")
+						.masthead("There is an error occured")
+						.message(
+								"Your modified text doesn't pass the validation.Please input four-digit!")
+						.showError();
+			}
+
+		} catch (IOException e) { // 非数字和中文输入的逗号,抛错
+			// TODO Auto-generated catch block
+			Dialogs.create()
+					.title("Error Dialog")
 					.masthead("There is an error occured")
-					.message("Your modified text doesn't pass the validation")
+					.message(
+							"Your modified text doesn't pass the validation.The type isn't right!")
 					.showError();
-		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		catch (ProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

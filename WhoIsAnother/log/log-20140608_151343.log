@@ -1,0 +1,15 @@
+06-08 15:13:43.892 [JavaFX Application Thread] INFO  com.wia.MainDirector - MainDirector instance setup the mainContainer. And set the welcome screen.
+06-08 15:13:43.930 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the WELCOME's fxml
+06-08 15:13:51.611 [JavaFX Application Thread] INFO  com.wia.controller.WelcomeController - click on welcome's go button
+06-08 15:13:51.612 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the ROOTSTAGE's fxml
+06-08 15:14:03.491 [JavaFX Application Thread] INFO  c.wia.controller.RootStageController - click rootstage's comparator button
+06-08 15:14:03.493 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the comparator's fxml
+06-08 15:14:05.859 [JavaFX Application Thread] INFO  c.wia.controller.RootStageController - click rootstage's submit button
+06-08 15:14:05.860 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the SHOWPROBLEM's fxml
+06-08 15:14:21.458 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the SUBMITCODE's fxml
+06-08 15:14:29.299 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the SHOWPROBLEM's fxml
+06-08 15:14:35.219 [JavaFX Application Thread] INFO  c.wia.controller.RootStageController - click rootstage's setting button
+06-08 15:14:35.219 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the setting's fxml
+06-08 15:14:37.602 [JavaFX Application Thread] INFO  com.wia.controller.SettingController - click on setting's type manage button
+06-08 15:14:37.659 [JavaFX Application Thread] INFO  com.wia.Context - Context load the 'application.properties' file.
+06-08 15:14:53.592 [JavaFX Application Thread] INFO  com.wia.MainDirector - application was just closed.

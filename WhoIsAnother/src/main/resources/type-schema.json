@@ -6,18 +6,20 @@
         "title": "type's catalog",
         "type": "object",
         "properties": {
+        	"typename": {
+				"type":"string"
+			},
             "pids": {
 				"type":"array",
 				"description": "pid set",
 				"items":
 					{
 						"type":"number",
+						"minimum": 1000,
+						"maximum": 9999
 					}
-			},
-			"typename": {
-				"type":"string",
 			}
         },
-        "required": ["id", "name", "price"]
+        "required": ["typename", "pids"]
     }
 }

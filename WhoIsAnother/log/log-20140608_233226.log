@@ -1,0 +1,9 @@
+06-08 23:32:27.165 [JavaFX Application Thread] INFO  com.wia.MainDirector - MainDirector instance setup the mainContainer. And set the welcome screen.
+06-08 23:32:27.208 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the WELCOME's fxml
+06-08 23:32:28.906 [JavaFX Application Thread] INFO  com.wia.controller.WelcomeController - click on welcome's go button
+06-08 23:32:28.907 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the ROOTSTAGE's fxml
+06-08 23:32:31.160 [JavaFX Application Thread] INFO  c.wia.controller.RootStageController - click rootstage's setting button
+06-08 23:32:31.162 [JavaFX Application Thread] INFO  com.wia.view.ScreensContainer - load the setting's fxml
+06-08 23:32:32.568 [JavaFX Application Thread] INFO  com.wia.controller.SettingController - click on setting's type manage button
+06-08 23:32:32.630 [JavaFX Application Thread] INFO  com.wia.Context - Context load the 'application.properties' file.
+06-08 23:32:42.999 [JavaFX Application Thread] INFO  com.wia.MainDirector - application was just closed.
