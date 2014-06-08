@@ -1,6 +1,7 @@
 package com.wia.controller;
 
-import javafx.event.Event;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,14 +10,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import org.controlsfx.dialog.Dialogs;
+
 import com.wia.model.Submit;
 
 public class SubmitController extends AbstractFXController {
 	@FXML
-	private Button back;
+	private Button backButton;
 
 	@FXML
-	private Button submit;
+	private Button submitButton;
 
 	@FXML
 	private ComboBox<String> language;
@@ -32,35 +35,49 @@ public class SubmitController extends AbstractFXController {
 
 	@FXML
 	private void initialize() {
-		language.getItems().addAll("G++", "GCC", "C++", "C", "Pascal", "Java");
-		submit.setOnMousePressed(new EventHandler<Event>() {
+		Submit submit = new Submit();
+		submitButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(Event event) {
-				Submit.login(username.getText(), password.getText());
-				Submit.submintCode(language.getValue(), code.getText());
+			public void handle(ActionEvent event) {
 
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				String webViewUrl = "http://acm.hdu.edu.cn/status.php?first=&pid="
-						+ Submit.curProblemid
-						+ "&user="
-						+ username.getText()
-						+ "&lang=0&status=0";
+				Task<Void> task = new Task<Void>() {
 
-				myScreensContainer.setUserData(webViewUrl);
+					@Override
+					protected Void call() throws Exception {
+						// TODO Auto-generated method stub
+						submit.login(username.getText(), password.getText());
+						submit.submitCode(language.getValue(), code.getText());
+						Thread.sleep(2000);
+						return null;
+					}
 
-				myScreensContainer
-						.setScreen(RootStageController.ID_SHOWPROBLEM);
+					@Override
+					protected void succeeded() {
+						// TODO Auto-generated method stub
+						String webViewUrl = "http://acm.hdu.edu.cn/status.php?first=&pid="
+								+ Submit.currentProblemID
+								+ "&user="
+								+ username.getText() + "&lang=0&status=0";
+
+						myScreensContainer.setUserData(webViewUrl);
+
+						myScreensContainer
+								.setScreen(RootStageController.ID_SHOWPROBLEM);
+					}
+
+				};
+
+				Dialogs.create().title("Progress Dialog")
+						.masthead("Submitting the code!")
+						.showWorkerProgress(task);
+
+				new Thread(task).start();
 			}
 		});
 
-		back.setOnMousePressed(new EventHandler<Event>() {
+		backButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(Event event) {
+			public void handle(ActionEvent event) {
 				myScreensContainer
 						.setScreen(RootStageController.ID_SHOWPROBLEM);
 			}

@@ -19,6 +19,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import org.controlsfx.dialog.Dialogs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.wia.model.analysis.NeighbourRecommend;
 import com.wia.model.data.Author;
@@ -29,6 +31,8 @@ import com.wia.model.data.TypeCatalog;
  * 
  */
 public class NeighbourRecommendController extends AbstractFXController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(NeighbourRecommendController.class);
 	@FXML
 	private Parent rootLayout;
 	@FXML
@@ -38,6 +42,7 @@ public class NeighbourRecommendController extends AbstractFXController {
 	public void init() {
 		Author author = (Author) myScreensContainer.getUserData();
 
+		logger.info("show {}'s neighbour recommend");
 		Task<List<Integer>> task = new AnalysizeTask(author);
 
 		Dialogs.create()

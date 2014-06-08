@@ -21,6 +21,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Pair;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wia.model.analysis.GeneralInfo;
 import com.wia.model.analysis.Info;
 import com.wia.model.data.Author;
@@ -31,7 +34,8 @@ import com.wia.util.ThreadLoaclDateFormatUtil;
  * 
  */
 public class StruggleHistoryGeneralController extends AbstractFXController {
-
+	private final static Logger logger = LoggerFactory
+			.getLogger(StruggleHistoryGeneralController.class);
 	@FXML
 	private BarChart<String, Integer> generalBarChart;
 	@FXML
@@ -80,6 +84,8 @@ public class StruggleHistoryGeneralController extends AbstractFXController {
 		acceptLabel.setText(author.getAccepted() + "");
 		initBarChart();
 		initAreaChart();
+
+		logger.info("show {}'s general info", author.getAuthorID());
 	}
 
 	@SuppressWarnings({ "unchecked" })

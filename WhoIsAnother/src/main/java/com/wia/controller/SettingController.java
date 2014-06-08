@@ -19,11 +19,16 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Saint Scott
  * 
  */
 public class SettingController extends AbstractFXController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(SettingController.class);
 	@FXML
 	private Parent rootLayout;
 	@FXML
@@ -57,6 +62,7 @@ public class SettingController extends AbstractFXController {
 
 	@FXML
 	private void handleTypeManage(ActionEvent event) {
+		logger.info("click on setting's type manage button");
 		try {
 			// Load the fxml file and create a new stage for the popup
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(

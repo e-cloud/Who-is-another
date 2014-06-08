@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wia.MainDirector;
 
 /**
@@ -16,6 +19,8 @@ import com.wia.MainDirector;
  * 
  */
 public class WelcomeController extends AbstractFXController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(WelcomeController.class);
 	@FXML
 	private Parent rootLayout;
 
@@ -28,6 +33,7 @@ public class WelcomeController extends AbstractFXController {
 			//
 			@Override
 			public void handle(ActionEvent event) {
+				logger.info("click on welcome's go button");
 				// TODO Auto-generated method stub
 				myScreensContainer.setScreen(MainDirector.ID_ROOTSTAGE);
 			}

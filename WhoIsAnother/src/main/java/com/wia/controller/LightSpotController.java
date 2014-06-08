@@ -14,6 +14,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.util.Pair;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wia.model.analysis.LightSpot;
 import com.wia.model.data.Author;
 
@@ -22,6 +25,8 @@ import com.wia.model.data.Author;
  * 
  */
 public class LightSpotController extends AbstractFXController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(LightSpotController.class);
 	@FXML
 	private Parent rootLayout;
 	@FXML
@@ -43,9 +48,10 @@ public class LightSpotController extends AbstractFXController {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void init() {
+		Author author = (Author) myScreensContainer.getUserData();
+		logger.info("show {}'s lightspot", author.getAuthorID());
 		// TODO Auto-generated method stub
-		LightSpot lightSpot = new LightSpot(
-				(Author) myScreensContainer.getUserData());
+		LightSpot lightSpot = new LightSpot(author);
 		// 初始化时段表
 		XYChart.Series<String, Integer> solveSeries = new XYChart.Series<String, Integer>();
 		solveSeries.setName("解决题目数");

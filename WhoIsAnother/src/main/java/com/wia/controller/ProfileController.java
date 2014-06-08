@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wia.model.data.Author;
 import com.wia.util.ThreadLoaclDateFormatUtil;
 
@@ -15,6 +18,8 @@ import com.wia.util.ThreadLoaclDateFormatUtil;
  * 
  */
 public class ProfileController extends AbstractFXController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(ProfileController.class);
 	@FXML
 	private Parent rootLayout;
 
@@ -42,6 +47,7 @@ public class ProfileController extends AbstractFXController {
 	public void init() {
 		// TODO Auto-generated method stub
 		Author author = (Author) myScreensContainer.getUserData();
+		logger.info("show {}'s info", author.getAuthorID());
 		authorIDLabel.setText(author.getAuthorID());
 		nicknameLabel.setText(author.getAuthorName());
 		fromLabel.setText(author.getFrom());

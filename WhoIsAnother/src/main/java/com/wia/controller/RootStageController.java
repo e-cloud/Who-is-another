@@ -21,6 +21,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import org.controlsfx.dialog.Dialogs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.wia.Context;
 import com.wia.model.data.Author;
@@ -31,6 +33,8 @@ import com.wia.view.ScreensContainer;
  * 
  */
 public class RootStageController extends AbstractFXController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(RootStageController.class);
 
 	public final static String ID_SH_ROOT = "strugglehistoryroot";
 	public final static String file_sh_root = "/fxml/StruggleHistoryRoot.fxml";
@@ -51,7 +55,7 @@ public class RootStageController extends AbstractFXController {
 	public final static String ID_SHOWPROBLEM = "SHOWPROBLEM";
 	public final static String file_showproblem = "/fxml/ShowProblem.fxml";
 	public final static String ID_SUBMITCODE = "SUBMITCODE";
-	public final static String file_submitcode = "/fxml/submitCode.fxml";
+	public final static String file_submitcode = "/fxml/SubmitCode.fxml";
 
 	@FXML
 	private BorderPane rootLayout;
@@ -95,6 +99,7 @@ public class RootStageController extends AbstractFXController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
+				logger.info("click rootstage's help button");
 				showRootDocumentScreen(ID_HELP);
 			}
 		});
@@ -103,6 +108,7 @@ public class RootStageController extends AbstractFXController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
+				logger.info("click rootstage's comparator button");
 				showRootDocumentScreen(ID_COMPARATOR);
 			}
 		});
@@ -111,6 +117,7 @@ public class RootStageController extends AbstractFXController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
+				logger.info("click rootstage's setting button");
 				showRootDocumentScreen(ID_SETTING);
 			}
 		});
@@ -119,6 +126,7 @@ public class RootStageController extends AbstractFXController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
+				logger.info("click rootstage's submit button");
 
 				ScreensContainer container = new ScreensContainer();
 				container.registerScreen(ID_SHOWPROBLEM, file_showproblem);
@@ -211,6 +219,8 @@ public class RootStageController extends AbstractFXController {
 	@FXML
 	private void handleAddUser(ActionEvent event) {
 		// TODO Auto-generated method stub
+		logger.info("click rootstage's adduser button");
+
 		String authorID = Dialogs.create().owner(rootLayout)
 				.title("Text Input Dialog")
 				.masthead("We need you to provide the AuthorID!")

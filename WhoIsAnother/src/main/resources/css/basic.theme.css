@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+.layout {
+    -fx-background-color: #fff;
+}
+.h1 {
+    -fx-font-size: 4.5em;
+}
+.h2 {
+    -fx-font-size: 3.5em;
+}
+.h3 {
+    -fx-font-size: 2em;
+}
+.wia-text {
+    -fx-font-size: 1.5em;
+}
+.wia-textfield {
+    -fx-padding: 5px 8px 5px 8px;
+    -fx-cursor: hand;
+}
+.wia-button {
+    -fx-cursor: hand;
+    -fx-alignment: center ;
+    -fx-border-style: null; 
+    -fx-background-radius: 5;
+
+    -fx-background-color: rgb(97,139,173);
+    -fx-font-family:"Droid Sans Fallback";
+    -fx-font-size: 22pt;
+    -fx-text-fill: white;
+}
+.wia-button:pressed {
+    -fx-border-color: black;
+    -fx-border-style: segments(1,1,1,1); 
+    -fx-border-width: 1;
+}
+.wia-button:hover {
+   -fx-background-color: rgb(97,139,173);
+   -fx-text-fill: black;
+}
+.text-title{
+    -fx-font-size: 18pt;
+    -fx-text-fill: black;
+    -fx-font-family:"Droid Sans Fallback";
+}
+.Hyperlink{
+    -fx-text-fill: rgb(97,139,173);
+    -fx-font-size: 15pt;
+    -fx-cursor: hand;
+    
+}

@@ -7,6 +7,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wia.view.ScreensContainer;
 
 /**
@@ -14,6 +17,8 @@ import com.wia.view.ScreensContainer;
  * 
  */
 public class MainDirector extends Application {
+	private static final Logger logger = LoggerFactory
+			.getLogger(MainDirector.class);
 
 	ScreensContainer mainContainer;
 	public Stage primaryStage;
@@ -44,6 +49,8 @@ public class MainDirector extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Who is another");
 
+		logger.info("MainDirector instance setup the mainContainer. And set the welcome screen.");
+
 		mainContainer = new ScreensContainer();
 		mainContainer.registerScreen(MainDirector.ID_WELCOME,
 				MainDirector.file_welcome);
@@ -52,8 +59,6 @@ public class MainDirector extends Application {
 
 		mainContainer.setScreen(MainDirector.ID_WELCOME);
 
-		// Group root = new Group();
-		// root.getChildren().addAll(mainContainer);
 		Scene scene = new Scene(mainContainer);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
@@ -69,14 +74,7 @@ public class MainDirector extends Application {
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
 		super.stop();
-	}
-
-	public void setScreen(String screenID) {
-		mainContainer.setScreen(screenID);
-	}
-
-	public Stage getPrimaryStage() {
-		return primaryStage;
+		logger.info("application was just closed.");
 	}
 
 	/**

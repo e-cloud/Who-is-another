@@ -38,7 +38,7 @@ public class ProblemViewController extends AbstractFXController {
 				webViewUrl = Submit.getProblemUrl(problem_id.getText());
 				myScreensContainer.setUserData(webViewUrl);
 
-				Submit.curProblemid = problem_id.getText();
+				Submit.currentProblemID = problem_id.getText();
 				WebEngine webEngine = show_problem.getEngine();
 				webEngine.load(webViewUrl);
 			}

@@ -18,13 +18,17 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
 public class Submit {
-	public static CloseableHttpClient myClient = HttpClients.createDefault();
-
-	public static String curProblemid = null;
+	private final CloseableHttpClient httpClient;
+	public static String currentProblemID = null;
 
 	private static Map<String, String> languages = null;
 
-	public static void initLanguages() {
+	public Submit() {
+		httpClient = HttpClients.createDefault();
+		initLanguages();
+	}
+
+	private static void initLanguages() {
 		if (languages == null) {
 			languages = new HashMap<>();
 			languages.put("G++", "0");
@@ -36,18 +40,17 @@ public class Submit {
 		}
 	}
 
-	public static String getProblemUrl(String Problemid) {
-		curProblemid = Problemid;
+	public static String getProblemUrl(String problemID) {
+		currentProblemID = problemID;
 		String url = "http://acm.hdu.edu.cn/showproblem.php?pid=";
-		return url + Problemid;
+		return url + problemID;
 	}
 
-	public static void login(String username, String userpass) {
-		initLanguages();
+	public void login(String username, String password) {
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("username", username));
-		params.add(new BasicNameValuePair("userpass", userpass));
+		params.add(new BasicNameValuePair("userpass", password));
 		HttpPost myPost = new HttpPost(
 				"http://acm.hdu.edu.cn/userloginex.php?action=login&cid=0&notice=0");
 		try {
@@ -58,11 +61,12 @@ public class Submit {
 		}
 
 		try {
-			CloseableHttpResponse myRes = myClient.execute(myPost);
+			CloseableHttpResponse myRes = httpClient.execute(myPost);
 
 			HttpGet myGet = new HttpGet(
 					"http://acm.hdu.edu.cn/submit.php?pid=1006");
-			myClient.execute(myGet);
+			httpClient.execute(myGet);
+
 			myRes.close();
 
 		} catch (ClientProtocolException e) {
@@ -74,11 +78,11 @@ public class Submit {
 		}
 	}
 
-	public static void submintCode(String language, String usercode) {
+	public void submitCode(String language, String usercode) {
 
 		List<NameValuePair> submitForm = new ArrayList<NameValuePair>();
 		submitForm.add(new BasicNameValuePair("check", "0"));
-		submitForm.add(new BasicNameValuePair("problemid", curProblemid));
+		submitForm.add(new BasicNameValuePair("problemid", currentProblemID));
 		submitForm.add(new BasicNameValuePair("language", languages
 				.get(language)));
 		submitForm.add(new BasicNameValuePair("usercode", usercode));
@@ -87,10 +91,11 @@ public class Submit {
 
 		try {
 			submitPost.setEntity(new UrlEncodedFormEntity(submitForm));
-			CloseableHttpResponse myRes = myClient.execute(submitPost);
-			submitPost.releaseConnection();
-			myRes.close();
+			CloseableHttpResponse myRes = httpClient.execute(submitPost);
+
 			System.out.println("Done!");
+			myRes.close();
+			httpClient.close();
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

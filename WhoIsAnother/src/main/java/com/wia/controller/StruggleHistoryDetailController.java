@@ -26,6 +26,9 @@ import jfxtras.labs.scene.control.BreadcrumbBar;
 import jfxtras.labs.scene.control.BreadcrumbItem;
 import jfxtras.labs.util.BreadcrumbBarEventHandler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.wia.model.analysis.GeneralInfo;
 import com.wia.model.analysis.Info;
 import com.wia.model.data.Problem;
@@ -35,7 +38,8 @@ import com.wia.model.data.Problem;
  * 
  */
 public class StruggleHistoryDetailController extends AbstractFXController {
-
+	private final static Logger logger = LoggerFactory
+			.getLogger(StruggleHistoryDetailController.class);
 	@FXML
 	private Parent rootLayout;
 	@FXML
@@ -143,6 +147,7 @@ public class StruggleHistoryDetailController extends AbstractFXController {
 
 	@SuppressWarnings("unchecked")
 	private void showYearCharts() {
+
 		Map<String, Object> map = (Map<String, Object>) myScreensContainer
 				.getUserData();
 		int year = (int) map.get(StruggleHistoryRootController.YEAR);
@@ -163,6 +168,7 @@ public class StruggleHistoryDetailController extends AbstractFXController {
 
 		showYearBarChart(year);
 		showYearPieChart(year);
+		logger.info("show {} yearcharts", year);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -187,6 +193,8 @@ public class StruggleHistoryDetailController extends AbstractFXController {
 
 		showMonthBarChart(year, month - 1);
 		showMonthPieChart(year, month - 1);
+
+		logger.info("show {} {} monthcharts", year, month);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -209,6 +217,8 @@ public class StruggleHistoryDetailController extends AbstractFXController {
 
 		showDayBarChart(year, month - 1, day);
 		showDayPieChart(year, month - 1, day);
+
+		logger.info("show {} {} {} day charts", year, month, day);
 	}
 
 	@SuppressWarnings("unchecked")

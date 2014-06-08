@@ -8,12 +8,15 @@ import java.util.Map;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Saint Scott
  * 
  */
 public class Context {
+	private static final Logger logger = LoggerFactory.getLogger(Context.class);
 
 	private volatile static Context uniqueInstance;
 
@@ -44,12 +47,9 @@ public class Context {
 	private PropertiesConfiguration config = null;
 
 	private void loadConfig() throws ConfigurationException {
+		logger.info("Context load the 'application.properties' file.");
 		config = new PropertiesConfiguration("application.properties");
 		config.setAutoSave(true);
-	}
-
-	public void saveConfig() throws ConfigurationException {
-		config.save();
 	}
 
 	public Object getConfigProperty(String key) {

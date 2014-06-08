@@ -24,6 +24,7 @@
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.5" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="8.5" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="7.0" prefWidth="100.0" />
@@ -32,16 +33,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="addUser" mnemonicParsing="false" onAction="#handleAddUser" text="添加用户" GridPane.columnIndex="9" />
-            <Button fx:id="setting" mnemonicParsing="false" text="设置" GridPane.columnIndex="10" />
-            <Button fx:id="help" mnemonicParsing="false" text="？" GridPane.columnIndex="8" />
+            <Button fx:id="addUser" mnemonicParsing="false" onAction="#handleAddUser" text="添加用户" GridPane.columnIndex="10" />
+            <Button fx:id="setting" mnemonicParsing="false" text="设置" GridPane.columnIndex="11" />
+            <Button fx:id="help" mnemonicParsing="false" text="？" GridPane.columnIndex="9" />
             <Button fx:id="struggleHistory" mnemonicParsing="false" onAction="#showHistory" text="奋斗历程" />
             <Button fx:id="lightspot" mnemonicParsing="false" onAction="#showLightSpot" text="辉煌成就" GridPane.columnIndex="1" />
             <Button fx:id="profile" mnemonicParsing="false" onAction="#showProfile" text="个人信息" GridPane.columnIndex="4" />
             <Button fx:id="aceRecommend" mnemonicParsing="false" onAction="#showAceRcmd" text="牛人共性" GridPane.columnIndex="3" />
-            <Button fx:id="comparator" mnemonicParsing="false" text="一较高下" GridPane.columnIndex="5" />
+            <Button fx:id="comparator" mnemonicParsing="false" text="一较高下" GridPane.columnIndex="6" />
             <Button fx:id="neighbourRecommend" mnemonicParsing="false" onAction="#showNbRcmd" text="邻里推荐" GridPane.columnIndex="2" />
-            <Button fx:id="submitButton" mnemonicParsing="false" text="提交题目" GridPane.columnIndex="6" />
+            <Button fx:id="submitButton" mnemonicParsing="false" text="提交题目" GridPane.columnIndex="7" />
          </children>
          <BorderPane.margin>
             <Insets />

@@ -38,6 +38,8 @@ import javafx.scene.text.Text;
 import javafx.util.Pair;
 
 import org.controlsfx.dialog.Dialogs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.wia.Context;
 import com.wia.model.analysis.GeneralInfo;
@@ -49,6 +51,8 @@ import com.wia.model.data.TypeCatalog;
  * 
  */
 public class ComparatorController extends AbstractFXController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(ComparatorController.class);
 	@FXML
 	private Parent rootLayout;
 	@FXML
@@ -78,6 +82,8 @@ public class ComparatorController extends AbstractFXController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
+				logger.info("click and add competitor {}", comboBox.getValue());
+
 				Task<Author> task = new ImportAuthorTask(comboBox.getValue());
 				Dialogs.create()
 						.owner(rootLayout)
@@ -150,12 +156,11 @@ public class ComparatorController extends AbstractFXController {
 		// scrollPane.setMinHeight(350);
 		// scrollPane.setContent(compareChart);
 
-		NumberAxis cAxis = new NumberAxis();
-		cAxis.setLabel("实际做题天数");
-		NumberAxis nAxis = new NumberAxis();
-		cAxis.setLabel("做题数量");
-		growthChart = new AreaChart<Number, Number>(cAxis, nAxis);
-		growthChart.setTitle("成长曲线比较");
+		NumberAxis xAxis2 = new NumberAxis();
+		xAxis2.setLabel("实际做题天数");
+		NumberAxis yAxis2 = new NumberAxis();
+		yAxis2.setLabel("做题数量");
+		growthChart = new AreaChart<Number, Number>(xAxis2, yAxis2);
 		//
 	}
 
@@ -197,7 +202,7 @@ public class ComparatorController extends AbstractFXController {
 
 	private void addAuthorToGrowthCurveChart(Author author) {
 		SeriesAddition addition = new SeriesAddition(growthChart,
-				new GeneralInfo(author));
+				new GeneralInfo(author), author.getAuthorID());
 		addition.addSolveSeries();
 		if (!vBox.getChildren().contains(growthChart)) {
 			vBox.getChildren().add(growthChart);
@@ -253,11 +258,13 @@ public class ComparatorController extends AbstractFXController {
 
 		private final GeneralInfo generalInfo;
 		private final AreaChart<Number, Number> targetChart;
+		private final String authorID;
 
 		public SeriesAddition(AreaChart<Number, Number> target,
-				GeneralInfo generalInfo) {
+				GeneralInfo generalInfo, String authorID) {
 			this.generalInfo = generalInfo;
 			this.targetChart = target;
+			this.authorID = authorID;
 		}
 
 		public void addSolveSeries() {
@@ -266,7 +273,8 @@ public class ComparatorController extends AbstractFXController {
 			int solvecount = 0;
 			int index = 1;
 			XYChart.Series<Number, Number> solveseries = new XYChart.Series<>();
-			solveseries.setName("已解决题目数累计曲线");
+			targetChart.setTitle("已解决题目数累计曲线比较");
+			solveseries.setName(authorID);
 			for (Iterator<Pair<Date, Integer>> iterator = solvelist.iterator(); iterator
 					.hasNext();) {
 				Pair<Date, Integer> pair = iterator.next();
@@ -283,7 +291,7 @@ public class ComparatorController extends AbstractFXController {
 			int submitcount = 0;
 			int index = 1;
 			XYChart.Series<Number, Number> submitseries = new XYChart.Series<>();
-			submitseries.setName("已提交题目数累计曲线");
+			submitseries.setName("已提交题目数累计曲线比较");
 			for (Iterator<Pair<Date, Integer>> iterator = submitlist.iterator(); iterator
 					.hasNext();) {
 				Pair<Date, Integer> pair = iterator.next();
@@ -300,7 +308,7 @@ public class ComparatorController extends AbstractFXController {
 			int acceptedcount = 0;
 			int index = 1;
 			XYChart.Series<Number, Number> acceptedseries = new XYChart.Series<>();
-			acceptedseries.setName("提交成功次数累计曲线");
+			acceptedseries.setName("提交成功次数累计曲线比较");
 			for (Iterator<Pair<Date, Integer>> iterator = acceptedlist
 					.iterator(); iterator.hasNext();) {
 				Pair<Date, Integer> pair = iterator.next();
@@ -317,7 +325,7 @@ public class ComparatorController extends AbstractFXController {
 			int submissioncount = 0;
 			int index = 1;
 			XYChart.Series<Number, Number> submisionseries = new XYChart.Series<>();
-			submisionseries.setName("提交次数累计曲线");
+			submisionseries.setName("提交次数累计曲线比较");
 			for (Iterator<Pair<Date, Integer>> iterator = submissions
 					.iterator(); iterator.hasNext();) {
 				Pair<Date, Integer> pair = iterator.next();

@@ -15,6 +15,8 @@ import javafx.scene.chart.XYChart;
 import javafx.util.Pair;
 
 import org.controlsfx.dialog.Dialogs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.wia.model.analysis.ACERecommend;
 import com.wia.model.data.Author;
@@ -24,6 +26,8 @@ import com.wia.model.data.Author;
  * 
  */
 public class AceRecommendController extends AbstractFXController {
+	private final static Logger logger = LoggerFactory
+			.getLogger(AceRecommendController.class);
 	@FXML
 	private Parent rootLayout;
 	@FXML
@@ -55,6 +59,7 @@ public class AceRecommendController extends AbstractFXController {
 		}
 
 		rcmdChart.getData().add(series);
+		logger.info("show acerecommend chart");
 	}
 
 	private class AnalysizeTask extends Task<List<Pair<Integer, Integer>>> {
