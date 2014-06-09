@@ -10,25 +10,41 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<ScrollPane fitToWidth="true" prefHeight="400.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.StruggleHistoryGeneralController">
+<ScrollPane fitToWidth="true" prefHeight="400.0" prefWidth="960.0" styleClass="background" stylesheets="@../css/basic.theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.StruggleHistoryGeneralController">
    <content>
-      <GridPane id="GridPane">
+      <GridPane id="GridPane" styleClass="background" stylesheets="@../css/basic.theme.css">
       <children>
-        <Label styleClass="text-title" text="整体概况" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label styleClass="title" text="整体概况" GridPane.columnIndex="0" GridPane.rowIndex="0">
           <GridPane.margin>
             <Insets left="10.0" fx:id="x1" />
           </GridPane.margin>
         </Label>
-        <Hyperlink styleClass="Hyperlink" text="Rank" GridPane.columnIndex="0" GridPane.rowIndex="1">
-          <GridPane.margin>
-            <Insets left="30.0" fx:id="x2" />
-          </GridPane.margin>
-        </Hyperlink>
-        <Hyperlink styleClass="Hyperlink" text="Problem Submitted" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="2" />
-        <Hyperlink styleClass="Hyperlink" text="Problem Solved" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="3" />
-        <Hyperlink styleClass="Hyperlink" text="Accepted" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="5" />
-        <Hyperlink styleClass="Hyperlink" text="Submissions" GridPane.columnIndex="0" GridPane.margin="$x2" GridPane.rowIndex="4" />
-        <Label styleClass="text-title" text="成长曲线" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="7" />
+            <Label styleClass="info-text" text="Rank" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label styleClass="info-text" text="Problem Submitted" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label styleClass="info-text" text="Problem Solved" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label styleClass="info-text" text="Accepted" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label styleClass="info-text" text="Submissions" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+        <Label styleClass="title" text="成长曲线" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="7" />
         <BarChart fx:id="generalBarChart" alternativeColumnFillVisible="true" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6">
           <xAxis>
             <CategoryAxis side="BOTTOM" />
@@ -40,15 +56,15 @@
             <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
           </padding>
         </BarChart>
-        <Label fx:id="rankLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Label fx:id="rankLabel" styleClass="real-text" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
           <GridPane.margin>
             <Insets fx:id="x3" />
           </GridPane.margin>
         </Label>
-        <Label id="submissionLabel" fx:id="submitLabel" text="Label" GridPane.columnIndex="1" GridPane.margin="$x3" GridPane.rowIndex="2" />
-        <Label fx:id="solveLabel" text="Label" GridPane.columnIndex="1" GridPane.margin="$x3" GridPane.rowIndex="3" />
-        <Label fx:id="submissionLabel" text="Label" GridPane.columnIndex="1" GridPane.margin="$x3" GridPane.rowIndex="4" />
-        <Label fx:id="acceptLabel" text="Label" GridPane.columnIndex="1" GridPane.margin="$x3" GridPane.rowIndex="5" />
+        <Label id="submissionLabel" fx:id="submitLabel" styleClass="real-text" text="Label" GridPane.columnIndex="1" GridPane.margin="$x3" GridPane.rowIndex="2" />
+        <Label fx:id="solveLabel" styleClass="real-text" text="Label" GridPane.columnIndex="1" GridPane.margin="$x3" GridPane.rowIndex="3" />
+        <Label fx:id="submissionLabel" styleClass="real-text" text="Label" GridPane.columnIndex="1" GridPane.margin="$x3" GridPane.rowIndex="4" />
+        <Label fx:id="acceptLabel" styleClass="real-text" text="Label" GridPane.columnIndex="1" GridPane.margin="$x3" GridPane.rowIndex="5" />
             <AreaChart fx:id="growthChart" GridPane.columnSpan="2" GridPane.rowIndex="8">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />

@@ -8,11 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="rootLayout" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.RootStageController">
-  <stylesheets>
-    <URL value="@../css/general.css" />
-    <URL value="@../css/rootstage.css" />
-  </stylesheets>
+<BorderPane fx:id="rootLayout" prefHeight="600.0" prefWidth="960.0" styleClass="background" stylesheets="@../css/basic.theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.RootStageController">
    <top>
       <GridPane prefHeight="40.0" BorderPane.alignment="CENTER">
         <columnConstraints>

@@ -6,8 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<GridPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.ProblemViewController">
+<GridPane prefHeight="600.0" prefWidth="960.0" stylesheets="@../css/basic.theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.ProblemViewController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -18,8 +17,8 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Label text="题目号：" />
-            <TextField fx:id="problem_id" prefHeight="23.0" prefWidth="74.0" />
+            <Label styleClass="sp-text" text="题目号：" />
+            <TextField fx:id="problem_id" prefHeight="23.0" />
             <Button fx:id="ok_1" mnemonicParsing="false" prefHeight="23.0" prefWidth="62.0" text="查看" />
             <Button fx:id="do_it" mnemonicParsing="false" prefHeight="23.0" prefWidth="62.0" text="做题" />
          </children>
@@ -33,4 +32,8 @@
          </GridPane.margin>
       </WebView>
    </children>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="showp" />
+   </styleClass>
 </GridPane>

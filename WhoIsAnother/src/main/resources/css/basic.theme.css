@@ -1,51 +1,632 @@
-@CHARSET "UTF-8";
-.layout {
+.background {
     -fx-background-color: #fff;
+    -fx-font-family: "Microsoft YaHei";
+    /*-fx-effect:innershadow(three-pass-box,#a7a7a7,5,0.2,2,-1);*/
 }
 .h1 {
-    -fx-font-size: 4.5em;
+    -fx-font-size: 7.5em;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 }
 .h2 {
-    -fx-font-size: 3.5em;
+    -fx-font-size: 4.5em;
+    -fx-effect: innershadow(three-pass-box, #a7a7a7, 1, 0.0, 1, 0);
 }
 .h3 {
-    -fx-font-size: 2em;
+    -fx-font-size: 3em;
+    -fx-effect: innershadow(three-pass-box, #a7a7a7, 1, 0.0, 1, 0);
 }
-.wia-text {
-    -fx-font-size: 1.5em;
-}
-.wia-textfield {
-    -fx-padding: 5px 8px 5px 8px;
+#goButton {
+    -fx-padding: 10 35 10 35;
     -fx-cursor: hand;
-}
-.wia-button {
-    -fx-cursor: hand;
-    -fx-alignment: center ;
-    -fx-border-style: null; 
+    -fx-border-style: null;
+    -fx-border-width: 0;
     -fx-background-radius: 5;
-
-    -fx-background-color: rgb(97,139,173);
-    -fx-font-family:"Droid Sans Fallback";
+    -fx-background-color: rgb(47, 158, 219);
+    -fx-font-family: "Droid Sans Fallback";
     -fx-font-size: 22pt;
     -fx-text-fill: white;
 }
-.wia-button:pressed {
-    -fx-border-color: black;
-    -fx-border-style: segments(1,1,1,1); 
-    -fx-border-width: 1;
-}
-.wia-button:hover {
-   -fx-background-color: rgb(97,139,173);
-   -fx-text-fill: black;
-}
-.text-title{
-    -fx-font-size: 18pt;
+#goButton:hover {
+    -fx-border-style: null;
+    -fx-border-width: 0;
+    -fx-background-color: #29c17f;
     -fx-text-fill: black;
-    -fx-font-family:"Droid Sans Fallback";
 }
-.Hyperlink{
-    -fx-text-fill: rgb(97,139,173);
-    -fx-font-size: 15pt;
-    -fx-cursor: hand;
-    
+#goButton:pressed,
+#goButton:default:hover:pressed {
+    -fx-background-color: #07a263;
+    -fx-text-fill: black;
+}
+#goButton:focus {
+    -fx-border: none;
+    -fx-border-style: null;
+    -fx-border-width: 0;
+    -fx-background-color: #07a263;
+}
+.title {
+    -fx-font-size: 2em;
+}
+.info-text {
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #0b63db;
+}
+.real-text {
+    -fx-font-size: 1.5em;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 0, 0.2);
+}
+.add-text {
+    -fx-font-size: 1.5em;
+}
+#flow-title {
+    -fx-font-size: 1.6em;
+}
+.flow .text {
+    -fx-font-size: 1.3em;
+}
+.lightspot .ls-text {
+    -fx-font-size: 1.3em;
+}
+.lightspot .number {
+    -fx-text-fill: #0045ff;
+    -fx-font-size: 2.5em;
+    -fx-padding: 5 15 5 15;
+}
+.nb .nb-text {
+    -fx-font-size: 1.8em;
+}
+.profile .title {
+    -fx-font-size: 2.2em;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 0, 0.2);
+}
+.profile .info-text {
+    -fx-font-size: 1.8em;
+    -fx-text-fill: #0b63db;
+}
+.profile .real-text {
+    -fx-font-size: 1.8em;
+}
+.setting .s-text {
+    -fx-font-size: 1.3em;
+}
+.showp .sp-text {
+    -fx-font-size: 1.5em;
+}
+.submit .label {
+    -fx-font-size: 1.5em;
+}
+/*******************************************************************************
+ *                                                                             *
+ * Push Button                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+
+#addbutton {
+    -fx-font-size: 1.2em;
+    -fx-padding: 5 15 5 15;
+}
+.button {
+    -fx-padding: 5 5 5 5;
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+    -fx-background-radius: 4px;
+    -fx-background-color: #75cfff;
+    -fx-font-size: 12pt;
+    -fx-text-fill: black;
+}
+.button:hover {
+    -fx-background-color: #6199ff;
+}
+.button:pressed,
+.button:default:hover:pressed {
+    -fx-background-color: #75a6fc;
+    -fx-text-fill: white;
+}
+.button:focused {
+    -fx-border-color: transparent, black;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+.button:disabled,
+.button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #cccccc;
+    -fx-text-fill: #212121;
+}
+.button:default {
+    -fx-background-color: #008287;
+    -fx-text-fill: #ffffff;
+}
+.button:default:hover {
+    -fx-background-color: #219297;
+}
+/*******************************************************************************
+ *                                                                             *
+ * Toggle Button                                                               *
+ *                                                                             *
+ ******************************************************************************/
+
+.toggle-button {
+    -fx-padding: 5 5 5 5;
+    -fx-border-style: null;
+    -fx-background-radius: 4px;
+    -fx-background-color: rgb(240, 93, 93);
+    -fx-font-size: 12pt;
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+}
+.toggle-button:focused {
+    -fx-border-color: transparent, black;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+.toggle-button:hover {
+    -fx-background-color: rgb(216, 69, 69);
+    -fx-text-fill: black;
+}
+.toggle-button:selected {
+    -fx-background-color: #40e379;
+    -fx-text-fill: white;
+}
+.toggle-button:selected:hover {
+    -fx-background-color: #2ac35d;
+    -fx-text-fill: white;
+}
+.toggle-button:disabled {
+    -fx-opacity: 0.4;
+}
+/*******************************************************************************
+ *                                                                             *
+ * Radio Button                                                                *
+ *                                                                             *
+ ******************************************************************************/
+
+.radio-button {
+    -fx-text-fill: #212121;
+}
+.radio-button > .radio {
+    -fx-background-color: transparent;
+    -fx-background-radius: 1.0em;
+    /* large value to make sure this remains circular */
+    -fx-background-insets: 0;
+    -fx-border-radius: 1.0em;
+    -fx-border-color: #bababa;
+    -fx-border-width: 2px;
+    -fx-padding: 4px;
+    /* 4 -- padding from outside edge to the inner black dot */
+}
+.radio-button > .radio > .dot {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1.0em;
+    /* large value to make sure this remains circular */
+    -fx-padding: 6px;
+    /* 3 -- radius of the inner black dot when selected */
+}
+.radio-button:selected > .radio > .dot {
+    -fx-background-color: #212121;
+}
+.radio-button:hover > .radio {
+    -fx-border-color: #919191;
+}
+.radio-button:disabled {
+    -fx-opacity: 0.5;
+}
+.radio-button:disabled > .radio {
+    -fx-background-color: #e6e6e6;
+    -fx-border-color: #d9d9d9;
+}
+.radio-button:focused > .radio {
+    -fx-background-color: transparent;
+    -fx-background-radius: 1.0em;
+    /* large value to make sure this remains circular */
+    -fx-background-insets: 0;
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 1.0em, 0;
+    -fx-border-color: #bababa, black;
+    -fx-border-insets: 0px, -2px;
+    -fx-border-width: 2px, 1px;
+    -fx-padding: 4px;
+    /* 4 -- padding from outside edge to the inner black dot */
+}
+.radio-button:focused:hover > .radio {
+    -fx-border-color: #919191, black;
+}
+.radio-button:focused:pressed > .radio {
+    -fx-border-color: #212121, black;
+}
+.radio-button:pressed > .radio {
+    -fx-background-color: #212121;
+    -fx-border-color: #212121;
+}
+.radio-button:pressed:selected > .radio > .dot {
+    -fx-background-color: white;
+}
+/*******************************************************************************
+ *                                                                             *
+ * Tooltip                                                                     *
+ *                                                                             *
+ ******************************************************************************/
+
+.tooltip {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+    /*4 8 4 8 */
+    -fx-font-family: "Segoe UI Semilight", "Segoe UI Light", "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-text-fill: rgba(0, 0, 0, 0.6);
+    -fx-border-color: #808080;
+    -fx-border-width: 2px;
+    -fx-effect: null;
+}
+/*******************************************************************************
+ *                                                                             *
+ * ComboBox                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+.combo-box-base {
+    -fx-background-color: transparent, #bababa, transparent, white;
+    -fx-background-radius: 0, 0, 0, 0;
+    -fx-padding: 0em 0.166667em 0em 0.166667em;
+    /* 0 2px 0 2px*/
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+}
+.combo-box-base:hover {
+    -fx-background-color: transparent, #909090, transparent, white;
+}
+.combo-box-base:focused {
+    -fx-background-color: transparent, #5c5c5c, transparent, white;
+    -fx-background-insets: -1.4, 0, 1, 2;
+    -fx-background-radius: 0, 0, 0, 0;
+}
+.combo-box-base:focused:hover {
+    -fx-background-color: transparent, #909090, transparent, white;
+}
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+}
+/* OPEN BUTTON */
+
+.combo-box-base > .arrow-button {
+    -fx-background-color: transparent, transparent, transparent;
+}
+/* ARROW */
+
+.combo-box-base > .arrow-button > .arrow {
+    -fx-padding: 0.236110875em 0.333333em 0.236110875em 0.333333em;
+    /* (2/3 * 4.25) 4 (2/3 * 4.25) 4 */
+    -fx-shape: "M-78,640l-6-5.5v-3l6,5l0,0l6-5v3L-78,640L-78,640z";
+    -fx-background-insets: 0 0 0 0, 0;
+    -fx-background-color: black;
+}
+/* LIST (Popup)*/
+
+.combo-box-popup > .list-view {
+    -fx-effect: null;
+}
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-padding: 4 0 4 5;
+}
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:hover {
+    -fx-background-color: #dedede;
+    -fx-text-fill: black;
+}
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
+    -fx-background-color: #55c4fe;
+    /* TODO: this probably is the "active" color" */
+}
+/*******************************************************************************
+ *                                                                             *
+ * ScrollBar		                                 						   *
+ *                                                                             *
+ ******************************************************************************/
+
+.scroll-bar {
+    -fx-background-color: white;
+}
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+.scroll-bar:vertical .track-background,
+.scroll-bar:horizontal .track-background {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0em;
+}
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: rgb(205, 205, 205);
+    -fx-background-insets: 2 0 2 0;
+    -fx-background-radius: 0em;
+}
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(205, 205, 205);
+    -fx-background-insets: 0 2 0 2;
+    -fx-background-radius: 0em;
+}
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgb(215, 215, 215);
+}
+.scroll-bar:horizontal .thumb:pressed,
+.scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: rgb(96, 96, 96);
+}
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 5 5 5 5;
+}
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 5 5 5 5;
+}
+.scroll-bar:horizontal .increment-arrow {
+    -fx-shape: "M4,17v-2.889l4.124-3.86l4.125,3.86V17l-4.125-3.375L4,17z";
+    -fx-padding: 0.25em;
+    -fx-rotate: 90;
+}
+.scroll-bar:vertical .increment-arrow {
+    -fx-shape: "M4,17v-2.889l4.124-3.86l4.125,3.86V17l-4.125-3.375L4,17z";
+    -fx-padding: 0.25em;
+    -fx-rotate: 180;
+}
+.scroll-bar:horizontal .decrement-arrow {
+    -fx-shape: "M4,17v-2.889l4.124-3.86l4.125,3.86V17l-4.125-3.375L4,17z";
+    -fx-padding: 0.25em;
+    -fx-rotate: -90;
+}
+.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: "M4,17v-2.889l4.124-3.86l4.125,3.86V17l-4.125-3.375L4,17z";
+    -fx-padding: 0.25em;
+}
+.scroll-bar:vertical:focused,
+.scroll-bar:horizontal:focused {
+    -fx-background-color: -fx-box-border, -fx-box-border, white;
+}
+/*******************************************************************************
+ *                                                                             *
+ * TableView                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+
+.table-cell {
+    -fx-padding: 0.8em 0em 0.5em 0.3em;
+    -fx-border-color: transparent -fx-box-border transparent transparent;
+    -fx-font: 12px"Segoe UI";
+    -fx-text-fill: #212121;
+}
+.table-view {
+    -fx-table-header-border-color: #959595;
+    -fx-table-cell-border-color: -fx-box-border;
+}
+.table-view:focused {
+    -fx-background-color: -fx-box-border, -fx-box-border, white;
+}
+.table-row-cell {
+    -fx-background-color: white;
+}
+.table-row-cell:odd {
+    -fx-background-color: white;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+.table-view:focused .table-row-cell:focused,
+.table-view:focused .table-row-cell:focused:odd {
+    -fx-background-color: -fx-box-border, white;
+    -fx-background-insets: 0, 1, 2;
+}
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-box-border, rgb(205, 205, 205);
+}
+.table-view:focused .table-row-cell:filled:selected,
+.table-view:row-selection .table-row-cell:filled:hover:selected {
+    -fx-background-color: rgb(205, 205, 205);
+    -fx-background-insets: 0, 1 1 1 1 0;
+}
+.table-view:focused .table-row-cell:filled:focused:selected:hover {
+    -fx-background-color: -fx-box-border, rgb(205, 205, 205);
+    -fx-background-insets: 0, 1 1 1 1 0;
+}
+.table-row-cell:filled:selected:focused,
+.table-row-cell:filled:selected {
+    -fx-background-color: rgb(205, 205, 205);
+}
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: rgb(231, 231, 231);
+}
+.table-view:row-selection .table-row-cell:filled:focused:hover {
+    -fx-background-color: rgb(205, 205, 205);
+}
+.table-view:focused .table-row-cell:filled:focused:hover {
+    -fx-background-color: -fx-box-border, rgb(231, 231, 231);
+}
+.table-view .column-header-background {
+    -fx-background-color: white;
+}
+/* table header label color
+.table-view .column-header .label{
+	 -fx-text-fill: white;
+}
+*/
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: white;
+    -fx-size: 35;
+    -fx-border-color: -fx-box-border;
+    -fx-border-insets: -1 0 0 -1;
+    -fx-padding: 0 5 0 0;
+}
+.table-view .show-hide-columns-button {
+    -fx-background-color: white;
+    -fx-border-color: -fx-box-border;
+    -fx-border-insets: -1 -1 0 0;
+}
+.table-view .column-drag-header {
+    -fx-background-color: rgb(45, 137, 239);
+    -fx-opacity: 0.6;
+}
+.table-view .column-resize-line {
+    -fx-background-color: rgb(45, 137, 239);
+}
+.table-view .column-overlay {
+    -fx-background-color: darkgray;
+    -fx-opacity: 0.2;
+}
+.table-view .arrow {
+    -fx-padding: 0.2em;
+    -fx-shape: "M4,17v-2.889l4.124-3.86l4.125,3.86V17l-4.125-3.375L4,17z";
+}
+/*******************************************************************************
+ *                                                                             *
+ * ProgressBar                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+
+.progress-bar .bar {
+    -fx-background-color: rgb(45, 137, 239);
+    -fx-background-insets: 3;
+    -fx-padding: 1em;
+}
+.progress-bar:indeterminate .bar {
+    -fx-background-color: rgb(45, 137, 239);
+    -fx-border-style: none;
+}
+.progress-bar .track {
+    -fx-background-color: -fx-box-border, rgb(231, 231, 231);
+}
+/*******************************************************************************
+ *                                                                             *
+ * ProgressIndicator                                                           *
+ *                                                                             *
+ ******************************************************************************/
+
+.progress-indicator {
+    -fx-progress-color: rgb(45, 137, 239);
+}
+.progress-indicator .indicator {
+    -fx-background-color: rgb(231, 231, 231);
+    -fx-border-color: -fx-box-border;
+}
+.progress-indicator .progress {
+    -fx-background-color: transparent;
+    -fx-padding: 2em;
+}
+.progress-indicator:indeterminate .spinner {
+    -fx-padding: 1.5em;
+}
+.progress-indicator .percentage {
+    -fx-font: 11px"Segoe UI";
+    -fx-text-fill: #212121;
+}
+/*******************************************************************************
+ *                                                                             *
+ * TextBox (and PasswordBox)                                                   *
+ *                                                                             *
+ ******************************************************************************/
+
+.text-field {
+    -fx-skin: "jfxtras.styles.jmetro8.MetroTextFieldSkin";
+}
+.text-input {
+    -fx-background-radius: 0, 0;
+    -fx-background-color: #bababa, white;
+    -fx-background-insets: 0, 2;
+    -fx-prompt-text-fill: #9f9f9f;
+    -fx-highlight-fill: #008287;
+    /* TODO: this probably is the "active" color" */
+    -fx-highlight-text-fill: white;
+}
+.text-input:hover {
+    -fx-background-color: #8f8f8f, white;
+}
+.text-input:focused {
+    -fx-background-color: #5c5c5c, white;
+    -fx-text-fill: black;
+}
+/*.text-input > Pane{*/
+
+/*-fx-padding: 0.333333em 0.583em 0.333333em 0em; */
+
+/* 4 7 4 0 */
+
+/*}*/
+
+.text-input > .right-button {
+    -fx-cursor: default;
+    -fx-background-insets: -0.1666665em -0.45em -0.1666665em -0.45em;
+    /* 4 7 4 7 -> this values are subtracted by 2px in em because of the border of the textfield */
+}
+.text-field > .right-button > .right-button-graphic {
+    -fx-shape: "M221.738,305.873l6.135,6.16l-2.875,2.863l-6.135-6.159l-6.263,6.237l-2.864-2.875l6.263-6.238l-6.177-6.202l2.875-2.863l6.177,6.201l6.244-6.22l2.864,2.876L221.738,305.873z";
+    -fx-padding: 0.5em 0.5em;
+    /* TODO: put the real number here 18 18 */
+    -fx-background-color: black;
+}
+.text-input > .right-button:hover {
+    -fx-background-color: #d9d9d9;
+}
+.text-input > .right-button:pressed {
+    -fx-background-color: black;
+}
+.text-input > .right-button:pressed > .right-button-graphic {
+    -fx-background-color: white;
+}
+.text-input:disabled {
+    -fx-opacity: 1;
+    -fx-background-color: #d9d9d9, #eaeaea;
+    -fx-text-fill: #adadad;
+}
+.item-title.disabled {
+    -fx-text-fill: #adadad;
+}
+/*******************************************************************************
+ *                                                                             *
+ * PasswordBox                                                                 *
+ *                                                                             *
+ ******************************************************************************/
+
+.password-field {
+    -fx-skin: "jfxtras.styles.jmetro8.MetroPasswordFieldSkin";
+}
+.password-field > .right-button > .right-button-graphic {
+    -fx-shape: "M307.688,399.564c0,1.484-1.203,2.688-2.688,2.688c-1.484,0-2.688-1.203-2.688-2.688s1.203-2.688,2.688-2.688C306.484,396.876,307.688,398.08,307.688,399.564z M297.5,399h2.5c0,0,1.063-4,5-4c3.688,0,5,4,5,4h2.5c0,0-2.063-6.5-7.5-6.5C299,392.5,297.5,399,297.5,399z";
+    -fx-scale-shape: false;
+    -fx-background-color: black;
+}
+/*******************************************************************************
+ *                                                                             *
+ * TextArea                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+.text-area {
+    -fx-font: 12px"Segoe UI";
+    -fx-text-fill: #212121;
+    -fx-background-color: -fx-box-border, white;
+    -fx-highlight-fill: rgb(45, 137, 239);
+    -fx-background-radius: 0;
+}
+.text-area .scroll-pane .scroll-bar .track,
+.text-area .scroll-pane .scroll-bar .scroll-bar,
+.text-area .scroll-pane .scroll-bar .track-background {
+    -fx-background-color: transparent;
+}
+.text-area:focused {
+    -fx-background-color: -fx-box-border, -fx-box-border, white;
+    -fx-background-radius: 0;
 }

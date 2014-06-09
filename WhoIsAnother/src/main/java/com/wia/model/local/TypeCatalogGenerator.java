@@ -21,7 +21,8 @@ public class TypeCatalogGenerator {
 	public Map<Integer, String> generateCatalogMap(String pathname)
 			throws IOException {
 		InputStream is = getClass().getResourceAsStream(pathname);
-		JSONArray cataArray = JSONArray.fromObject(IOUtils.toString(is));
+		JSONArray cataArray = JSONArray.fromObject(IOUtils
+				.toString(is, "utf-8"));
 
 		Map<Integer, String> catalogMap = new HashMap<Integer, String>();
 		for (int i = 0; i < cataArray.size(); i++) {

@@ -11,11 +11,11 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 public class Submit {
 	private final CloseableHttpClient httpClient;
@@ -46,7 +46,7 @@ public class Submit {
 		return url + problemID;
 	}
 
-	public void login(String username, String password) {
+	public boolean login(String username, String password) {
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("username", username));
@@ -62,11 +62,11 @@ public class Submit {
 
 		try {
 			CloseableHttpResponse myRes = httpClient.execute(myPost);
-
-			HttpGet myGet = new HttpGet(
-					"http://acm.hdu.edu.cn/submit.php?pid=1006");
-			httpClient.execute(myGet);
-
+			String res = EntityUtils.toString(myRes.getEntity());
+			if (res.contains("No such user or wrong password")) {
+				myRes.close();
+				return false;
+			}
 			myRes.close();
 
 		} catch (ClientProtocolException e) {
@@ -76,6 +76,7 @@ public class Submit {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return true;
 	}
 
 	public void submitCode(String language, String usercode) {

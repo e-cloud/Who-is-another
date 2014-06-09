@@ -5,16 +5,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="rootLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.NeighbourRecommendController">
+<BorderPane fx:id="rootLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="960.0" stylesheets="@../css/basic.theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wia.controller.NeighbourRecommendController">
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="六位邻居比较后显示你没做的题" />
+            <Label styleClass="nb-text" text="六位邻居比较后显示你没做的题" />
          </children>
       </HBox>
    </top>
    <center>
-      <ScrollPane fitToWidth="true" prefHeight="480.0" BorderPane.alignment="CENTER">
+      <ScrollPane fitToWidth="true" prefHeight="480.0" styleClass="background" BorderPane.alignment="CENTER">
          <content>
             <GridPane fx:id="gridPane">
               <columnConstraints>
@@ -24,4 +24,8 @@
          </content>
       </ScrollPane>
    </center>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="nb" />
+   </styleClass>
 </BorderPane>

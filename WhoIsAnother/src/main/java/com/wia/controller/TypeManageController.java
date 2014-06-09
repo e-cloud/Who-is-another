@@ -90,12 +90,13 @@ public class TypeManageController {
 		try {
 			if (file != null && file.exists()) {
 				FileUtils.copyFileToDirectory(file, new File("catalog"));
+
+				// TODO change configuration and refresh
+				Context.getInstance().setConfigProperty("UserCatalog",
+						"catalog/" + file.getName());
+				setupTextArea();
+				TypeCatalog.reset();
 			}
-			// TODO change configuration and refresh
-			Context.getInstance().setConfigProperty("UserCatalog",
-					"catalog/" + file.getName());
-			setupTextArea();
-			TypeCatalog.reset();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -191,7 +192,6 @@ public class TypeManageController {
 					.message(
 							"Your modified text doesn't pass the validation.The type isn't right!")
 					.showError();
-			e.printStackTrace();
 		}
 
 		catch (ProcessingException e) {
